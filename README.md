@@ -5,7 +5,7 @@ Ready-Save-Go
 - bring the joy of anticipation with the use of charts and others motivational visuals.
 - help the user to prepare and plan activities during the stay, offering the possibility to save possible activities along with pictures, links and comments of these activities. 
 - give the joy of accomplishment once they reach their goal.
-- have a special memory of the trip and of the steps it took him to get . 
-(Possibly option of uploading pictures of their trips with comments)
+- have a special memory of the trip and of the steps it took him to get there (with visuals) . 
+- (Possibly option of uploading pictures of their trips with comments)
 
 - Then the process can be repeated for another trip....
