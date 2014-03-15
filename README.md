@@ -1,10 +1,11 @@
-*Ready-Save-Go*
-
-will help the user in 3 main ways:
-
-- Help them save for the trips of there dreams by helping them set saving goals and reminding them weekly about it by an email
-- Build on the joy of anticipation with the use of charts and others
-- Help them prepare and plan activities in their stay, as they will be able to save them as pictures, 
- comments and links
+Ready-Save-Go
+============
+ 
+- will help the user save for the trip of his dream by helping him set goals and a time frame to reach the goal. They also receive a weekly reminder email
+- Build on the joy of anticipation with the use of charts and others motivational visuals.
+- Help them prepare and plan activities during their stay, and save those possible activities along with pictures, links and comments of these activities. 
 - Get the joy of accomplishment once they reach their goal
--possibly adding pictures of their trip
+- Will have a memory of his trip and also ofthe steps to get there.  
+-possibly adding pictures of their trip to the special trip
+
+- then the process can be repeated for another trip....
