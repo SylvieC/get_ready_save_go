@@ -1,4 +1,5 @@
 ReadySaveGo::Application.routes.draw do
+  devise_for :users
   root to: "trips#index"
   resources :trip
   # The priority is based upon order of creation: first created -> highest priority.
