@@ -24,7 +24,6 @@ gem 'mandrill_mailer'
 gem 'devise'
 gem 'unicorn'
 gem 'sidekiq'
-gem 'sidekiq'
 # gem 'active_model_serializer'
 
 # Use jquery as the JavaScript library
@@ -55,7 +54,7 @@ group :development, :test do
   gem 'meta_request'
   gem 'pry'
   gem 'pry-rails'
-  gem 'pry-byebug'
+  # gem 'pry-byebug'
   gem 'capybara'
   gem "factory_girl_rails", "~> 4.4.0"
 end
