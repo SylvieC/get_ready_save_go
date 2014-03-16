@@ -3,7 +3,7 @@
 Devise.setup do |config|
 
 
-  getreadysavego::Application.config.secret_key = ENV['SECRET_KEY_BASE']
+  config.secret_key = ENV['SECRET_KEY_BASE']
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
