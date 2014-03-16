@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :authenticate_user!v
+  before_filter :authenticate_user!
   def index
   end
 end
