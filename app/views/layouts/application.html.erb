@@ -2,39 +2,29 @@
 <html>
 <head>
   <title>ReadySaveGo</title>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GMAPS_API_KEY']%>&sensor=false"></script>
 
+  
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAHFpTqY_hrTvUrfIhCoDAf0UcZnRuYisc&sensor=false"> </script>
-
-    
-
-
-      <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBTN8fjtI5QbcI-0Qt14Yjm7bKRIchzcNw&sensor=false">
-    </script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
    <!-- App-like mobile view -->
                  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, user-scalable=no"/>
                  
                  <!-- Normalize -->
-                 <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+                 <link rel="stylesheet" src="http://normalize-css.googlecode.com/svn/trunk/normalize.css" />
 
-                 <!-- Boostrap core CSS -->
-                 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" type="text/css">
-
-                 <!-- Bootstrap styling CSS -->
-                 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" type="text/css">
-
-                 <!-- Local styling -->
-                 <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 
                  <!-- Jquery -->
                  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
                 
                 <!-- Bootstrap JS -->
-                 <script src="//netdna.bootstrapcdn.com/bootstrap"></script>
+                <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+       
+      
 </head>
 <body>
 

@@ -1,4 +1,6 @@
 ReadySaveGo::Application.routes.draw do
+  get "users/index"
+  get "users/show"
   root :to => "site#index"
   devise_for :users
   resources :users do

@@ -1,6 +1,6 @@
 // Place all the styles related to the site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
- html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
+ html { height: 50% }
+      body { height: 150%; margin: 0; padding: 0 }
+      #map-canvas { height: 50% }

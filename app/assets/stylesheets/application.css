@@ -11,3 +11,27 @@
  *= require_self
  *= require_tree .
  */
+ #map_canvas {
+  width:70%; 
+  height:54%}
+#distance_direct, #distance_road{
+  width:100%; height:10%
+
+}
+
+
+html {height:100%}
+body {height:100%;margin:0;padding:0}
+#googleMap {height:100%}
+
+#googleMap {
+  width:500px;
+  height:380px;
+
+}
+
+.center{
+  text-align: center;
+}
+
+
