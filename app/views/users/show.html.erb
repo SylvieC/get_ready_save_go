@@ -1,23 +1,85 @@
-show page
+show page  
+<div class="container">
 
 <h1 id="title center">My Trip</h1>
- Planned time of Departure or Ticket Purchase</br>
-   <%= select_date Date.today, prefix: :start_date %> </br></br>
 
-<div class="container">
-<tr>
-   <div class="col-sm-12 col-md-6">
-       <div id="googleMap"></div>
-     
-   <div class ="col-sm-12 col-md-6">
+
+ <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
+
   
-</tr>
+
+      <%=f.label  :"My Trip's title" %>
+      <%= f.text_field :title, placeholder: "To My Ancestors' Land"%></br><br/>
+
+      <%= f.label :'Starting point' %>
+      <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %>
+      <%= f.label :'Final Destination' %>
+      <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %><br/></br>
+       Planned time of Departure or Ticket Purchase</br>
+      <%= select_date Date.today, prefix: :start_date %> </br></br>
+
+    
+      <%= f.submit "Save trip", class: "btn btn-danger", id: "show_map" %>
+      <% end %>
+ 
+   
+  
+        
+  
+ <div class="container">
+
+  <div id="googleMap"></div><br/>
+
+   <div id="anotherMap"></div><br/>
+
+   
+
+</div>
+
+</div>
 
 
 
-<div class="container">
-   <div id="map-canvas"><div>
 
+<!-- chart -->
+    <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+   <div id="myfirstchart"></div>
+   
+<div id="form" style="width:100%; height:20%">
+      <table align="center" valign="center">
+         <tr>
+            <td colspan="7" align="center"><b>Find the distance between two locations</b></td>
+         </tr>
+         <tr>
+            <td colspan="7">&nbsp;</td>
+         </tr>
+         <tr>
+            <td>First address:</td>
+            <td>&nbsp;</td>
+            <td><input type="text" name="address1" id="address1" size="50"/></td>
+            <td>&nbsp;</td>
+            <td>Second address:</td>
+            <td>&nbsp;</td>
+            <td><input type="text" name="address2" id="address2" size="50"/></td>
+         </tr>
+         <tr>
+            <td colspan="7">&nbsp;</td>
+         </tr>
+         <tr>
+            <td colspan="7" align="center"><input type="button" value="Show"/></td>
+         </tr>
+      </table>
+   </div>
+   <center><div  id="distance_direct"></div></center>
+   <center><div id="distance_road"></div></center>
+   
+   <center><div id="googleMap" style="width:70%; height:54%"></div></center>
 
+     
+
+   </div>
+   
+ <div id="thirdMap"></div>
 
 

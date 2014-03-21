@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   before_filter :authenticate_user!
   def index
     @trip = Trip.new
-    @trips = Trip.all |
+    @trips = Trip.all 
   end
 
   def new
@@ -13,9 +13,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip)
     @trip.user_id = current_user.id
     @trip.save
-    redirect_to  user_trip_path(current_user.id)
+    redirect_to  user_path(current_user.id)
   end
 
-  def update
-  end
- end
+end
