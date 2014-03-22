@@ -82,19 +82,8 @@ google.maps.event.addDomListener(window, 'load',initialize);
   var map;
   
   var distance;
+  var line;
 
- 
-  var location1;
-  var location2;
-  
-  var address1;
-  var address2;
-
-  var latlng;
-  var geocoder;
-  var map;
-  
-  var distance;
   
   // finds the coordinates for the two locations and calls the showMap() function
   function initialize()
@@ -104,8 +93,8 @@ google.maps.event.addDomListener(window, 'load',initialize);
     // getting the two address values
     // address1 = document.getElementById("address1").value;
     // address2 = document.getElementById("address2").value;
-     address1 = 'paris, France';
-    address2 = 'San Francisco';
+     address1 = 'San Francisco';
+    address2 = 'Beijing';
     
     // finding out the coordinates
     if (geocoder) 
@@ -159,12 +148,29 @@ google.maps.event.addDomListener(window, 'load',initialize);
       // set the map options
     map = new google.maps.Map(document.getElementById("thirdMap"), mapOptions);
     
+    
+    
+   // show a line between the two points
+    var line = new google.maps.Polyline({
+      map: map, 
+      path: [location1, location2],
+      strokeWeight: 7,
+      strokeOpacity: 0.8,
+      strokeColor: "#FFAA00"
+    });
+
+
+  
     // show route between the points
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer(
     {
       suppressMarkers: true,
-      suppressInfoWindows: true
+      suppressInfoWindows: true,
+      polylineOptions:{
+        strokeColor: "white",
+        strokeOpacity: 0
+      }
     });
     directionsDisplay.setMap(map);
     var request = {
@@ -177,19 +183,11 @@ google.maps.event.addDomListener(window, 'load',initialize);
       if (status == google.maps.DirectionsStatus.OK) 
       {
         directionsDisplay.setDirections(response);
-        distance = "The distance between the two points on the chosen route is: "+response.routes[0].legs[0].distance.text;
+        distance = "The distance between the two points on the chosen route is: "+ response.routes[0].legs[0].distance.text;
         distance += "<br/>The aproximative driving time is: "+response.routes[0].legs[0].duration.text;
+        distance += '<br/> The distance between the two points is: ' ;
         document.getElementById("distance_road").innerHTML = distance;
       }
-    });
-    
-    // show a line between the two points
-    var line = new google.maps.Polyline({
-      map: map, 
-      path: [location1, location2],
-      strokeWeight: 7,
-      strokeOpacity: 0.8,
-      strokeColor: "#FFAA00"
     });
     
     // create the markers for the two locations   
@@ -206,17 +204,15 @@ google.maps.event.addDomListener(window, 'load',initialize);
     
     // create the text to be shown in the infowindows
     var text1 = '<div id="content">'+
-        '<h1 id="firstHeading">First location</h1>'+
+        '<h1 id="firstHeading">Starting point</h1>'+
         '<div id="bodyContent">'+
-        '<p>Coordinates: '+location1+'</p>'+
-        '<p>Address: '+address1+'</p>'+
+        '<p>City: '+address1+'</p>'+
         '</div>'+
         '</div>';
         
     var text2 = '<div id="content">'+
       '<h1 id="firstHeading">Second location</h1>'+
       '<div id="bodyContent">'+
-      '<p>Coordinates: '+location2+'</p>'+
       '<p>Address: '+address2+'</p>'+
       '</div>'+
       '</div>';
@@ -229,12 +225,30 @@ google.maps.event.addDomListener(window, 'load',initialize);
       content: text2
     });
 
+
+var line_length = google.maps.geometry.spherical.computeLength(line.getPath());
+var remainingDist = length;
+console.log(line_length);
+
+
+ 
+ createMarker(map, line.GetPointAtDistance(line_length/2), "you're" );
+
+   
+function createMarker(map, latlng, title){
+    var marker = new google.maps.Marker({
+          position:latlng,
+          map:map,
+          title: title
+          });
+}
+
     // add action events so the info windows will be shown when the marker is clicked
     google.maps.event.addListener(marker1, 'click', function() {
       infowindow1.open(map,marker1);
     });
     google.maps.event.addListener(marker2, 'click', function() {
-      infowindow2.open(map,marker1);
+      infowindow2.open(map,marker2);
     });
     
     // compute distance between the two points
@@ -251,15 +265,17 @@ google.maps.event.addDomListener(window, 'load',initialize);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var d = R * c;
     
-    document.getElementById("distance_direct").innerHTML = "<br/>The distance between the two points (in a straight line) is: "+d;
+    // document.getElementById("distance_direct").innerHTML = "<br/>The distance between the two points (in a straight line) is: "+d + ' kms';
   }
   
   function toRad(deg) 
   {
     return deg * Math.PI/180;
   }      
-    
    
+   // === A method which returns the length of a path in metres === 
+  
+
      
 
 //js.chart
@@ -288,4 +304,22 @@ google.maps.event.addDomListener(window, 'load',initialize);
     chart.render();
   };
 
-  
+ google.maps.Polyline.prototype.GetPointAtDistance = function(metres) {
+  // some awkward special cases
+  if (metres === 0) return this.getPath().getAt(0);
+  if (metres < 0) return null;
+  if (this.getPath().getLength() < 2) return null;
+  var dist=0;
+  var olddist=0;
+  for (var i=1; (i < this.getPath().getLength() && dist < metres); i++) {
+    olddist = dist;
+    dist += this.getPath().getAt(i).distanceFrom(this.getPath().getAt(i-1));
+  }
+  if (dist < metres) {
+    return null;
+  }
+  var p1= this.getPath().getAt(i-2);
+  var p2= this.getPath().getAt(i-1);
+  var m = (metres-olddist)/(dist-olddist);
+  return new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*m, p1.lng() + (p2.lng()-p1.lng())*m);
+};

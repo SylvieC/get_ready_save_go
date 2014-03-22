@@ -1,11 +1,16 @@
 ReadySaveGo::Application.routes.draw do
-  get "users/index"
-  get "users/show"
+ 
   root :to => "site#index"
   devise_for :users
   resources :users do
     resources :trips
  end
+ resources :trips do
+  resources :savings
+end
+resources :trips do
+  resources :activities
+end
 end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
