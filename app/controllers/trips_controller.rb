@@ -20,8 +20,8 @@ class TripsController < ApplicationController
   end
 
   def update
-    @adventure = Trip.find(params[:id])
-    @adventure.update_attributes(params.require(:trip).permit(:to_city, :from_city,:cost, :start_date, :title))
+    @trip = Trip.find(params[:id])
+    @trip.update_attributes(params.require(:trip).permit(:to_city, :from_city,:cost, :start_date, :title))
   end
 
 

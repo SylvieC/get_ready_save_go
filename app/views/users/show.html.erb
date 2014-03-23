@@ -18,6 +18,7 @@ show page
        Planned time of Departure or Ticket Purchase</br>
       <%= f.date_select :start_date, :default => Date.today %>
       <%= f.label :'Cost of the trip (no comma)' %>
+      <input 
       <%= f.text_field :cost, placeholder: "1200" %>
       <%= f.submit "Save trip", class: "btn btn-danger", id: "show_map" %>
       <% end %>

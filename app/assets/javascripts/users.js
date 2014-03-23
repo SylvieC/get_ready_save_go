@@ -180,21 +180,29 @@ google.maps.event.addDomListener(window, 'load',initialize);
       position: location2,
       title: "Second location"
     });
+
     
     // create the text to be shown in the infowindows
     var text1 = '<div id="content">'+
-        '<h3 id="firstHeading">Starting point</h3>'+
+        '<h4 id="firstHeading">Starting point</h>'+
         '<div id="bodyContent1">'+
         '<p>'+ gon.beg +'</p>'+
         '</div>'+
         '</div>';
         
     var text2 = '<div id="content">'+
-      '<h3 id="firstHeading">Destination</h3>'+
+      '<h4 id="firstHeading">Destination</h4>'+
       '<div id="bodyContent">'+
       '<p>'+gon.finish+'</p>'+
       '</div>'+
       '</div>';
+
+    var textMid = '<div id="content">'+
+      '<h4 id="MidHeading"> Progressing...</h4>'+
+      '<div id="bodyContent">'+
+      '<p>'+gon.percentage_saved+'% saved so far</p>'+
+      '</div>'+
+      '</div>';  
     
     // create info boxes for the two markers
     var infowindow1 = new google.maps.InfoWindow({
@@ -203,6 +211,12 @@ google.maps.event.addDomListener(window, 'load',initialize);
     var infowindow2 = new google.maps.InfoWindow({
       content: text2
     });
+
+    var infowindowMid = new google.maps.InfoWindow({
+      content: textMid
+    });
+
+
 
 
 var line_length = google.maps.geometry.spherical.computeLength(line.getPath());
@@ -216,16 +230,15 @@ console.log(gon.percentage_saved);
 
 
 
-
  
- updateMarker(map, line.GetPointAtDistance(line_length/2), "you're" );
+ updateMarker(map, line.GetPointAtDistance(line_length * gon.ratio), "progressing..." );
  
- var marker;  
+ var markerMid;  
 function updateMarker(map, latlng, title){
-      marker = new google.maps.Marker({
+      markerMid = new google.maps.Marker({
           position:latlng,
           map:map,
-          title: "moving forward:" + gon.ratio * 100
+          title: textMid
           });
 }
 
@@ -235,6 +248,10 @@ function updateMarker(map, latlng, title){
     });
     google.maps.event.addListener(marker2, 'click', function() {
       infowindow2.open(map,marker2);
+    });
+
+     google.maps.event.addListener(markerMid, 'click', function() {
+      infowindowMid.open(map,markerMid);
     });
     
     // compute distance between the two points
