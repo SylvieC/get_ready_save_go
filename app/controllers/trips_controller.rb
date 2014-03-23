@@ -11,7 +11,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip = params.require(:trip).permit(:from_city, :to_city, :title)
+    trip = params.require(:trip).permit(:from_city, :to_city, :title,:cost)
     @trip = Trip.new(trip)
     @trip.user_id = current_user.id
     @trip.save

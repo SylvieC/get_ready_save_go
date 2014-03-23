@@ -18,11 +18,17 @@ html {height:100%}
 body {height:100%;margin:0;padding:0}
 #googleMap, #anotherMap {height:100%}
 
-#googleMap, #anotherMap, #thirdMap {
+#googleMap, #anotherMap, #thirdMap{
   width:500px;
   height:380px;
 
 }
+
+/*#thirdMap{
+width: 100%;
+height: 600px;
+}*/
+
 #myfirstchart{
   height : 250px;
 }

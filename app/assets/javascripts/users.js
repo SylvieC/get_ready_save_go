@@ -75,8 +75,8 @@ google.maps.event.addDomListener(window, 'load',initialize);
     // address1 = document.getElementById("address1").value;
     // address2 = document.getElementById("address2").value;
     var 
-    address1 = 'Paris, France';
-    address2 = 'Perpigran, France';
+    address1 = gon.beg;
+    address2 = gon.finish;
     
     // finding out the coordinates
     if (geocoder) 
@@ -165,10 +165,7 @@ google.maps.event.addDomListener(window, 'load',initialize);
       if (status == google.maps.DirectionsStatus.OK) 
       {
         directionsDisplay.setDirections(response);
-        distance = "The distance between the two points on the chosen route is: "+ response.routes[0].legs[0].distance.text;
-        distance += "<br/>The aproximative driving time is: "+response.routes[0].legs[0].duration.text;
-        distance += '<br/> The distance between the two points is: ' ;
-        document.getElementById("distance_road").innerHTML = distance;
+       
       }
     });
     
@@ -186,16 +183,16 @@ google.maps.event.addDomListener(window, 'load',initialize);
     
     // create the text to be shown in the infowindows
     var text1 = '<div id="content">'+
-        '<h1 id="firstHeading">Starting point</h1>'+
-        '<div id="bodyContent">'+
-        '<p>City: '+address1+'</p>'+
+        '<h3 id="firstHeading">Starting point</h3>'+
+        '<div id="bodyContent1">'+
+        '<p>'+ gon.beg +'</p>'+
         '</div>'+
         '</div>';
         
     var text2 = '<div id="content">'+
-      '<h1 id="firstHeading">Second location</h1>'+
+      '<h3 id="firstHeading">Destination</h3>'+
       '<div id="bodyContent">'+
-      '<p>Address: '+address2+'</p>'+
+      '<p>'+gon.finish+'</p>'+
       '</div>'+
       '</div>';
     
@@ -211,6 +208,13 @@ google.maps.event.addDomListener(window, 'load',initialize);
 var line_length = google.maps.geometry.spherical.computeLength(line.getPath());
 var remainingDist = length;
 console.log(line_length);
+console.log(gon.beg);
+console.log(gon.finish);
+console.log(gon.data);
+console.log(gon.ratio);
+console.log(gon.percentage_saved);
+
+
 
 
  
@@ -221,7 +225,7 @@ function updateMarker(map, latlng, title){
       marker = new google.maps.Marker({
           position:latlng,
           map:map,
-          title: title
+          title: "moving forward:" + gon.ratio * 100
           });
 }
 
