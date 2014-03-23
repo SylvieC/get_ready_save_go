@@ -5,21 +5,3 @@ The time in now <%= Time.now %>
 
 
 <div id="googleMap"></div>
-
-<div class="form-group">
-  <%= form_for @trip do |f| %>
-    <div class="form-group">
-    <%= f.text_field :from_city, id: "routeStart", placeholder: "From", class: "form-control"%>
-    </div>
-    <div class="form-group">
-    <%= f.text_field :to_city, id: "routeEnd", placeholder: "Destination", class: "form-control" %>
-    </div>
-    <div class="form-group">
-    <%= f.submit "Save Trip!", id: "show_new_route", class: "btn btn-primary form-control" %><br><br>
-    </div>
-    <div class="form-group">
-    <%= f.text_field :name, placeholder: "Title of my Trip", class: "form-control"%>
-    </div>
-  <% end %>
-  <button class="btn btn-default form-control" id="save_new_route">Save</button>
-</div>

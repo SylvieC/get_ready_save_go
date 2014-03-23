@@ -12,8 +12,9 @@ class SavingsController < ApplicationController
   def create
     new_saving = params.require(:saving).permit(:amount, :trip_id)
     @saving = Saving.create(new_saving)
-    respond to do |format|
-      format.json { render json: @saving}
-    end
+    # respond_to do |format|
+    #   format.json { render json: @saving}
+    # end
+    redirect_to user_path(current_user.id)
   end
 end

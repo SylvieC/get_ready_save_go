@@ -16,16 +16,19 @@ show page
       <%= f.label :'Final Destination' %>
       <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %><br/></br>
        Planned time of Departure or Ticket Purchase</br>
-      <%= select_date Date.today, prefix: :start_date %> </br></br>
       <%= f.date_select :start_date, :default => Date.today %>
-    
+      <%= f.label :'Cost of the trip (no comma)' %>
+      <%= f.text_field :cost, placeholder: "1200" %>
       <%= f.submit "Save trip", class: "btn btn-danger", id: "show_map" %>
       <% end %>
-
-      <%= form_for :saving, url: 
  
-   
-  
+
+    <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
+      <%= b.label :"amount added to savings (in dollars)"%>
+      <%= b.hidden_field :trip_id, :value => @trip.id %>
+      <%= b.text_field :amount, placeholder: "50" %>
+      <%= b.submit "Enter amount" %>
+    <%end%> 
         
   
  <div class="container">

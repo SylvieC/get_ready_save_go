@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322204911) do
+ActiveRecord::Schema.define(version: 20140322221556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140322204911) do
   add_index "activities", ["trip_id"], name: "index_activities_on_trip_id", using: :btree
 
   create_table "savings", force: true do |t|
-    t.float    "amount"
+    t.float    "amount",     default: 0.0
     t.integer  "trip_id"
     t.datetime "created_at"
     t.datetime "updated_at"

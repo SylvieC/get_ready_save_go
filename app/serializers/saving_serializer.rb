@@ -1,3 +1,3 @@
 class SavingSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :amount, :created_at
 end

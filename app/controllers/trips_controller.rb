@@ -6,6 +6,8 @@ class TripsController < ApplicationController
   end
 
   def new
+    @trip = Trip.new
+    redirect_to user_path(current_user.id)
   end
 
   def create
@@ -13,13 +15,13 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip)
     @trip.user_id = current_user.id
     @trip.save
-    redirect_to  user_path(current_user.id)
+    id = current_user.id
+    redirect_to user_path(current_user.id)
   end
 
   def update
     @adventure = Trip.find(params[:id])
-    @adventure.update_attributes(params.require(:trip).permit(:to_city, :from_city,:cost, :start_date, :title)
-    redirect_to user_path(current_user)
+    @adventure.update_attributes(params.require(:trip).permit(:to_city, :from_city,:cost, :start_date, :title))
   end
 
 
