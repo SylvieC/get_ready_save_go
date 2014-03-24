@@ -8,32 +8,20 @@ class UsersController < ApplicationController
     @trip = current_user.trips.last 
     gon.beg = @trip.from_city || "San Francisco"
     gon.finish = @trip.to_city || "Paris, France"
-    # if @trip.nil? || @trip.from_city.nil? || @trip.to_city.nil?
-    #   gon.beg = "San Francisco" 
-    #   gon.finish = "Paris, France"
-    # elsif @trip.from_city && @trip.to_city
-      gon.beg = @trip.from_city 
-      gon.finish = @trip.to_city
-    # elsif @trip.cost.nil? 
-    #   if @trip.savings == []
-    #     gon.ratio = 0  
-    #     gon.percentage_saved = 0
-    #     gon.data = []
-    #     gon.data2 = []
-    #   else
-    #     if @trip.cost == 0
-    #       gon.ratio = 1
-    #     else
-          gon.ratio = total_saved_for_trip(@trip)/@trip.cost 
-    # #     end 
 
-        gon.percentage_saved = gon.ratio.round(2)*100
+        if @trip.cost.nil? 
+          gon.ratio = 1
+        elsif @trip.cost == 0
+          gon.ratio = 0
+        else
+          gon.ratio = total_saved_for_trip(@trip).to_f/@trip.cost 
+        end 
+
+        gon.percentage_saved = gon.ratio * 100
         gon.total_saved = total_saved_for_trip(@trip)
         gon.trip_cost =  @trip.cost
         gon.data = date_amount_saved(@trip)
         gon.data2 = date_amount_added(@trip)
-      # end
-    # end
     
     #the distance to the middle marker will be gon.ratio * line_length
   end

@@ -184,7 +184,7 @@ google.maps.event.addDomListener(window, 'load',initialize);
     
     // create the text to be shown in the infowindows
     var text1 = '<div id="content">'+
-        '<h4 id="firstHeading">Starting point</h>'+
+        '<h4 id="firstHeading">Starting point</h4>'+
         '<div id="bodyContent1">'+
         '<p>'+ gon.beg +'</p>'+
         '</div>'+
@@ -226,22 +226,27 @@ console.log(gon.beg);
 console.log(gon.finish);
 console.log(gon.data);
 console.log(gon.data2);
-console.log(gon.ratio);
-console.log(gon.percentage_saved);
+
+
 console.log(gon.total_saved);
 console.log(gon.trip_cost);
+console.log(gon.percentage_saved);
+console.log(gon.ratio);
 
 
  
  updateMarker(map, line.GetPointAtDistance(line_length * gon.ratio), "progressing..." );
  
- var markerMid;  
+ var markerMid;
+
+
 function updateMarker(map, latlng, title){
       markerMid = new google.maps.Marker({
           position:latlng,
           map:map,
           title: textMid
           });
+  
 }
 
     // add action events so the info windows will be shown when the marker is clicked
@@ -312,7 +317,7 @@ function updateMarker(map, latlng, title){
   
    var chart2 = new CanvasJS.Chart("chartContainer2", {
       title:{
-        text: "Sum Added "              
+        text: "Different amounts added "              
       },
       
       axisX:{
