@@ -1,4 +1,3 @@
-
 function flight() {
   var mapOptions = {
     zoom: 3,
@@ -27,7 +26,6 @@ function flight() {
 }
 
 google.maps.event.addDomListener(window, 'load', flight); 
-
 
 
 //start
@@ -122,8 +120,10 @@ google.maps.event.addDomListener(window, 'load',initialize);
     {
       zoom: 1,
       center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      minZoom: 1
     };
+
     
     // create a new map object
       // set the div id where it will be shown
@@ -225,9 +225,11 @@ console.log(line_length);
 console.log(gon.beg);
 console.log(gon.finish);
 console.log(gon.data);
+console.log(gon.data2);
 console.log(gon.ratio);
 console.log(gon.percentage_saved);
-
+console.log(gon.total_saved);
+console.log(gon.trip_cost);
 
 
  
@@ -286,25 +288,52 @@ function updateMarker(map, latlng, title){
     var chart = new CanvasJS.Chart("chartContainer", {
 
       title:{
-        text: "Total Amount Saved For the Trip"              
+        text: "My Progress at a Glance "              
       },
-      data: [//array of dataSeries              
+      axisX:{
+        title:"Date",
+        valueFormatString: "DD-MMM-YY",
+        labelAngle: -50
+      },
+       axisY:{
+        title: "Total Amount Saved",
+        valueFormatString: "$ #,###"
+       },
+       data: [//array of dataSeries              
         { //dataSeries object
-
-         /*** Change type "column" to "bar", "area", "line" or "pie"***/
          type: "line",
-         dataPoints: [
-         { label: "05-05-14", y: 104 },
-         { label: "week2", y: 204 },
-         { label: "week3", y: 300 },                                    
-         { label: "week4", y: 302 },
-         { label: "grape", y: 400 }
-         ]
+         dataPoints: gon.data
+       
        }
        ]
      });
 
     chart.render();
+  
+   var chart2 = new CanvasJS.Chart("chartContainer2", {
+      title:{
+        text: "Sum Added "              
+      },
+      
+      axisX:{
+        title: "Date",
+        valueFormatString: "DD-MMM-YY",
+        labelAngle: -50
+      },
+       axisY:{
+        title: "Amount Added",
+        valueFormatString: "$ #,###"
+       },
+       data: [//array of dataSeries              
+        { //dataSeries object
+         type: "column",
+         dataPoints: gon.data2
+       
+       }
+       ]
+     });
+
+    chart2.render();
   };
 
  google.maps.Polyline.prototype.GetPointAtDistance = function(metres) {
@@ -326,3 +355,4 @@ function updateMarker(map, latlng, title){
   var m = (metres-olddist)/(dist-olddist);
   return new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*m, p1.lng() + (p2.lng()-p1.lng())*m);
 };
+

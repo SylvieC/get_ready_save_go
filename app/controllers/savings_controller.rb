@@ -17,4 +17,10 @@ class SavingsController < ApplicationController
     # end
     redirect_to user_path(current_user.id)
   end
+
+  def destroy
+     saving = Saving.find(params[:id])
+     saving.delete
+    redirect_to user_path(current_user.id)
+  end
 end

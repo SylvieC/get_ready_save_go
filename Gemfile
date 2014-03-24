@@ -57,7 +57,7 @@ group :development, :test do
   gem 'meta_request'
   gem 'pry'
   gem 'pry-rails'
-  # gem 'pry-byebug'
+  gem 'pry-byebug'
   gem 'capybara'
   gem "factory_girl_rails", "~> 4.4.0"
 end

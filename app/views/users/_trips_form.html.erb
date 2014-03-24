@@ -1,0 +1,25 @@
+<%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+    Planned time of Departure or Ticket Purchase</br>
+    <%= f.date_select :start_date, :default => Date.today %></br></br>
+     <% if @trip.start_date == nil %>
+    <%= f.submit "Enter departure date", class: "btn btn-danger btn btn-sm", id: "departure_time" %>
+    <% else %>
+    <%= f.submit "Edit departure date", class: "btn btn-danger btn btn-sm", id: "departure_time" %>
+    <%end%>
+    <%end%>
+
+   
+     
+     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+     <%=f.label  :"Give this trip a special Title (optional)" %>
+      <%= f.text_field :title, placeholder: "Ireland, here I come!"%>
+       <% if @trip.title == nil %>
+       <%= f.submit "enter trip title", class: "btn btn-danger btn btn-xs", id: "show_map" %>
+       <% else %>
+       <%= f.submit "Edit trip title", class: "btn btn-danger btn btn-xs", id: "show_map" %>
+       <% end %>
+     <% end %>
+
+       
+ 
+  
