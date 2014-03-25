@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    respond_to do |format|
+      format.html
+      format.json {render json: @users}
+    end
   end
 
   def show
@@ -17,11 +21,18 @@ class UsersController < ApplicationController
           gon.ratio = total_saved_for_trip(@trip).to_f/@trip.cost 
         end 
 
-        gon.percentage_saved = gon.ratio * 100
+        gon.percentage_saved = gon.ratio.round(2) * 100
         gon.total_saved = total_saved_for_trip(@trip)
+        @total_saved = total_saved_for_trip(@trip)
+        @weekly_saving_average = saved_weekly_average(@trip)
+        @weekly_goal = weekly_saving_goal(@trip)
         gon.trip_cost =  @trip.cost
         gon.data = date_amount_saved(@trip)
         gon.data2 = date_amount_added(@trip)
+        respond_to do |format|
+          format.html
+          format.json {render json: @user}
+        end
     
     #the distance to the middle marker will be gon.ratio * line_length
   end
@@ -68,6 +79,19 @@ class UsersController < ApplicationController
         new_array << hash
      end
     return new_array
+  end
+
+  def saved_weekly_average(trip)
+    #604,800 seconds make a week
+    time_between_first_and_last_savings_in_weeks = (Trip.last.savings.last.created_at - Trip.last.savings.first.created_at) / 604800
+
+   return total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
+  end
+
+  def weekly_saving_goal(trip)
+    # time_between_now_and_departure_in_weeks = (DateTime.now - trip.start_date)/ 604800
+    # amount_left_to_pay = trip.cost - total_saved_for_trip(trip)
+    # return amount_left_to_pay.to_f / time_between_now_and_departure_in_weeks
   end
 
 end

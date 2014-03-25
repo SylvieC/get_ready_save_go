@@ -21,13 +21,9 @@ body {height:100%;margin:0;padding:0}
 #googleMap, #anotherMap, #thirdMap{
   width:500px;
   height:380px;
-
 }
 
-/*#thirdMap{
-width: 100%;
-height: 600px;
-}*/
+
 
 #myfirstchart{
   height : 250px;
@@ -37,11 +33,84 @@ height: 600px;
   text-align: center;
 }
 
-.container{
-  padding-top: 30px;
+.container, .container1{
+ 
+}
+#for_opacity{
+  opacity:0.5;
+}
+.container1{
+  background: #FDF5E6 ;
+  border: 1px solid  black;
+  margin-left: 0;
+  margin-right: 0;
 }
 
-#distance_direct, #distance_road{
-  width:100%; 
-  height:10%
+#titleBox{
+
+  border-radius:3px;
+  height: 400px;
+  width: 100%;
+  padding-bottom: 40px;
+  margin-bottom: 60px;
+  margin-left:10px;
+  margin-right: 10px;
+  padding-right: 20px;
+  overflow: hidden;
+  border: 2px solid;
+}
+
+.img1 {
+  height: 450px;
+  width:100%;
+  opacity: 0.6;
+}
+
+#tripTitle{
+
+  position: relative;
+  right:-300px;
+  top: 525px;
+  text-align:left;
+}
+div.background{
+  width:100%;
+  height:310px;
+  background:url('travel3.jpg');
+  border:2px solid black;
+  border-radius: 8px;
+}
+div.transbox{
+  width:400px;
+  height:200px;
+  margin:30px 40px;
+  background-color:#ffffff;
+  border:1px solid black;
+  opacity:0.6;
+  text-align:center;
+  padding: 20px;
+  border-radius: 6px;
+ 
+  /*filter:alpha(opacity=60); /* For IE8 and earlier */*/
+}
+h3{
+  margin-left:auto;
+  margin-right:auto;
+  vertical-align: middle;
+  margin: 20px;
+  margin:30px 40px;
+  font-weight:bold;
+  padding-top: 35px;
+}
+
+div.transbox, p, div.transbox2
+  {
+  margin:30px 40px;
+  font-weight:bold;
+  color:black;
+  }
+
+  body{
+  background:yellow;
+ /* background-color: #F2F2D9;*/
 }

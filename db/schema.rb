@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322221556) do
+ActiveRecord::Schema.define(version: 20140324203202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20140322221556) do
   create_table "activities", force: true do |t|
     t.string   "name"
     t.string   "image"
-    t.string   "url"
-    t.string   "comment"
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,6 +26,26 @@ ActiveRecord::Schema.define(version: 20140322221556) do
   end
 
   add_index "activities", ["trip_id"], name: "index_activities_on_trip_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.string   "content"
+    t.integer  "activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["activity_id"], name: "index_comments_on_activity_id", using: :btree
+
+  create_table "links", force: true do |t|
+    t.string   "title"
+    t.string   "type"
+    t.string   "content"
+    t.integer  "activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "links", ["activity_id"], name: "index_links_on_activity_id", using: :btree
 
   create_table "savings", force: true do |t|
     t.float    "amount",     default: 0.0
@@ -46,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140322221556) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "to_city"
-    t.string   "start_date"
+    t.datetime "start_date"
   end
 
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree

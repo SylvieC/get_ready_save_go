@@ -1,3 +1,8 @@
+
+// $(function() {
+//     $('#titleBox').hide();
+// });
+
 function flight() {
   var mapOptions = {
     zoom: 3,
@@ -32,6 +37,7 @@ google.maps.event.addDomListener(window, 'load', flight);
 // var directionsDisplay;
 // var directionsService = new google.maps.DirectionsService();
 // var map2
+
 
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -232,22 +238,31 @@ console.log(gon.total_saved);
 console.log(gon.trip_cost);
 console.log(gon.percentage_saved);
 console.log(gon.ratio);
-
-
- 
- updateMarker(map, line.GetPointAtDistance(line_length * gon.ratio), "progressing..." );
  
  var markerMid;
-
 
 function updateMarker(map, latlng, title){
       markerMid = new google.maps.Marker({
           position:latlng,
           map:map,
-          title: textMid
+          title: textMid,
+          // icon: image
           });
   
 }
+
+ // var image = {
+ //   url :'/flag2.png',
+ //    size: new google.maps.Size(20,32),
+ //    origin : 
+
+ //  };
+
+ 
+  // var image = 'http://icons.iconarchive.com/icons/iconshock/super-vista-business/72/checkered-flag-icon.png';
+ 
+   
+ updateMarker(map, line.GetPointAtDistance(line_length * gon.ratio), "progressing..." );
 
     // add action events so the info windows will be shown when the marker is clicked
     google.maps.event.addListener(marker1, 'click', function() {
@@ -302,7 +317,7 @@ function updateMarker(map, latlng, title){
       },
        axisY:{
         title: "Total Amount Saved",
-        valueFormatString: "$ #,###"
+        valueFormatString: "$ #,###",
        },
        data: [//array of dataSeries              
         { //dataSeries object

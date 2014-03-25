@@ -1,14 +1,39 @@
 
 <div class="container">
-<div id="tripTitle">
-   <% if @trip == nil %>
+ <!--  Title box -->
+ <div class="background">
+  <div class="transbox col-sm-6">
+
+    <% if @trip == nil %>
     <h2> My Trip </h2>
     <% elsif @trip.title == nil %> 
     <h2>From <em><%= @trip.from_city%></em> To <em><%= @trip.to_city %></em></h2></br>
     <% else %>
     <h2><%= @trip.title %></h2>
     <% end %>
+     
+  </div>
+ </div>
 </div>
+  
+    <div class="row">
+     <div class="col-sm-6">
+    Amount saved so far: $<%=@total_saved %></br>
+    <% if @trip.cost != nil %>
+     Amount left to reach the goal: $<%= @trip.cost - @total_saved  %></br>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <% if @trip.start_date != nil %>
+    Saved weekly in average:<%= @weekly_saving_average %></br>
+    Weekly goal: <%=  %></br>
+    <%end%>
+     </div>
+    </div> 
+  </div>
+ <i class="icon-flag-checkered"></i>
+ 
+
 <div class="itinerary">
    <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
       <%= f.label :'Starting point' %>
@@ -19,8 +44,8 @@
    <%end%><br/>
 
     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
-      <%= f.label :'Cost of the trip' %><em> (no comma)</em>
-      <%= f.text_field :cost, placeholder: "1200" %>
+      <%= f.label :'Cost of the trip' %>
+      <%= f.text_field :cost, placeholder: "1200 " %>
       <% if @trip.cost == nil %>
       <%= f.submit " Enter trip cost", class: "btn btn-danger btn btn-xs trip_cost" %>
       <% else %>
@@ -32,7 +57,7 @@
 
 
      <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
-      <%= b.label :"adding to savings"%><em> (in dollars)</em>
+      <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
       <%= b.submit "Register amount added", class: "btn btn-danger btn-xs" %>
@@ -70,6 +95,4 @@
 
    </div>
    
-
-
 
