@@ -17,9 +17,12 @@ class SavingsController < ApplicationController
   def create
     new_saving = params.require(:saving).permit(:amount, :trip_id)
     #method to get rid of commas and dollar signs if the user has used any
-    binding.pry
-    params[:amount] = modify(params[:amount])
-    @saving = Saving.create(new_saving)
+    if params[:saving][:amount] != nil
+      params[:saving][:amount] = modify(params[:saving][:amount])
+      @saving = Saving.create(new_saving)
+    else
+      flash[:error]
+    end
     redirect_to user_path(current_user.id)
   end
 
@@ -47,7 +50,6 @@ def modify(cost)
     cost = cost.to_s
     arr = cost.split('.')
     arr[0].each_char do |c|
-      binding.pry
       if isNum?(c) 
         answer += c.to_s
       end

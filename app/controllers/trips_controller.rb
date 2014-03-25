@@ -41,6 +41,7 @@ class TripsController < ApplicationController
       update_params[:cost] = modify(update_params[:cost]) 
     end  
     @trip.update_attributes(update_params)
+    flash[:success]
     redirect_to user_path(current_user.id)
   end
 

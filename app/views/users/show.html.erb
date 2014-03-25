@@ -21,13 +21,13 @@
    <div class="container">
         <div class="row">
             <div class="col-xs-6">
-                <div class="well"
+                <div class="well">
     
      <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
       <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
-      <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
+     <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
     <%end%>
      </div>
   </div>
@@ -139,7 +139,9 @@
  
  
    <center><div id="googleMap" style="width:70%; height:54%"></div></center>
- 
+
+  <!--  activities-->
+
 
    
 
