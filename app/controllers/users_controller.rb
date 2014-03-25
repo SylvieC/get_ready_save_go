@@ -24,8 +24,8 @@ class UsersController < ApplicationController
         gon.percentage_saved = gon.ratio.round(2) * 100
         gon.total_saved = total_saved_for_trip(@trip)
         @total_saved = total_saved_for_trip(@trip)
-        @weekly_saving_average = saved_weekly_average(@trip)
-        @weekly_goal = weekly_saving_goal(@trip)
+        # @weekly_saving_average = saved_weekly_average(@trip)
+        # @weekly_goal = weekly_saving_goal(@trip)
         gon.trip_cost =  @trip.cost
         gon.data = date_amount_saved(@trip)
         gon.data2 = date_amount_added(@trip)
@@ -83,9 +83,9 @@ class UsersController < ApplicationController
 
   def saved_weekly_average(trip)
     #604,800 seconds make a week
-    time_between_first_and_last_savings_in_weeks = (Trip.last.savings.last.created_at - Trip.last.savings.first.created_at) / 604800
+   #  time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at - trip.savings.first.created_at) / 604800
 
-   return total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
+   # return total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
   end
 
   def weekly_saving_goal(trip)

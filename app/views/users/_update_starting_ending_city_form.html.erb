@@ -1,0 +1,7 @@
+ <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+          <%= f.label :'Starting point' %>
+          <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
+          <%= f.label :'Final Destination' %>
+          <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
+       <%= f.submit "Update", class: "btn btn-primary btn btn-xs updateCities", id: "show_map" %>
+       <%end%>

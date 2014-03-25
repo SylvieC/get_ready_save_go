@@ -17,6 +17,7 @@ class SavingsController < ApplicationController
   def create
     new_saving = params.require(:saving).permit(:amount, :trip_id)
     #method to get rid of commas and dollar signs if the user has used any
+    binding.pry
     params[:amount] = modify(params[:amount])
     @saving = Saving.create(new_saving)
     redirect_to user_path(current_user.id)

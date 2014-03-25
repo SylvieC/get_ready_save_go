@@ -1,6 +1,7 @@
 
-<div class="container">
- <!--  Title box -->
+<div class="container header">
+
+ <!--  Header -->
  <div class="background">
   <div class="transbox col-sm-6">
 
@@ -15,84 +16,135 @@
   </div>
  </div>
 </div>
-  
-    <div class="row">
-     <div class="col-sm-6">
-    Amount saved so far: $<%=@total_saved %></br>
-    <% if @trip.cost != nil %>
-     Amount left to reach the goal: $<%= @trip.cost - @total_saved  %></br>
-    <% end %>
-  </div>
-  <div class="col-sm-6">
-    <% if @trip.start_date != nil %>
-    Saved weekly in average:<%= @weekly_saving_average %></br>
-    Weekly goal: <%=  %></br>
-    <%end%>
-     </div>
-    </div> 
-  </div>
- <i class="icon-flag-checkered"></i>
- 
 
-<div class="itinerary">
-   <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
-      <%= f.label :'Starting point' %>
-      <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %>
-      <%= f.label :'Final Destination' %>
-      <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %>
-       <%= f.submit "Save trip", class: "btn btn-danger btn btn-xs", id: "show_map" %>
-   <%end%><br/>
-
-    <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
-      <%= f.label :'Cost of the trip' %>
-      <%= f.text_field :cost, placeholder: "1200 " %>
-      <% if @trip.cost == nil %>
-      <%= f.submit " Enter trip cost", class: "btn btn-danger btn btn-xs trip_cost" %>
-      <% else %>
-        <%= f.submit "Update trip cost", class: "btn btn-danger btn-xs trip_cost"%>
-      <% end %>
-      <%end%>
-</div>
- <div class="container">
-
-
+<!-- adding to savings and amount saved  -->
+   <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="well"
+    
      <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
       <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
-      <%= b.submit "Register amount added", class: "btn btn-danger btn-xs" %>
-    <%end%> 
+      <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
+    <%end%>
+     </div>
+  </div>
 
-   <div id="thirdMap" class='img-responsive col-sm-12 col-md-6'></div> 
-   <div class="col-sm-12 col-md-6">
+<!--   displaying the amount saved and other related data -->
     
+        <div class="col-xs-6">
+                <div class="well">
+                 
+                 Amount saved so far:&nbsp $<%=@total_saved %>  <i class="icon-flag-checkered"></i> </br>
+                 
+                    Amount left to reach the goal: <% if @trip.cost != nil %>$<%= @trip.cost - @total_saved  %></br><%else%> <em>Not available (trip cost not entered)<em>
+                 <% end %>
+                 <% if @trip.start_date != nil %>
+                     Saved weekly in average:<%=  %></br>
+                     Weekly goal: <%=  %>
+                  <%end%>
+                </br>
+                
+                </div>
+            </div>
+            <div class="clearfix hidden-md hidden-lg"></div>
+        <div class="container"> 
+         <div class="row"> 
+            <div class="col-xs-12 col-md-6">
+                <div class="well"> <div id="thirdMap" class='img-responsive'></div> </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="well">
+                  <div class="col-md-12">
+                  <div id="chartContainer"></div>
+                  <hr>
+                  <div id="chartContainer2"> </div>
+                </div>
 
-   </div>
+            </div>
+        </div>  
+    </div>
 
-   </tr>
-
-    
-        
-    <%= render partial: "/users/trips_form" %> 
-</div>
-
-</div>
-
-
-<!-- charts -->
+<!-- he 4 forms for origin and departure city, cost, deparrture date and title-->
 <div class="container">
-    <div id="chartContainer" style="height: 300px; width: 100%;">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+              <div class="well">
+              
+      <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
+          <%= f.label :'Starting point' %>
+          <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
+          <%= f.label :'Final Destination' %>
+          <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
+       <%= f.submit "Enter cities", class: "btn btn-primary btn btn-xs", id: "show_map" %>
+        <%end%>
+       <!--  button to trigger modal -->
+       <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
+       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete %>
+       <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Update your trip</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/update_starting_ending_city_form.html.erb" %>
+      </div>
+    
+    </div>
+
   </div>
-   
-  <div id="chartContainer2" style="height: 300px; width: 100%;">
-  </div>
-  </div>
-   
-   
+
+</div>
+
+
+
+      
+        </div>
+      </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="well">
+    <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+      <%= f.label :'Cost of the trip' %>
+      <%= f.text_field :cost, placeholder: "1200 " %></br></br>
+      <% if @trip.cost == nil %>
+      <%= f.submit " Enter trip cost", class: "btn btn-primary btn btn-xs trip_cost" %>
+      <% else %>
+        <%= f.submit "Edit trip cost", class: "btn btn-primary btn-xs trip_cost"%>
+      <% end %>
+      <%end%></div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="well"><%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+ 
+    <%= f.label :"Planned time of departure or ticket purchase"%>
+    <%= f.date_select :start_date, :default => Date.today %></br></br>
+     <% if @trip.start_date == nil %>
+    <%= f.submit "Enter departure date", class: "btn btn-primary btn btn-sm", id: "departure_time" %>
+    <% else %>
+    <%= f.submit "Edit departure date", class: "btn btn-primary btn btn-sm", id: "departure_time" %>
+    <%end%>
+    <%end%></div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="well">  <%= render partial: "/users/trips_form" %> </div>
+            </div>
+        </div> 
+    </div>
+
+ 
+ 
    <center><div id="googleMap" style="width:70%; height:54%"></div></center>
+ 
 
-     
-
-   </div>
    
 
+  
+ 
+  
+
+ 
