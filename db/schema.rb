@@ -58,12 +58,12 @@ ActiveRecord::Schema.define(version: 20140324203202) do
 
   create_table "trips", force: true do |t|
     t.string   "from_city"
+    t.string   "to_city"
     t.float    "cost"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "title"
-    t.string   "to_city"
     t.datetime "start_date"
   end
 

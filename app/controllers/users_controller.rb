@@ -9,31 +9,36 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @trip = current_user.trips.last 
-    gon.beg = @trip.from_city || "San Francisco"
-    gon.finish = @trip.to_city || "Paris, France"
+    if current_user.trips == []
+      gon.beg = "San Francisco"
+      gon.finish = "Paris,France"
+    else
+      @trip = current_user.trips.last 
+      gon.beg = @trip.from_city || "San Francisco"
+      gon.finish = @trip.to_city || "Paris, France"
+      gon.percentage_saved = 0
 
-        if @trip.cost.nil? 
-          gon.ratio = 1
-        elsif @trip.cost == 0
-          gon.ratio = 0
-        else
-          gon.ratio = total_saved_for_trip(@trip).to_f/@trip.cost 
-        end 
+          if @trip.cost.nil? 
+            gon.ratio = 1
+          elsif @trip.cost == 0
+            gon.ratio = 0
+          else
+            gon.ratio = total_saved_for_trip(@trip).to_f/@trip.cost 
+          end 
 
-        gon.percentage_saved = gon.ratio.round(2) * 100
-        gon.total_saved = total_saved_for_trip(@trip)
-        @total_saved = total_saved_for_trip(@trip)
-        # @weekly_saving_average = saved_weekly_average(@trip)
-        # @weekly_goal = weekly_saving_goal(@trip)
-        gon.trip_cost =  @trip.cost
-        gon.data = date_amount_saved(@trip)
-        gon.data2 = date_amount_added(@trip)
-        respond_to do |format|
-          format.html
-          format.json {render json: @user}
+          gon.percentage_saved = gon.ratio.round(2) * 100
+          gon.total_saved = total_saved_for_trip(@trip)
+          @total_saved = total_saved_for_trip(@trip)
+          # @weekly_saving_average = saved_weekly_average(@trip)
+          # @weekly_goal = weekly_saving_goal(@trip)
+          gon.trip_cost =  @trip.cost
+          gon.data = date_amount_saved(@trip)
+          gon.data2 = date_amount_added(@trip)
+          respond_to do |format|
+            format.html
+            format.json {render json: @user}
         end
-    
+    end
     #the distance to the middle marker will be gon.ratio * line_length
   end
 
