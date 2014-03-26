@@ -4,6 +4,7 @@ class TripsController < ApplicationController
     @trip = Trip.new
     @trips = Trip.all 
     respond_to do |format|
+      format.html
       format.json {render json: @trips}
     end
   end

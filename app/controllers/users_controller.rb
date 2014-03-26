@@ -1,22 +1,26 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    respond_to do |format|
-      format.html
-      format.json {render json: @users}
-    end
+ respond_to do |format|
+        format.html
+        format.json {render json: @users}
+      end
   end
 
   def show
     @user = User.find(params[:id])
     @trip = current_user.trips.last 
-    gon.beg = @trip.from_city || "San Francisco"
-    gon.finish = @trip.to_city || "Paris, France"
+    if @trip.nil?
+      @trip = Trip.create(from_city: "San Francisco", to_city: "Paris, France")
+    end
+    gon.beg = @trip.from_city 
+    gon.finish = @trip.to_city 
 
-        if @trip.cost.nil? 
-          gon.ratio = 1
-        elsif @trip.cost == 0
-          gon.ratio = 0
+          
+        if @trip.cost == 0
+           gon.ratio == 0
+        elsif @trip.cost.nil? 
+          gon.ratio = 2
         else
           gon.ratio = total_saved_for_trip(@trip).to_f/@trip.cost 
         end 
@@ -29,10 +33,11 @@ class UsersController < ApplicationController
         gon.trip_cost =  @trip.cost
         gon.data = date_amount_saved(@trip)
         gon.data2 = date_amount_added(@trip)
+    
         respond_to do |format|
           format.html
           format.json {render json: @user}
-        end
+         end 
     
     #the distance to the middle marker will be gon.ratio * line_length
   end
