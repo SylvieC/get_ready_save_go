@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @activity = Activity.new
     @trip = current_user.trips.last 
     if @trip.nil?
       @trip = Trip.create(from_city: "San Francisco", to_city: "Paris, France")
@@ -28,11 +29,28 @@ class UsersController < ApplicationController
         gon.percentage_saved = gon.ratio.round(2) * 100
         gon.total_saved = total_saved_for_trip(@trip)
         @total_saved = total_saved_for_trip(@trip)
-        # @weekly_saving_average = saved_weekly_average(@trip)
-        # @weekly_goal = weekly_saving_goal(@trip)
-        gon.trip_cost =  @trip.cost
+
+         if @trip.savings.empty?
+           @weekly_saving_average = 'None'
+         else
+           @weekly_saving_average = saved_weekly_average(@trip)
+        end
+
+        if @trip.cost.nil?
+           @weekly_goal = "Unavailable - trip cost needed"
+         else
+              @weekly_goal = weekly_saving_goal(@trip)
+         end
         gon.data = date_amount_saved(@trip)
         gon.data2 = date_amount_added(@trip)
+
+        # create an activity of category main with two links
+
+        # @activity1 = Activity.create(name: "link_holder", trip_id: @trip.id)
+        # @activity1.links.create(title: "lonely planet", category: 'main', content: "http://www.lonelyplanet.com/")
+
+
+        
     
         respond_to do |format|
           format.html
@@ -52,7 +70,6 @@ class UsersController < ApplicationController
       trip.savings.each {|saving| total += saving.amount }
     end
       return total.to_f
-
   end
 
   def reach_goal?(trip)
@@ -87,16 +104,21 @@ class UsersController < ApplicationController
   end
 
   def saved_weekly_average(trip)
-    #604,800 seconds make a week
-   #  time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at - trip.savings.first.created_at) / 604800
-
-   # return total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
+   #  #604,800 seconds make a week
+    time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at.to_f - trip.savings.first.created_at.to_f) / 604800
+    answer =  total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
+    answer.round(2)
   end
 
   def weekly_saving_goal(trip)
-    # time_between_now_and_departure_in_weeks = (DateTime.now - trip.start_date)/ 604800
-    # amount_left_to_pay = trip.cost - total_saved_for_trip(trip)
-    # return amount_left_to_pay.to_f / time_between_now_and_departure_in_weeks
+    time_between_now_and_departure_in_weeks = (DateTime.now.year- trip.start_date.to_f)/ 604800
+    amount_left_to_pay = trip.cost - total_saved_for_trip(trip)
+    answer =  amount_left_to_pay.to_f / time_between_now_and_departure_in_weeks
+    answer.round(2)
+  end
+
+  def diff_between_DateTime_objects_in_weeks (date1, date2)
+   
   end
 
 end

@@ -1,0 +1,10 @@
+<%= form_for :link, url: activity_links_path(@activity.rb), method: :post  do |f| %>
+     <%=f.label  :"Short link description" %>
+      <%= f.text_field :title, placeholder: "Tourism office"%></br></br>
+
+      <%= f.hidden_field :category, :value => main
+       <%= b.hidden_field :trip_id, :value => @trip.id %>
+     
+       <%= f.submit "Edit trip title", class: "btn btn-primary btn btn-xs", id: "show_map" %>
+     
+     <% end %>

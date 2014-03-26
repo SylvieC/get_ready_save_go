@@ -101,4 +101,7 @@ div.transbox, p, div.transbox2{
     text-align:center;
   }
 
-
+.restaurant{
+  height: 190px;
+  width: 310px;
+}

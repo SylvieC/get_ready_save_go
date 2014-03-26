@@ -1,7 +1,9 @@
 
-// $(function() {
-//     $('#titleBox').hide();
-// });
+$(function() {
+   $('#myModal2').on('hidden', function () {
+        $.clearInput();
+  });
+});
 
 function flight() {
   var mapOptions = {

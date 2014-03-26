@@ -39,12 +39,16 @@
                  
                  Amount saved so far:&nbsp $<%=@total_saved %>  <i class="icon-flag-checkered"></i> </br>
                  
-                    Amount left to reach the goal: <% if @trip.cost != nil %>$<%= @trip.cost - @total_saved  %></br><%else%> <em>Not available (trip cost not entered)<em>
-                 <% end %>
-                 <% if @trip.start_date != nil %>
-                     Saved weekly in average:<%=  %></br>
-                     Weekly goal: <%=  %>
-                  <%end%>
+                    Amount left to reach the goal: 
+                    <% if @trip.cost != nil %>$
+                         <%= @trip.cost - @total_saved  %></br>
+                    <%else%>
+                     <em>Not available (trip cost not entered)<em>
+                   <% end %>
+
+                     Saved weekly in average:<%= @weekly_saving_average %></br>
+                     Weekly goal: <%= @weekly_goal %>
+               
                 </br>
                 
                 </div>
@@ -142,6 +146,61 @@
 
   <!--  activities-->
     <div class="well activitiesTitle">What I would like to do during my trip</div>
+
+<!--   3 boxes with options places to visit, restaurants and hotels, others -->
+
+  <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well"><%= image_tag('travel3_cut.jpg', class: 'img-responsive places') %></br>Museums and attractions</br>
+            
+            <!-- Button trigger modal for attraction-->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal2">
+  Add attraction or museum to trip
+</button>
+
+<!-- Modal for attraction-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">New Attraction or museum</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/attraction_form" %> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive restaurant') %></br>Hotels and Restaurant</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant') %></br>Entertainment and Shopping</div>
+            </div>
+          
+        </div>  
+    </div>
+
+   <div class="well"> ddf
+
+ <!--   display activity -->
+  <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well"><%= image_tag(@activity.im_url, class: 'img-responsive places') %></br></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
    
 
 

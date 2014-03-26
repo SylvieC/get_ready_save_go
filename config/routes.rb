@@ -3,6 +3,7 @@ ReadySaveGo::Application.routes.draw do
   root :to => "site#index"
  devise_for :users
  post '/users/:id', to: "savings#create"
+ post '/users/:id', to: "activities#create"
  delete '/users/:id', to: "trips#destroy"
  put "/users/:id", to: "trips#update"
   resources :users do
@@ -13,6 +14,9 @@ ReadySaveGo::Application.routes.draw do
 end
 resources :trips do
   resources :activities
+end
+resources :activities do
+  resources :links
 end
 end
   # The priority is based upon order of creation: first created -> highest priority.
