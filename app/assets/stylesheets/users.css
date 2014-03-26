@@ -1,34 +1,31 @@
-
-
-html {height:100%}
-body {height:100%;margin:0;padding:0}
-#googleMap, #anotherMap {height:100%}
+html {
+  height:100%;
+}
+body {
+  height:100%;
+  margin:0;
+  padding:0;
+}
+#googleMap, #anotherMap {
+  height:100%;
+}
 
 #googleMap, #anotherMap, #thirdMap{
   width:550px;
   height:380px;
 }
-
-
-
 #myfirstchart{
-  height : 250px;
+  height: 250px;
 }
 #chartContainer, #chartContainer2{
   height: 170px;
    width: 100%;
-
-}
+ }
 .header{
   margin-bottom: 20px;
 }
-
 .center{
   text-align: center;
-}
-
-.container, .container1{
- 
 }
 #for_opacity{
   opacity:0.5;
@@ -61,7 +58,6 @@ body {height:100%;margin:0;padding:0}
 }
 
 #tripTitle{
-
   position: relative;
   right:-300px;
   top: 525px;
@@ -84,8 +80,6 @@ div.transbox{
   text-align:center;
   padding: 20px;
   border-radius: 6px;
- 
-  /*filter:alpha(opacity=60); /* For IE8 and earlier */*/
 }
 h3{
   margin-left:auto;
@@ -97,14 +91,14 @@ h3{
   padding-top: 35px;
 }
 
-div.transbox, p, div.transbox2
-  {
+div.transbox, p, div.transbox2{
   margin:30px 40px;
   font-weight:bold;
   color:black;
   }
+  
+.activities{
+    text-align:center;
+  }
 
-  body{
-/*  background:rgb(255,255,224);*/
- /* background-color: #F2F2D9;*/
-}
+
