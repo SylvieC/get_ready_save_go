@@ -27,6 +27,7 @@ gem 'devise'
 gem 'unicorn'
 gem 'sidekiq'
 # gem 'active_model_serializer'
+gem 'gon'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
