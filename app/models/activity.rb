@@ -1,6 +1,5 @@
 class Activity < ActiveRecord::Base
-  belongs_to :trip
+  belongs_to :trip]
+  has_many :links
 
-  def index
-  end
 end

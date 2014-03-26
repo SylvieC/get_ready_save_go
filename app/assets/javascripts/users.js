@@ -104,10 +104,8 @@ google.maps.event.addDomListener(window, 'load',initialize);
           location2 = results[0].geometry.location;
           // calling the showMap() function to create and show the map 
           showMap();
-        } else 
-        {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
+        }  
+        
       });
     }
   }
@@ -206,7 +204,7 @@ google.maps.event.addDomListener(window, 'load',initialize);
     var textMid = '<div id="content">'+
       '<h4 id="MidHeading"> Progressing...</h4>'+
       '<div id="bodyContent">'+
-      '<p>'+gon.percentage_saved+'% saved so far</p>'+
+      '<p>'+gon.percentage_saved.toFixed(2)+'% saved so far</p>'+
       '</div>'+
       '</div>';  
     
@@ -227,17 +225,18 @@ google.maps.event.addDomListener(window, 'load',initialize);
 
 var line_length = google.maps.geometry.spherical.computeLength(line.getPath());
 var remainingDist = length;
-console.log(line_length);
-console.log(gon.beg);
-console.log(gon.finish);
-console.log(gon.data);
-console.log(gon.data2);
+// console.log(line_length);
+// console.log(gon.beg);
+// console.log(gon.finish);
+// console.log(gon.data);
+// console.log(gon.data2);
 
 
-console.log(gon.total_saved);
-console.log(gon.trip_cost);
-console.log(gon.percentage_saved);
-console.log(gon.ratio);
+// console.log(gon.total_saved);
+// // console.log(gon.trip_cost);
+// console.log(gon.percentage_saved.toFixed(2));
+// console.log(gon.ratio);
+ 
  
  var markerMid;
 

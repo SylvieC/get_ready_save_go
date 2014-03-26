@@ -1,6 +1,7 @@
 ReadySaveGo::Application.routes.draw do
  
-  root :to => "site#index"
+  get "sites/index"
+  root :to => "sites#index"
  devise_for :users
  post '/users/:id', to: "savings#create"
  delete '/users/:id', to: "trips#destroy"
