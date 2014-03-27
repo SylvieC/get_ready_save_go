@@ -11,19 +11,19 @@ class LinksController < ApplicationController
   end
 
   def create
-    link = params.require(:link).permit(:title, :type, :content, :cost, :activity_id)
+    link = params.require(:link).permit(:title, :category, :content, :cost, :activity_id)
     @link = Link.create(link)
     redirect_to user_path(current_user.id)
   end
  
   
   def edit
-    @link = Link.find(params(:id))
+    @link = Link.find(params[:id])
   end
 
   def update
     @link = Link.find(params[:id])
-    update_params = params.require(:link).permit(:type, :content, :cost, :activity_id) 
+    update_params = params.require(:link).permit(:category, :content, :cost, :activity_id) 
     @link.update_attributes(update_params)
     redirect_to user_path(current_user.id)
   end

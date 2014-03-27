@@ -51,7 +51,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'dotenv-rails'
-  gem 'gon'
   # gem 'awesome_print' 
   # gem 'better_errors'
   # gem 'binding_of_caller'

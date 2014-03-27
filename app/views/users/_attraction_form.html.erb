@@ -1,0 +1,20 @@
+<%= form_for @activity, url: trip_activities_path(@trip.id), method: :post  do |f| %>
+     <%=f.label  :"Title" %>
+      <%= f.text_field :name, placeholder: "Big Ben"%></br></br>
+       <%=f.label  :"image url" %>
+      <%= f.text_field :im_url %></br></br>
+      <%= f.hidden_field :category, :value => 'attractions'%>
+      <%= f.hidden_field :trip_id, :value => @trip.id %>
+      <%= f.fields_for :comments, @activity.comments.build do |b| %>
+      <%= b.label :'Comment' %>
+      <%= b.text_area :content , :rows => 5, :cols => 50 %><br/></br>
+      <%end%>
+
+
+     
+  <%= f.submit "Save changes", class: "btn btn-primary btn btn-md", id: "attraction" %>
+     <% end %>
+
+
+
+ 

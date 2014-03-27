@@ -39,12 +39,16 @@
                  
                  Amount saved so far:&nbsp $<%=@total_saved %>  <i class="icon-flag-checkered"></i> </br>
                  
-                    Amount left to reach the goal: <% if @trip.cost != nil %>$<%= @trip.cost - @total_saved  %></br><%else%> <em>Not available (trip cost not entered)<em>
-                 <% end %>
-                 <% if @trip.start_date != nil %>
-                     Saved weekly in average:<%=  %></br>
-                     Weekly goal: <%=  %>
-                  <%end%>
+                    Amount left to reach the goal: 
+                    <% if @trip.cost != nil %>$
+                         <%= @trip.cost - @total_saved  %></br>
+                    <%else%>
+                     <em>Not available (trip cost not entered)<em>
+                   <% end %>
+
+                     Saved weekly in average:<%= @weekly_saving_average %></br>
+                     Weekly goal: <%= @weekly_goal %>
+               
                 </br>
                 
                 </div>
@@ -142,6 +146,132 @@
 
   <!--  activities-->
     <div class="well activitiesTitle">What I would like to do during my trip</div>
+
+<!--   3 boxes with options places to visit, restaurants and hotels, others -->
+
+  <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well" ><%= image_tag('travel3_cut.jpg', class: 'img-responsive places') %></br>Museums and attractions</br>
+            
+            <!-- Button trigger modal for attraction-->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal2">
+  Add attraction or museum to trip
+</button>
+<!-- button trigger modal to display attraction activities -->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowAttract">
+  Show my selection
+</button>
+
+<!-- Modal for attraction form-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">New Attraction or museum</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/attraction_form"%> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive restaurant') %></br>Hotels and Restaurant </br>
+                      <!-- Button trigger modal for attraction-->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal2Form">
+  Add attraction or museum to trip
+</button>
+<!-- button trigger modal to display attraction activities -->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowAttract">
+  Show my selection
+</button>
+
+<!-- Modal for attraction form-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">New Attraction or museum</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/attraction_form"%> 
+      </div>
+    </div>
+  </div>
+</div>
+
+                </div>
+                       
+            </div>
+            <div class="col-sm-4">
+                <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant') %></br>Entertainment and Shopping</div>
+
+
+            </div>
+          
+        </div>  
+    </div>
+
+
+
+
+
+
+
+<!-- Modal Show Attraction -->
+<div class="modal fade" id="myModalShowAttract" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Museums and Attractions I have selected</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/show_attraction_activities_form.html.erb"%>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+  
+
+  
+
+  
+
+
+<!-- Modal Show Restauration -->
+<div class="modal fade" id="myModalShowRest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Museums and Attractions I have selected</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/show_attraction_activities_form.html.erb"%>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+
+
    
 
 
