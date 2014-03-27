@@ -8,7 +8,7 @@
     <% if @trip == nil %>
     <h2> My Trip </h2>
     <% elsif @trip.title == nil %> 
-    <h2>From <em><%= @trip.from_city%></em> To <em><%= @trip.to_city %></em></h2></br>
+    <h2>From <em><%= @trip.from_city%></em></br> to <em><%= @trip.to_city %></em></h2></br>
     <% else %>
     <h2><%= @trip.title %></h2>
     <% end %>
@@ -39,15 +39,16 @@
                  
                  Amount saved so far:&nbsp $<%=@total_saved %>  <i class="icon-flag-checkered"></i> </br>
                  
-                    Amount left to reach the goal: 
+                    Amount left to reach trip cost: 
                     <% if @trip.cost != nil %>$
                          <%= @trip.cost - @total_saved  %></br>
                     <%else%>
-                     <em>Not available (trip cost not entered)<em>
+                     <em> Not available (trip cost not entered)</em></br>
                    <% end %>
 
                      Saved weekly in average:<%= @weekly_saving_average %></br>
-                     Weekly goal: <%= @weekly_goal %>
+                     Weekly goal: <em>$<%= @weekly_goal %></em></br>
+                     Deadline :  <%= @trip.start_date.strftime('%Y-%m-%d')%>
                
                 </br>
                 
@@ -123,7 +124,8 @@
       <%end%></div>
             </div>
             <div class="col-sm-6 col-md-3">
-                <div class="well"><%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+                <div class="well">
+    <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
  
     <%= f.label :"Planned time of departure or ticket purchase"%>
     <%= f.date_select :start_date, :default => Date.today %></br></br>

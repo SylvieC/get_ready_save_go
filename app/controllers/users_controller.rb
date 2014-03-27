@@ -12,12 +12,19 @@ class UsersController < ApplicationController
     @users = User.includes(:trips)
     @activity = Activity.new
     @trip = current_user.trips.last
-
-    #activities grouped by theyre category to be displayed at the right place
-    @attract_activities = Activity.where(trip_id: @trip.id, category: "attractions") || []
-    @restauration_activities = Activity.where(trip_id: @trip.id, category: "restaurants") || []
-    @shopping_activities = Activity.where(trip_id: @trip.id, category: "shopping")  || []
-    @main_activities = Activity.where(trip_id: @trip.id, category: "")  || []
+    if @trip.nil?
+       #activities grouped by theyre category to be displayed at the right place
+        @attract_activities = [] 
+        @restauration_activities = []
+        @shopping_activities = []
+        @main_activities = []
+    else
+        #activities grouped by theyre category to be displayed at the right place
+        @attract_activities = Activity.where(trip_id: @trip.id, category: "attractions") 
+        @restauration_activities = Activity.where(trip_id: @trip.id, category: "restaurants")
+        @shopping_activities = Activity.where(trip_id: @trip.id, category: "shopping") 
+        @main_activities = Activity.where(trip_id: @trip.id, category: "main")  
+    end
 
     if @trip.nil?
       @trip = Trip.create(from_city: "San Francisco", to_city: "Paris, France")
@@ -42,13 +49,13 @@ class UsersController < ApplicationController
         @total_saved = total_saved_for_trip(@trip)
 
          if @trip.savings.empty?
-           @weekly_saving_average = 'None'
+           @weekly_saving_average = ' $0.0'
          else
            @weekly_saving_average = saved_weekly_average(@trip)
         end
 
         if @trip.cost.nil?
-           @weekly_goal = "Unavailable - trip cost needed"
+           weekly_goal = "Not available (trip cost not entered)"
          else
               @weekly_goal = weekly_saving_goal(@trip)
          end
@@ -116,14 +123,14 @@ class UsersController < ApplicationController
   end
 
   def saved_weekly_average(trip)
-   #  #604,800 seconds make a week
-    time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at.to_f - trip.savings.first.created_at.to_f) / 604800
+   #  #604,800 seconds make a fd
+    time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at.to_i - trip.savings.first.created_at.to_i).to_f / 604800
     answer =  total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
     answer.round(2)
   end
 
   def weekly_saving_goal(trip)
-    time_between_now_and_departure_in_weeks = (DateTime.now.year- trip.start_date.to_f)/ 604800
+    time_between_now_and_departure_in_weeks = (DateTime.now.- trip.start_date.to_i).to_f/ 604800
     amount_left_to_pay = trip.cost - total_saved_for_trip(trip)
     answer =  amount_left_to_pay.to_f / time_between_now_and_departure_in_weeks
     answer.round(2)

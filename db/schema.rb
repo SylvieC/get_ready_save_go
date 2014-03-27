@@ -11,60 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326230329) do
+ActiveRecord::Schema.define(version: 20140327042536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
     t.string   "name"
+    t.string   "im_url"
+    t.string   "category"
+    t.integer  "trip_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "trip_id"
-    t.string   "category"
-    t.text     "im_url"
   end
 
   add_index "activities", ["trip_id"], name: "index_activities_on_trip_id", using: :btree
 
   create_table "comments", force: true do |t|
+    t.text     "content"
     t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "content"
   end
 
   add_index "comments", ["activity_id"], name: "index_comments_on_activity_id", using: :btree
 
   create_table "links", force: true do |t|
     t.string   "title"
+    t.string   "category"
+    t.text     "content"
     t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
-    t.text     "content"
   end
 
-  add_index "links", ["activity_id"], name: "index_links_on_activity_id", using: :btree
-
   create_table "savings", force: true do |t|
-    t.float    "amount",     default: 0.0
+    t.float    "amount"
     t.integer  "trip_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "savings", ["trip_id"], name: "index_savings_on_trip_id", using: :btree
-
   create_table "trips", force: true do |t|
     t.string   "from_city"
     t.string   "to_city"
     t.float    "cost"
+    t.datetime "start_date"
+    t.string   "title"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.string   "title"
-    t.datetime "start_date"
   end
 
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
