@@ -154,8 +154,8 @@
   <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="well" ><%= image_tag('travel3_cut.jpg', class: 'img-responsive places') %></br>Museums and attractions</br>
-            
+                <div class="well" ><%= image_tag('travel3_cut.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %></br>Museums and attractions</br>
+           
             <!-- Button trigger modal for attraction-->
 <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal2">
   Add attraction or museum to trip
@@ -179,22 +179,24 @@
     </div>
   </div>
 </div>
-
+<!-- end of attraction modal -->
 
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive restaurant') %></br>Hotels and Restaurant </br>
-                      <!-- Button trigger modal for attraction-->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal2Form">
+     <!--  begin second image    -->     
+                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowRestau') %></br>Hotels and Restaurant </br>
+
+            <!-- Button trigger modal for restaurant/hotels-->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal2">
   Add attraction or museum to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowAttract">
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowRestau">
   Show my selection
 </button>
 
-<!-- Modal for attraction form-->
+<!-- Modal for restaurant/hotel for form-->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -208,6 +210,9 @@
     </div>
   </div>
 </div>
+<!-- end of attraction modal -->                 
+               
+
 
                 </div>
                        
@@ -244,17 +249,11 @@
       </div>
     </div>
   </div>
-</div>
+
       
   
-
-  
-
-  
-
-
-<!-- Modal Show Restauration -->
-<div class="modal fade" id="myModalShowRest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal Show Restaurant and hotels-->
+<div class="modal fade" id="myModalShowRestau" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -271,7 +270,12 @@
     </div>
   </div>
 </div>
-      
+  
+
+  
+
+
+
 
 
    
