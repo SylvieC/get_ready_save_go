@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
   has_many :trips
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  accepts_nested_attributes_for :trips       
 
 end

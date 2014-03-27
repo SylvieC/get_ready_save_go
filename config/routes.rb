@@ -3,9 +3,11 @@ ReadySaveGo::Application.routes.draw do
   root :to => "site#index"
  devise_for :users
  post '/users/:id', to: "savings#create"
- post '/users/:id', to: "activities#create"
- delete '/users/:id', to: "trips#destroy"
- put "/users/:id", to: "trips#update"
+ post '/activities/:id', to: "activities#create"
+ delete '/trips/:id', to: "trips#destroy"
+ put "/trips/:id", to: "trips#update"
+ delete '/comments/:id', to: "comments#destroy"
+
   resources :users do
     resources :trips
  end

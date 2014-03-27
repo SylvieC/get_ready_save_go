@@ -8,12 +8,23 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:trips).find(params[:id])
+    @users = User.includes(:trips)
     @activity = Activity.new
-    @trip = current_user.trips.last 
+    @trip = current_user.trips.last
+
+    #activities grouped by theyre category to be displayed at the right place
+    @attract_activities = Activity.where(trip_id: @trip.id, category: "attractions") || []
+    @restauration_activities = Activity.where(trip_id: @trip.id, category: "restaurants") || []
+    @shopping_activities = Activity.where(trip_id: @trip.id, category: "shopping")  || []
+    @main_activities = Activity.where(trip_id: @trip.id, category: "")  || []
+
     if @trip.nil?
       @trip = Trip.create(from_city: "San Francisco", to_city: "Paris, France")
     end
+      
+
+
     gon.beg = @trip.from_city 
     gon.finish = @trip.to_city 
 
@@ -122,3 +133,5 @@ class UsersController < ApplicationController
   end
 
 end
+
+
