@@ -48,7 +48,7 @@
 
                      Saved weekly in average:<%= @weekly_saving_average %></br>
                      Weekly goal: <em>$<%= @weekly_goal %></em></br>
-                   
+
                 </br>
                 
                 </div>
@@ -84,7 +84,7 @@
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
        <%= f.submit "Enter cities", class: "btn btn-primary btn btn-xs", id: "show_map" %>
         <%end%>
-       <!--  button to trigger modal -->
+       <!--  button to trigger cities modal -->
        <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
        <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete %>
        <!-- Modal -->
@@ -184,52 +184,80 @@
             </div>
             <div class="col-sm-4">
      <!--  begin second image    -->     
-                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowRestau') %></br>Hotels and Restaurant </br>
+                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowRest') %></br>Hotels and Restaurant </br>
 
-            <!-- Button trigger modal for restaurant/hotels-->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal2">
-  Add attraction or museum to trip
+            <!-- Button trigger modal for restaurant/hotels forms-->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalRestForm">
+  Add restaurant of hotel to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowRestau">
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowRest">
   Show my selection
 </button>
 
 <!-- Modal for restaurant/hotel for form-->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModalRestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">New Attraction or museum</h4>
+        <h4 class="modal-title" id="myModalLabel">New hotel or restaurant</h4>
       </div>
       <div class="modal-body">
-        <%= render partial: "/users/attraction_form"%> 
+        <%= render partial: "/users/restaurant_form"%> 
       </div>
     </div>
   </div>
 </div>
 <!-- end of attraction modal -->                 
-               
+          
 
 
                 </div>
+                 <h1>why not shoing on page</h1>    
                        
             </div>
             <div class="col-sm-4">
-                <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant') %></br>Entertainment and Shopping</div>
+<!--   start third image    -->         
+                <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %></br>Entertainment and Shopping </br>
+
+            <!-- Button trigger modal for shopping-->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShopForm">
+  Add shopping or entert. places
+</button>
+<!-- button trigger modal to display shopping activities -->
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowRest">
+  Show my selection
+</button>
+
+<!-- Modal for shopping for form-->
+<div class="modal fade" id="myModalShopForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">New Shopping places, entertainement and others</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/shopping_form"%> 
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of restaurant form modal -->                                   
+
+
+
+
+
+
+                </div>
 
 
             </div>
           
         </div>  
     </div>
-
-
-
-
-
-
 
 <!-- Modal Show Attraction -->
 <div class="modal fade" id="myModalShowAttract" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -247,12 +275,14 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-  </div>
 
-      
-  
-<!-- Modal Show Restaurant and hotels-->
-<div class="modal fade" id="myModalShowRestau" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+
+
+
+<!-- Modal Show restaurant -->
+<div class="modal fade" id="myModalShowRest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -260,19 +290,57 @@
         <h4 class="modal-title" id="myModalLabel">Museums and Attractions I have selected</h4>
       </div>
       <div class="modal-body">
-        <%= render partial: "/users/show_attraction_activities_form.html.erb"%>
+        <%= render partial: "/users/show_restaurant_form.html.erb"%>
       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
   </div>
 </div>
-  
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
+<!-- ---test -->
+<%= form_for @activity, url: trip_activities_path(@trip.id), method: :post  do |f| %>
+     <%=f.label  :"Title" %>
+      <%= f.text_field :name, placeholder: "Big Ben"%></br></br>
+       <%=f.label  :"image url" %>
+      <%= f.text_area :im_url, cols: 30, rows:20 %></br></br>
+      <%= f.hidden_field :category, :value => 'attractions'%>
+      <%= f.hidden_field :trip_id, :value => @trip.id %>
+      <%= f.fields_for :comments, @activity.comments.build do |b| %>
+      <%= b.label :'Comment' %>
+      <%= b.text_area :content , :rows => 5, :cols => 50 %><br/></br>
+      <%end%>
+
+
+     
+  <%= f.submit "Add", class: "btn btn-primary btn btn-md", id: "attraction" %>
+     <% end %>
 
 
 

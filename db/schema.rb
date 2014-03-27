@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140327042536) do
 
   create_table "activities", force: true do |t|
     t.string   "name"
-    t.string   "im_url"
+    t.text     "im_url"
     t.string   "category"
     t.integer  "trip_id"
     t.datetime "created_at"

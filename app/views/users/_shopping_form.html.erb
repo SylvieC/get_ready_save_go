@@ -1,9 +1,9 @@
 <%= form_for @activity, url: trip_activities_path(@trip.id), method: :post  do |f| %>
      <%=f.label  :"Title" %>
-      <%= f.text_field :name, placeholder: "Big Ben"%></br></br>
+      <%= f.text_field :name, placeholder: "Broadway Show"%></br></br>
        <%=f.label  :"image url" %>
-      <%= f.text_area :im_url, cols: 30, rows:20 %></br></br>
-      <%= f.hidden_field :category, :value => 'attractions'%>
+      <%= f.text_area :im_url, :size => nil %></br></br>
+      <%= f.hidden_field :category, :value => 'shopping'%>
       <%= f.hidden_field :trip_id, :value => @trip.id %>
       <%= f.fields_for :comments, @activity.comments.build do |b| %>
       <%= b.label :'Comment' %>
@@ -14,7 +14,3 @@
      
   <%= f.submit "Add", class: "btn btn-primary btn btn-md", id: "attraction" %>
      <% end %>
-
-
-
- 
