@@ -116,17 +116,10 @@ class UsersController < ApplicationController
   end
 
   def saved_weekly_average(trip)
-<<<<<<< HEAD
-    #604,800 seconds make a week
-   #  time_between_first_and_last_savings_in_weeks = (Trip.last.savings.last.created_at - Trip.last.savings.first.created_at) / 604800
-
-   # return total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
-=======
    #  #604,800 seconds make a week
     time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at.to_f - trip.savings.first.created_at.to_f) / 604800
     answer =  total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
     answer.round(2)
->>>>>>> activities
   end
 
   def weekly_saving_goal(trip)
