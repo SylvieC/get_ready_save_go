@@ -48,7 +48,9 @@
 
                      Saved weekly in average:<%= @weekly_saving_average %></br>
                      Weekly goal: <em>$<%= @weekly_goal %></em></br>
+                     <% if !@trip.start_date.nil? %>
                      Deadline :  <%= @trip.start_date.strftime('%Y-%m-%d')%>
+                     <% end %>
                
                 </br>
                 
