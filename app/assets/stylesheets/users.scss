@@ -5,9 +5,9 @@ body {
   height:100%;
   margin:0;
   padding:0;
-  // background-color: #DA7634;
-
+  background:url(image-path('lightSand.jpg'));
 }
+
 #googleMap, #anotherMap {
   height:100%;
 }
@@ -15,6 +15,10 @@ body {
 #googleMap, #anotherMap, #thirdMap{
   width:550px;
   height:380px;
+
+}
+.mapBox{
+    background: #779DFD;
 }
 #myfirstchart{
   height: 250px;
@@ -84,13 +88,38 @@ div.transbox, p, div.transbox2{
     text-align:center;
   }
 
-.restaurant{
+.restaurant, .places{
   height: 190px;
   width: 310px;
 }
 .well {
-  background: #fffff0;
   border-radius: 5px;
+  background: #FFFFCC;
+border: 3px solid #779DFD;
+}
+.two, .four{
+  font-weight: bold;
+  font-style: italic;
+  font-size: 25px ;
+  text-align: center;
+  font-family: 'Amarante', cursive;
+}
+.three{
+  
+   font-family: 'Belleza', sans-serif;
+   font-size: 18px;
+}
+.dash{
+font-size: 20;
+font-weight: bold;
+}
+.act{
+  font-size: 20px ;
+  text-align: center;
+  font-family: 'Amarante', cursive;
 }
 
-
+#mapBox, .mapBox{
+  border-radius: 5px;
+  background: #779DFD;
+}

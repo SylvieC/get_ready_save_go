@@ -58,7 +58,7 @@ class UsersController < ApplicationController
            weekly_goal = "Not available (trip cost not entered)"
          else
               @weekly_goal = weekly_saving_goal(@trip)
-         end
+        end
         gon.data = date_amount_saved(@trip)
         gon.data2 = date_amount_added(@trip)
 
@@ -124,21 +124,28 @@ class UsersController < ApplicationController
 
   def saved_weekly_average(trip)
    #  #604,800 seconds make a fd
-    time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at.to_i - trip.savings.first.created_at.to_i).to_f / 604800
-    answer =  total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
-    answer.round(2)
+    time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at.to_i - trip.savings.first.created_at.to_i).to_f/604800
+    if time_between_first_and_last_savings_in_weeks <= 1
+      return total_saved_for_trip(trip)
+    else
+        answer =  total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
+        return answer.round(2)
+    end
   end
 
   def weekly_saving_goal(trip)
-    time_between_now_and_departure_in_weeks = (DateTime.now.- trip.start_date.to_i).to_f/ 604800
+    time_between_now_and_departure_in_weeks = (DateTime.now.to_i- trip.start_date.to_i).to_f/ 604800
     amount_left_to_pay = trip.cost - total_saved_for_trip(trip)
-    answer =  amount_left_to_pay.to_f / time_between_now_and_departure_in_weeks
-    answer.round(2)
+    answer = 0
+   if time_between_now_and_departure_in_weeks <= 1  
+      return ((amount_left_to_pay/time_between_now_and_departure_in_weeks).round(2)).abs
+   else    
+      answer =  amount_left_to_pay.to_f/ time_between_now_and_departure_in_weeks
+      return (answer.round(2))
+    end
   end
 
-  def diff_between_DateTime_objects_in_weeks (date1, date2)
-   
-  end
+
 
 end
 

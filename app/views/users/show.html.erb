@@ -21,36 +21,37 @@
    <div class="container">
         <div class="row">
             <div class="col-xs-6">
-                <div class="well">
+                <div class="well one">
      
      <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
       <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
-     <%= b.submit "Register saving", class: "btn btn-warning btn-xs" %>
+     <%= b.submit "Register saving", class: "btn btn-info btn-xs" %>
     <%end%>
      </div>
-     <div class="col-xs-12 well">My progress map</div>
+     <div class="col-xs-12 well two">My progress on the map</div>
   </div>
 
 
 <!--   displaying the amount saved and other related data -->
     
         <div class="col-xs-6">
-                <div class="well">
+                <div class="well three">
                  
-                 Amount saved so far:&nbsp $<%=@total_saved %>  <i class="icon-flag-checkered"></i> </br>
+                 <strong class="dash">Amount saved so far</strong>: &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp$<%=@total_saved %> 
+                 &nbsp <i class="icon-flag-checkered"></i> </br>
                  
-                    Amount left to reach trip cost: 
-                    <% if @trip.cost != nil %>$
-                         <%= @trip.cost - @total_saved  %></br>
+                    Amount left to reach trip cost: &nbsp&nbsp &nbsp
+                    <% if @trip.cost != nil %>
+                         $<%=@trip.cost - @total_saved  %></br>
                     <%else%>
                      <em> Not available (trip cost not entered)</em></br>
                    <% end %>
-
-                     Saved weekly in average:<%= @weekly_saving_average %></br>
-                     Weekly goal: <em>$<%= @weekly_goal %></em></br>
-                     Trip cost: <%= @trip.cost%></br>
+                     Trip cost: &nbsp &nbsp&nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp$<%= @trip.cost%></br>
+                     Saved weekly in average &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp $<%= @weekly_saving_average %></br>
+                     Weekly goal: &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp <em>$<%=@weekly_goal %></em>
+                    
 
                 </br>
                 
@@ -60,10 +61,10 @@
         <div class="container"> 
          <div class="row"> 
             <div class="col-xs-12 col-md-6">
-                <div class="well"> <div id="thirdMap" class='img-responsive'></div> </div>
+                <div class="well" id="mapBox"> <div id="thirdMap" class='img-responsive'></div> </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <div class="well">
+                <div class="well mapbox">
                   <div class="col-md-12">
                   <div id="chartContainer"></div>
                   <hr>
@@ -85,7 +86,7 @@
           <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
           <%= f.label :'Final Destination' %>
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
-       <%= f.submit "Enter cities", class: "btn btn-warning btn btn-xs", id: "show_map" %>
+       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map" %>
         <%end%>
        <!--  button to trigger cities modal -->
        <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
@@ -119,9 +120,9 @@
       <%= f.label :'Cost of the trip' %>
       <%= f.text_field :cost, placeholder: "1200 " %></br></br>
       <% if @trip.cost == nil %>
-      <%= f.submit " Enter trip cost", class: "btn btn-warning btn btn-xs trip_cost" %>
+      <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-xs trip_cost" %>
       <% else %>
-        <%= f.submit "Edit trip cost", class: "btn btn-warning btn-xs trip_cost"%>
+        <%= f.submit "Edit trip cost", class: "btn btn-info btn-xs trip_cost"%>
       <% end %>
       <%end%></div>
             </div>
@@ -132,9 +133,9 @@
     <%= f.label :"Planned time of departure or ticket purchase"%>
     <%= f.date_select :start_date, :default => Date.today %></br></br>
      <% if @trip.start_date == nil %>
-    <%= f.submit "Enter departure date", class: "btn btn-warning btn btn-sm", id: "departure_time" %>
+    <%= f.submit "Enter departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
     <% else %>
-    <%= f.submit "Edit departure date", class: "btn btn-warning btn btn-sm", id: "departure_time" %>
+    <%= f.submit "Edit departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
     <%end%>
     <%end%></div>
             </div>
@@ -149,17 +150,18 @@
    <center><div id="googleMap" style="width:70%; height:54%"></div></center>
 
   <!--  activities-->
-    <div class="well activitiesTitle">What I would like to do during my trip</div>
+    <div class="well four"> Let's plan </div>
 
 <!--   3 boxes with options places to visit, restaurants and hotels, others -->
 
   <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="well" ><%= image_tag('travel3_cut.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %></br>Museums and attractions</br>
+                <div class="well" ><%= image_tag('travel3_cut.jpg', class: '
+                -responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %><p class="act">Museums and attractions</p>
            
             <!-- Button trigger modal for attraction-->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal2">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal2">
   Add attraction or museum to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
@@ -187,10 +189,10 @@
             </div>
             <div class="col-sm-4">
      <!--  begin second image    -->     
-                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowRest') %></br>Hotels and Restaurant </br>
+                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowRest') %><p class="act">Hotels and Restaurant</p> </br>
 
             <!-- Button trigger modal for restaurant/hotels forms-->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalRestForm">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalRestForm">
   Add restaurant of hotel to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
@@ -222,10 +224,10 @@
             </div>
             <div class="col-sm-4">
 <!--   start third image    -->         
-                <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %></br>Entertainment and Shopping </br>
+                <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %><p class="act">Entertainment and Shopping</p> 
 
             <!-- Button trigger modal for shopping-->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShopForm">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalShopForm">
   Add shopping or entert. places
 </button>
 <!-- button trigger modal to display shopping activities -->
