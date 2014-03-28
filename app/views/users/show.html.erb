@@ -51,7 +51,7 @@
                     <%else%>
                      <em> Not available (enter cost first)</em></br>
                    <% end %>
-                   <strong class="dash">  Total trip cost</strong>:&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp 
+                   <strong class="dash">  Total trip cost</strong>:&nbsp &nbsp&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp 
                      <% if @trip.cost.nil?%>
                           Not entered yet<br>
                     <%else%>
@@ -59,8 +59,8 @@
                     <%end%>
 
                      
-                  <strong class="dash">   Average weekly savings</strong>:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp $<%= @weekly_saving_average %></br>
-                  <strong class="dash">   Weekly goal</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp&nbsp $<%=@weekly_goal %>
+                  <strong class="dash">   Average weekly savings</strong>:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp $<%= @weekly_saving_average %></br>
+                  <strong class="dash">   Weekly goal</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp $<%=@weekly_goal %>
                     
 
                 </br>
