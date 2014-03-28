@@ -5,7 +5,7 @@ def index
   @activities = Activity.all
 end
 
-def new
+  def new
     @activity = Activity.new
     redirect_to user_path(current_user.id)
   end
@@ -32,7 +32,7 @@ def new
   def destroy
     activity = Activity.find(params[:id])
     activity.delete
-    redirect_to user_path(current_user.id)_
+    redirect_to user_path(current_user.id)
   end
 
 
