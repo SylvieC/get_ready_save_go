@@ -333,7 +333,7 @@ function updateMarker(map, latlng, title){
   
    var chart2 = new CanvasJS.Chart("chartContainer2", {
       title:{
-        text: "Different amounts added "              
+        text: "My  Progress By Deposits "              
       },
       
       axisX:{

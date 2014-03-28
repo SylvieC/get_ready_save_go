@@ -5,17 +5,19 @@
  
   
   <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="well"> <div class="row"><div class="well"> <%=activity.name%></div></div>
+        <div class="row ">
+            <div class="col-xs-12 acti">
+                <div class="well showModal"> <div class="row modalActivity"><div class="well actName"> <%=activity.name%></div></div>
                 <% if !activity.im_url.nil? %>
-                <div class="row"><div class="well"> <%= image_tag(activity.im_url, class: 'img-responsive') %></b></div></div>
+                <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive') %></b></div></div>
                 <%end%>
                 <% if !activity.comments.empty?%>
                 <% activity.comments.each do |comment|%>
-                <div class="row"><div class="well"><%= comment.content%></br></div></div>
-                <%= button_to "delete comment", {controller: :comments, action: :destroy, id: comment.id }, :method => :delete %>
-                <%end%>
+                <div class="row"><div class="well actName"><%= comment.content%></br></div></div>
+                <%= button_to "delete comment", {controller: :comments, action: :destroy, id: comment.id }, :method => :delete %></br>
+               <%end%>
+                  <%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete %>
+                  
                 <%end%>
             </div>
         </div>

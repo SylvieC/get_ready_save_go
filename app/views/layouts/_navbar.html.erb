@@ -25,23 +25,8 @@
       <li id="logout"> <%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
     <% else %>
       <li><%= link_to "Sign Up", new_user_registration_path %></li>
-      <div class="nav navbar-text">
-        <%= form_for :user, url: "/users/sign_in", method: :post, html: {class: "form-inline", role: "form"} do |f| %>
-
-          <div class="col-xs-1 visible-xs"></div>
-          <div class="form-group">
-            <label class="sr-only" for="user_email">Email address</label>
-            <%= f.email_field :email, placeholder: "email", :autofocus => true, class: "form-control" %>   
-          </div>
-          <div class="col-xs-1 visible-xs"></div>
-          <div class="form-group">
-            <label class="sr-only" for="user_password">Password</label>
-             <%= f.password_field :password, placeholder: "password", class: "form-control"%> 
-          </div>
-         
-          
-          <%= f.submit "Login", class: "btn btn-default" %> 
-        <% end %>
+        <li><%= link_to "Log in", new_user_session_path %><li>
+      
       </div>
     <% end %>
     </ul> 

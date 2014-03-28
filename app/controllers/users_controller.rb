@@ -11,16 +11,16 @@ class UsersController < ApplicationController
     @user = User.includes(:trips).find(params[:id])
     @users = User.includes(:trips)
     @activity = Activity.new
-    @trip = Trip.new
-    if current_user.trips.nil?
+    if  current_user.trips.empty?
        #activities grouped by theyre category to be displayed at the right place
         @attract_activities = [] 
         @restauration_activities = []
         @shopping_activities = []
         @main_activities = []
     else
-      @trip = current_user.trips.last
-      @trip.save
+        @trip = current_user.trips.last
+        
+
         #activities grouped by theyre category to be displayed at the right place
         @attract_activities = Activity.where(trip_id: @trip.id, category: "attractions") 
         @restauration_activities = Activity.where(trip_id: @trip.id, category: "restaurantHotel")
@@ -51,13 +51,13 @@ class UsersController < ApplicationController
         @total_saved = total_saved_for_trip(@trip)
 
          if @trip.savings.empty?
-           @weekly_saving_average = ' $0.0'
+           @weekly_saving_average = '0.0'
          else
            @weekly_saving_average = saved_weekly_average(@trip)
         end
 
         if @trip.cost.nil?
-           weekly_goal = "Not available (trip cost not entered)"
+           @weekly_goal = "Not available (enter cost first)"
          else
               @weekly_goal = weekly_saving_goal(@trip)
         end
