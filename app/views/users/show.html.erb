@@ -27,10 +27,12 @@
       <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
-     <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
+     <%= b.submit "Register saving", class: "btn btn-warning btn-xs" %>
     <%end%>
      </div>
+     <div class="col-xs-12 well">My progress map</div>
   </div>
+
 
 <!--   displaying the amount saved and other related data -->
     
@@ -48,6 +50,7 @@
 
                      Saved weekly in average:<%= @weekly_saving_average %></br>
                      Weekly goal: <em>$<%= @weekly_goal %></em></br>
+                     Trip cost: <%= @trip.cost%></br>
 
                 </br>
                 
@@ -82,7 +85,7 @@
           <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
           <%= f.label :'Final Destination' %>
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
-       <%= f.submit "Enter cities", class: "btn btn-primary btn btn-xs", id: "show_map" %>
+       <%= f.submit "Enter cities", class: "btn btn-warning btn btn-xs", id: "show_map" %>
         <%end%>
        <!--  button to trigger cities modal -->
        <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
@@ -116,9 +119,9 @@
       <%= f.label :'Cost of the trip' %>
       <%= f.text_field :cost, placeholder: "1200 " %></br></br>
       <% if @trip.cost == nil %>
-      <%= f.submit " Enter trip cost", class: "btn btn-primary btn btn-xs trip_cost" %>
+      <%= f.submit " Enter trip cost", class: "btn btn-warning btn btn-xs trip_cost" %>
       <% else %>
-        <%= f.submit "Edit trip cost", class: "btn btn-primary btn-xs trip_cost"%>
+        <%= f.submit "Edit trip cost", class: "btn btn-warning btn-xs trip_cost"%>
       <% end %>
       <%end%></div>
             </div>
@@ -129,9 +132,9 @@
     <%= f.label :"Planned time of departure or ticket purchase"%>
     <%= f.date_select :start_date, :default => Date.today %></br></br>
      <% if @trip.start_date == nil %>
-    <%= f.submit "Enter departure date", class: "btn btn-primary btn btn-sm", id: "departure_time" %>
+    <%= f.submit "Enter departure date", class: "btn btn-warning btn btn-sm", id: "departure_time" %>
     <% else %>
-    <%= f.submit "Edit departure date", class: "btn btn-primary btn btn-sm", id: "departure_time" %>
+    <%= f.submit "Edit departure date", class: "btn btn-warning btn btn-sm", id: "departure_time" %>
     <%end%>
     <%end%></div>
             </div>
@@ -160,7 +163,7 @@
   Add attraction or museum to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowAttract">
+<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalShowAttract">
   Show my selection
 </button>
 
@@ -191,7 +194,7 @@
   Add restaurant of hotel to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowRest">
+<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalShowRest">
   Show my selection
 </button>
 
@@ -214,7 +217,7 @@
 
 
                 </div>
-                 <h1>why not shoing on page</h1>    
+                    
                        
             </div>
             <div class="col-sm-4">
@@ -226,7 +229,7 @@
   Add shopping or entert. places
 </button>
 <!-- button trigger modal to display shopping activities -->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalShowRest">
+<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalShowRest">
   Show my selection
 </button>
 
@@ -275,6 +278,8 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>
 
 
 
@@ -324,23 +329,7 @@
 
   
 
-<!-- ---test -->
-<%= form_for @activity, url: trip_activities_path(@trip.id), method: :post  do |f| %>
-     <%=f.label  :"Title" %>
-      <%= f.text_field :name, placeholder: "Big Ben"%></br></br>
-       <%=f.label  :"image url" %>
-      <%= f.text_area :im_url, cols: 30, rows:20 %></br></br>
-      <%= f.hidden_field :category, :value => 'attractions'%>
-      <%= f.hidden_field :trip_id, :value => @trip.id %>
-      <%= f.fields_for :comments, @activity.comments.build do |b| %>
-      <%= b.label :'Comment' %>
-      <%= b.text_area :content , :rows => 5, :cols => 50 %><br/></br>
-      <%end%>
 
-
-     
-  <%= f.submit "Add", class: "btn btn-primary btn btn-md", id: "attraction" %>
-     <% end %>
 
 
 

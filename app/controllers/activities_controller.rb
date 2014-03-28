@@ -12,6 +12,7 @@ def new
 
   def create
     activity = params.require(:activity).permit(:name, :im_url, :category,:trip_id, :comments_attributes => [:content])
+
     @activity = Activity.create(activity)
     id = current_user.id
     redirect_to user_path(current_user.id)
@@ -31,7 +32,7 @@ def new
   def destroy
     activity = Activity.find(params[:id])
     activity.delete
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id)_
   end
 
 

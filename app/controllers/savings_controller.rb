@@ -17,7 +17,8 @@ class SavingsController < ApplicationController
   def create
     new_saving = params.require(:saving).permit(:amount, :trip_id)
     #method to get rid of commas and dollar signs if the user has used any
-    if params[:saving][:amount] != nil
+
+    if params[:saving][:amount].present?
       params[:saving][:amount] = modify(params[:saving][:amount])
       @saving = Saving.create(new_saving)
     else
