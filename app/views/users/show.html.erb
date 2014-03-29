@@ -180,7 +180,7 @@
                 -responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %><p class="act">Museums & </br>attractions</p>
            
             <!-- Button trigger modal for attraction-->
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal2">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalhotelform">
   Add attraction or museum to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
@@ -201,11 +201,11 @@
                 <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowRest') %><p class="act">Hotels & </br>Restaurant</p>
 
             <!-- Button trigger modal for restaurant/hotels forms-->
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalRestForm">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalhotelform">
   Add restaurant of hotel to trip
 </button>
 <!-- <! button trigger modal to display attraction activities --> 
-<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalShowRest">
+<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalshowhotel">
   Show my selection
 </button> 
           </div>
@@ -236,8 +236,44 @@
 </div>
 </div>
 
+showwing
+ <!-- Modal hotel form -->
+<div class="modal fade" id="myModalhotelform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add restaurant or hotel</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/hotel_form"%>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
- 
+<!-- Modal hotel show-->
+<div class="modal fade" id="myModalshowhotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Hotels and Restaurants I have selected</h4>
+      </div>
+      <div class="modal-body">
+         <%= render partial: "/users/show_hotel_form"%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <!-- Modal -->
@@ -275,7 +311,6 @@
     </div>
   </div>
 </div>
-
 
 
 

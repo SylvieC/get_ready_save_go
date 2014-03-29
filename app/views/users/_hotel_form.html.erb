@@ -3,12 +3,12 @@
       <%= f.text_field :name, placeholder: "La Belle Province"%></br></br>
        <%=f.label  :"image url" %>
       <%= f.text_area :im_url, :size => nil %></br></br>
-      <%= f.hidden_field :category, :value => 'restaurantHotel'%>
+      <%= f.hidden_field :category, :value => 'restauranthotel'%>
       <%= f.hidden_field :trip_id, :value => @trip.id %>
       <%= f.fields_for :comments, @activity.comments.build do |b| %>
       <%= b.label :'Comment' %>
       <%= b.text_area :content , :rows => 5, :cols => 50 %><br/></br>
       <%end%>
      
-  <%= f.submit "Add", class: "btn btn-primary btn btn-md", id: "attraction" %>
+      <%= f.submit "Add", class: "btn btn-primary btn btn-md", id: "attraction" %>
      <% end %>
