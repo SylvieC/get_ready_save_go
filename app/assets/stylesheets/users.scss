@@ -11,12 +11,15 @@ body {
 
 #googleMap, #anotherMap {
   height:100%;
+
 }
 
 #googleMap, #anotherMap, #thirdMap{
   width:550px;
   height:380px;
-
+}
+#googleMap{
+  width: 100%;
 }
 .mapBox{
     background: #779DFD;
@@ -156,3 +159,14 @@ div.showModal{
   top: -14px;
   right: -13px;
 }
+
+
+nav{
+    background:lightgrey;
+}
+
+#bs-example-navbar-collapse-1 {
+  background: lightgrey;
+}
+
+

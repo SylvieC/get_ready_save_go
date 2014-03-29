@@ -7,7 +7,7 @@ $(function() {
 
 function flight() {
   var mapOptions = {
-    zoom: 3,
+    zoom: 2,
     center: new google.maps.LatLng(0, -180),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
