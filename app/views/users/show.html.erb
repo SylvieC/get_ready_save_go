@@ -215,11 +215,11 @@
                 <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %><p class="act">Entertainment & </br>Shopping</p> 
 
             <!-- Button trigger modal for shopping-->
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalShopForm">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalshoppingform">
   Add shopping or entert. places
 </button>
 <!-- button trigger modal to display shopping activities -->
-<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalShowRest">
+<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalshowshopping">
   Show my selection
 </button>
 </div>
@@ -229,14 +229,66 @@
 </div>
 </div>
 </div>
-
-
-
-
 </div>
 </div>
 
-showwing
+<!-- Modal -->
+<div class="modal fade" id="myModalshoppingform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add shopping or entertainment places</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: '/users/shopping_form'%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalshowshopping" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Shopping and entertainment places I selected</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "/users/show_shopping"%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal hotel show -->
+<div class="modal fade" id="myModalshowhotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Hotels and restaurant I have selected</h4>
+      </div>
+      <div class="modal-body">
+         <%= render partial: "/users/show_hotel"%>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
  <!-- Modal hotel form -->
 <div class="modal fade" id="myModalhotelform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -256,23 +308,7 @@ showwing
   </div>
 </div>
 
-<!-- Modal hotel show-->
-<div class="modal fade" id="myModalshowhotel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Hotels and Restaurants I have selected</h4>
-      </div>
-      <div class="modal-body">
-         <%= render partial: "/users/show_hotel_form"%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 

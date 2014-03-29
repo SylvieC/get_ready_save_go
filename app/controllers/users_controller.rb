@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
         #activities grouped by theyre category to be displayed at the right place
         @attract_activities = Activity.where(trip_id: @trip.id, category: "attractions") 
-        @restauration_activities = Activity.where(trip_id: @trip.id, category: "restauranthotel")
+        @hotel_activities = Activity.where(trip_id: @trip.id, category: "restauranthotel")
         @shopping_activities = Activity.where(trip_id: @trip.id, category: "shopping") 
         @main_activities = Activity.where(trip_id: @trip.id, category: "main")  
     end

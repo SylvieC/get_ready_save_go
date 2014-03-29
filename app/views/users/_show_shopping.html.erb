@@ -1,10 +1,6 @@
+<% @shopping_activities.each do |activity| %> 
 
-<!-- display activities -->
-
-<% @attract_activities.each do |activity| %> 
- 
-  
-  <div class="container">
+ <div class="container">
         <div class="row ">
             <div class="col-xs-12 acti">
                 <div class="well showModal"> <div class="row modalActivity"><div class="well actName"> <%=activity.name%></div></div>
@@ -21,4 +17,8 @@
             </div>
         </div>
     </div>
+</div>
+ 
+  
+    
 <%end%>
