@@ -141,8 +141,18 @@ div.showModal{
 .actName{
   background:beige;
   color: black;
+  margin-bottom: 3px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .modalActivity{
   background:orange;
 }
-
+.floatright{
+  float:right;
+}
+#delete{
+  position: relative;
+  top: -14px;
+  right: -13px;
+}

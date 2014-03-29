@@ -12,13 +12,23 @@
                 <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive') %></b></div></div>
                 <%end%>
                 <% if !activity.comments.empty?%>
+                <em>Comments</em>
                 <% activity.comments.each do |comment|%>
-                <div class="row"><div class="well actName"><%= comment.content%></br></div></div>
-                <%= button_to "delete comment", {controller: :comments, action: :destroy, id: comment.id }, :method => :delete %></br>
+                <div class="row"><div class="well actName com"><%= comment.content%></br></div></div>
+                 <div style="float: left; width: auto;"><%= button_to "delete comment",{controller: :comments, action: :destroy, id: comment.id }, :method => :delete %></div>&nbsp
+   
                <%end%>
-                  <%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete %>
+                <%= form_for :comment, url: activity_comments_path(activity.id), method: :post do |f| %>
+      <%= f.label :"Add another comment"%>
+      <%= f.hidden_field :activity_id, :value => activity.id %>
+      <%= f.text_field :content %>
+     <%= f.submit "Add another comment" %>
+    <%end%>
+                 <div class="floatright"><%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete,class:'btn btn-warning btn-sm',id: 'delete' %></div>
+ 
                 <%end%>
             </div>
         </div>
     </div>
 <%end%>
+

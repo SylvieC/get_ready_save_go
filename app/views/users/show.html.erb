@@ -20,6 +20,7 @@
   </div>
 </div>
 
+
 <!-- adding to savings and amount saved  -->
  <div class="container">
     <div class="row">
@@ -59,7 +60,7 @@
                     <%end%>
 
                      
-                  <strong class="dash">   Average weekly savings</strong>:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp $<%= @weekly_saving_average %></br>
+                  <strong class="dash">   Average weekly savings</strong>:&nbsp &nbsp &nbsp &nbsp &nbs   &nbsp &nbsp $<%= @weekly_saving_average %></br>
                   <strong class="dash">   Weekly goal</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp $<%=@weekly_goal %>
                     
 
@@ -87,8 +88,12 @@
     </div>
 
 <!-- he 4 forms for origin and departure city, cost, deparrture date and title-->
+
+
+
 <div class="container">
         <div class="row">
+         <!--   -->
             <div class="col-sm-6 col-md-3">
               <div class="well">
               
@@ -99,31 +104,17 @@
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
        <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map" %>
         <%end%>
-       <!--  button to trigger cities modal -->
-       <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
-       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete %>
-       <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Update your trip</h4>
-      </div>
-      <div class="modal-body">
-        <%= render partial: "/users/update_starting_ending_city_form.html.erb" %>
-      </div>
-    
-    </div>
-
-  </div>
-
-</div>
-
-
-
       
-        </div>
+
+
+    <!--  button to trigger cities modal -->
+       <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
+
+       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete %>
+
+
+
+       </div>
       </div>
             <div class="col-sm-6 col-md-3">
                 <div class="well">
@@ -180,7 +171,7 @@
                 img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %><p class="act">Museums & </br>attractions</p>
            
             <!-- Button trigger modal for attraction-->
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalhotelform">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal2">
   Add attraction or museum to trip
 </button>
 <!-- button trigger modal to display attraction activities -->
@@ -226,6 +217,25 @@
 </div>
 </div>
 </div>
+
+       <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Update cities</h4>
+      </div>
+      <div class="modal-body">
+      <%= render partial: "/users/update_starting_ending_city_form.html.erb" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModalshoppingform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
