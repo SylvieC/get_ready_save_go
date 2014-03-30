@@ -9,17 +9,31 @@
                 <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive') %></b></div></div>
                 <%end%>
                 <% if !activity.comments.empty?%>
+                <em>Comments</em>
                 <% activity.comments.each do |comment|%>
-                <div class="row"><div class="well actName"><%= comment.content%></br></div></div>
-                <%= button_to "delete comment", {controller: :comments, action: :destroy, id: comment.id }, :method => :delete %></br>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= comment.content%></div>
+                </div>
+            
+            <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete comment",{controller: :comments, action: :destroy, id: comment.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+                
+   
                <%end%>
-                  <%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete %>
+                <%= form_for :comment, url: activity_comments_path(activity.id), method: :post do |f| %>
+      <span class='add'><%= f.label :"Add another comment"%></span></br>
+      <%= f.hidden_field :activity_id, :value => activity.id %>
+     <%= f.text_field :content,class: 'input' %>
+     <%= f.submit "Enter new comment",class: 'enter btn-xs' %>
+    <%end%>
+                 <div class="floatright"><%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete,class:'btn btn-warning btn-sm',id: 'delete' %></div>
+ 
                 <%end%>
             </div>
         </div>
     </div>
 </div>
- 
-  
-    
 <%end%>

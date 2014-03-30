@@ -184,7 +184,8 @@
 
          <div class="col-sm-4">
      <!--  begin second image    -->     
-                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalshowhotel') %><p class="act">Hotels & </br>Restaurant</p>
+                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalshowhotel') %><p class="act">Hotels & </br>Restaurants
+                </p>
 
             <!-- Button trigger modal for restaurant/hotels forms-->
 <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalhotelform">
@@ -279,7 +280,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Hotels and restaurant I have selected</h4>
+        <h4 class="modal-title" id="myModalLabel">Hotels and restaurants I have selected</h4>
       </div>
       <div class="modal-body">
          <%= render partial: "/users/show_hotel"%>
