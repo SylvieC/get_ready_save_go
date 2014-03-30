@@ -117,7 +117,7 @@
           <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
           <%= f.label :'Final Destination' %>
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
-       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map" %>
+       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %>
         <%end%>
       
 
@@ -125,7 +125,7 @@
     <!--  button to trigger cities modal -->
        <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
 
-       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete %>
+       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
 
 
 
@@ -239,12 +239,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
         <h4 class="modal-title" id="myModalLabel">Update cities</h4>
       </div>
       <div class="modal-body">
       <%= render partial: "/users/update_starting_ending_city_form.html.erb" %>
-      </div>
+      </div>  
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
