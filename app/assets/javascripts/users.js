@@ -317,7 +317,7 @@ function updateMarker(map, latlng, title){
         labelAngle: -50
       },
        axisY:{
-        title: "Total Amount Saved",
+        title: "Total Saved",
         valueFormatString: "$ #,###",
        },
        data: [//array of dataSeries              

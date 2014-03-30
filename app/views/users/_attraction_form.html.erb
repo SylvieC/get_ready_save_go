@@ -1,7 +1,7 @@
 <%= form_for @activity, url: trip_activities_path(@trip.id), method: :post, required: :true  do |f| %>
      <%=f.label  :"Title" %>
       <%= f.text_field :name, placeholder: "Big Ben"%></br></br>
-       <%=f.label  :"image url" %>
+       <%=f.label  :"image url" %></br>Right click on a picture,click "Copy Image Url"then paste it here
       <%= f.text_area :im_url, cols: 50, rows:3 %></br></br>
       <%= f.hidden_field :category, :value => 'attractions'%>
       <%= f.hidden_field :trip_id, :value => @trip.id %>

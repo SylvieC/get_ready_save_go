@@ -56,11 +56,10 @@ class UsersController < ApplicationController
            @weekly_saving_average = saved_weekly_average(@trip)
         end
 
-        if @trip.cost.nil?
-           @weekly_goal = "Not available (enter cost first)"
-         else
-              @weekly_goal = weekly_saving_goal(@trip)
-        end
+        if !@trip.cost.nil?
+           @weekly_goal = weekly_saving_goal(@trip)
+         end
+      
         gon.data = date_amount_saved(@trip)
         gon.data2 = date_amount_added(@trip)
 

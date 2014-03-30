@@ -26,49 +26,64 @@
     <div class="row">
         <div class="col-xs-6">
             <div class="well one">
-     
-     <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
+    <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
       <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
-     <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
+      <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
     <%end%>
          </div>
          <div class="col-xs-12 well two">My progress on the map</div>
-       </div>
-
+      </div>
 
 <!--   displaying the amount saved and other related data -->
     
          <div class="col-xs-6">
             <div class="well three">
-                 
-                 <strong class="dash">Amount saved so far</strong>: &nbsp &nbsp&nbsp &nbsp&nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp$<%=@total_saved %> 
-                 &nbsp <i class="icon-flag-checkered"></i> </br>
-                 
-                  <strong class="dash">Amount left to reach trip cost</strong>: &nbsp
-                    <% if @trip.cost != nil %>
-                         $<%=@trip.cost - @total_saved  %></br>
+              <table>
+                <tr>
+                  <td>Amount saved so far  &nbsp</td>
+                  <td>$<%=@total_saved %>&nbsp<i class="icon-flag-checkered">  </td>
+                </tr>
+                 <tr>
+                  <td>Amount left to reach trip cost &nbsp</td>
+                  <td> <% if @trip.cost != nil %>
+                         $<%=@trip.cost - @total_saved  %>
                     <%else%>
-                     <em> Not available (enter cost first)</em></br>
-                   <% end %>
-                   <strong class="dash">  Total trip cost</strong>:&nbsp &nbsp&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp 
-                     <% if @trip.cost.nil?%>
-                          Not entered yet<br>
+                     <em> Not available (trip cost needed)</em>
+                   <% end %> </td>
+                </tr>
+                 <tr>
+                  <td>Total trip cost </td>
+                  <td>
+                   <% if @trip.cost.nil?%>
+                          <em>Not entered yet</em>
                     <%else%>
                         $<%= @trip.cost%></br>
+                    <%end%> </td>
+                </tr>
+                <tr>
+                  <td>Average weekly savings </td>
+                  <td> $<%= @weekly_saving_average %> </td>
+                </tr>
+                <tr>
+                  <td> Weekly goal </td>
+                  <td>
+                     <% if @trip.cost.nil?%>
+                          <em>Not available (trip cost needed)</em>
+                    <%else%>
+                        $<%= @weekly_goal%>
                     <%end%>
-
-                     
-                  <strong class="dash">   Average weekly savings</strong>:&nbsp &nbsp &nbsp &nbsp &nbs   &nbsp &nbsp $<%= @weekly_saving_average %></br>
-                  <strong class="dash">   Weekly goal</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp $<%=@weekly_goal %>
-                    
-
-                </br>
+                  </tr>
+             </table>
+                 
+           
               </div>
            </div>
          </div>
        </div>
+
+<!--  -->
         <div class="clearfix hidden-md hidden-lg"></div>
         <div class="container"> 
          <div class="row"> 
