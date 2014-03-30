@@ -145,8 +145,8 @@ div.showModal{
   background:beige;
   color: black;
   margin-bottom: 3px;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 .modalActivity{
   background:orange;
@@ -167,6 +167,40 @@ nav{
 
 #bs-example-navbar-collapse-1 {
   background: lightgrey;
+
+}
+.navbar-brand{
+  font-size: 30px;
+}
+.navbar-nav{
+  font-size: 25px;
+  font-style:italic;
+}
+.navbar-right{
+  font-size: 18px;
 }
 
+.intro{
+  font-size: 24px;
 
+}
+#intro{
+  font-size: 26px;
+
+}
+.com{
+  background:white;
+}
+.grey{
+  background:url(image-path('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT3wYUuUZpUTudgrWwBfdPC6-PuzTKCgIZHOdxjkf_ut1pLOIym'));
+  border:none;
+}
+.input{
+  background:#fff6e5;
+}
+.enter{
+  background-color: #E8E8EE;
+}
+.add{
+  font-size: 10px;
+}
