@@ -79,7 +79,7 @@
                   <% if !@trip.start_date.nil? %>
                   <tr>
                   <td>Deadline to reach saving goal &nbsp</td>
-                  <td><%= @trip.start_date.year %> /<%=@trip.start_date.month%> / <%=@trip.start_date.day %></td>
+                  <td><%= @trip.start_date.ctime.slice(0,10) %>, <%= @trip.start_date.ctime.slice(-4,4)%></td>
                 </tr>
                 <% end %>
              </table>
