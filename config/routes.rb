@@ -8,6 +8,7 @@ ReadySaveGo::Application.routes.draw do
  delete '/trips/:id', to: "trips#destroy"
  put "/trips/:id", to: "trips#update"
  delete '/comments/:id', to: "comments#destroy"
+ 
 
   resources :users do
     resources :trips

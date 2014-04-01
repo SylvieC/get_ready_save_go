@@ -11,10 +11,11 @@
      <% if @trip == nil %>
          <h2> My Trip </h2>
     <% elsif @trip.title == nil %> 
-         <h2>From <em><%= @trip.from_city%></em></br> to <em><%= @trip.to_city %></em></h2></br>
+         <h2>From <%= @trip.from_city%></em></br> to <%= @trip.to_city %></h2></br>
     <% else %>
          <h2><%= @trip.title %></h2>
     <% end %>
+
    
     </div>
   </div>
@@ -75,11 +76,17 @@
                         $<%= @weekly_goal%>
                     <%end%>
                   </tr>
+                  <% if !@trip.start_date.nil? %>
+                  <tr>
+                  <td>Deadline to reach saving goal &nbsp</td>
+                  <td><%= @trip.start_date.year %> /<%=@trip.start_date.month%> / <%=@trip.start_date.day %></td>
+                </tr>
+                <% end %>
              </table>
                  
            
               </div>
-           </div>
+           </div>.
          </div>
        </div>
 
@@ -233,6 +240,51 @@
 </div>
 </div>
 </div>
+<!-- useful links -->
+<div class="container">
+    <div class="well four"> Useful links </div>
+  </div>
+  <!-- useful links box
+ -->
+ <div class="container">
+    <div class="well "> 
+<!-- Button trigger modal -->
+<button class="btn btn-warning btn-md" data-toggle="modal" data-target="#myModallinks">
+  Add links
+</button></br></br>
+
+<!-- display links -->
+<ul>
+<% @main_activity.links.each do |link| %>
+
+ <li><%= link_to link.title, link.content, class: "links" %></li></br> 
+<% end %>
+</ul>
+
+
+    </div>
+  </div>
+
+
+
+<!-- Modal links-->
+<div class="modal fade" id="myModallinks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add link</h4>
+      </div>
+      <div class="modal-body">
+      <%= render partial: "/users/add_link_form.html.erb" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
        <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

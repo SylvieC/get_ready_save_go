@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
   def index
     @users = User.all
  respond_to do |format|
@@ -11,21 +12,29 @@ class UsersController < ApplicationController
     @user = User.includes(:trips).find(params[:id])
     @users = User.includes(:trips)
     @activity = Activity.new
-    if  current_user.trips.empty?
+    @link = Link.new
+  
+     if  current_user.trips.empty?
        #activities grouped by theyre category to be displayed at the right place
         @attract_activities = [] 
         @restauration_activities = []
         @shopping_activities = []
-        @main_activities = []
+        @hotel_activities = []
+
     else
         @trip = current_user.trips.last
-        
-
         #activities grouped by theyre category to be displayed at the right place
         @attract_activities = Activity.where(trip_id: @trip.id, category: "attractions") 
         @hotel_activities = Activity.where(trip_id: @trip.id, category: "restauranthotel")
-        @shopping_activities = Activity.where(trip_id: @trip.id, category: "shopping") 
-        @main_activities = Activity.where(trip_id: @trip.id, category: "main")  
+        @shopping_activities = Activity.where(trip_id: @trip.id, category: "shopping")
+        main_activities = Activity.where(trip_id: @trip.id, category: "main")
+        if main_activities.empty?
+          @main_activity = Activity.create(trip_id: @trip.id, category: "main", name: "link_holder")
+          @main_activity.save
+        else
+          @main_activity = main_activities[0]
+        end
+
     end
 
     if @trip.nil?

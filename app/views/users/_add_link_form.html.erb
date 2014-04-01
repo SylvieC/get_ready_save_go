@@ -1,0 +1,16 @@
+<% if !@main_activity.nil? %>
+
+<%= form_for @link,  url: activity_links_path(@main_activity.id), method: :post, required: :true  do |f| %>
+ <%= f.label :"Title" %></br>
+ <%= f.text_area :title, placeholder: 'Helpful French phrases', :rows => 5, :cols => 50 %></br></br>
+ <%= f.label  :"Paste link"%></br>
+ <%= f.text_area :content, placeholder: 'http://www.fodors.com/language/french/basic-phrases/' ,:rows => 5, :cols => 50 %>
+ <%= f.hidden_field :activity_id, :value => @main_activity.id %></br>
+<%= f.submit "Add link", class: "btn btn-primary btn-sm" %>
+<% end %> 
+<% else %>
+  <p>Please make sure you enter the starting and destination cities of your trip first</p>
+<% end %>
+
+
+

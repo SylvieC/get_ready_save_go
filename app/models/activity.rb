@@ -4,6 +4,7 @@ class Activity < ActiveRecord::Base
   has_many :links
   has_many :comments
   accepts_nested_attributes_for :comments
+  accepts_nested_attributes_for :links
   
 
 end
