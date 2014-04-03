@@ -43,12 +43,12 @@
             <div class="well three">
               <table>
                 <tr>
-                  <td>Amount saved so far  &nbsp</td>
-                  <td>$<%=@total_saved %>&nbsp<i class="icon-flag-checkered">  </td>
+                  <td class="left">Amount saved so far  &nbsp</td>
+                  <td class="right">$<%=@total_saved %>&nbsp<i class="icon-flag-checkered">  </td>
                 </tr>
                  <tr>
                   <td>Amount left to reach trip cost &nbsp</td>
-                  <td> <% if @trip.cost != nil %>
+                  <td class="right"> <% if @trip.cost != nil %>
                          $<%=@trip.cost - @total_saved  %>
                     <%else%>
                      <em> Not available (trip cost needed)</em>
@@ -56,7 +56,7 @@
                 </tr>
                  <tr>
                   <td>Total trip cost </td>
-                  <td>
+                  <td class="right">
                    <% if @trip.cost.nil?%>
                           <em>Not entered yet</em>
                     <%else%>
@@ -65,11 +65,11 @@
                 </tr>
                 <tr>
                   <td>Average weekly savings </td>
-                  <td> $<%= @weekly_saving_average %> </td>
+                  <td class="right"> $<%= @weekly_saving_average %> </td>
                 </tr>
                 <tr>
                   <td> Weekly goal </td>
-                  <td>
+                  <td class="right">
                      <% if @trip.cost.nil?%>
                           <em>Not available (trip cost needed)</em>
                     <%else%>
@@ -79,7 +79,7 @@
                   <% if !@trip.start_date.nil? %>
                   <tr>
                   <td>Deadline to reach saving goal &nbsp</td>
-                  <td><%= @trip.start_date.ctime.slice(0,10) %>, <%= @trip.start_date.ctime.slice(-4,4)%></td>
+                  <td class="right"><%= @trip.start_date.ctime.slice(0,10) %>, <%= @trip.start_date.ctime.slice(-4,4)%></td>
                 </tr>
                 <% end %>
              </table>
@@ -98,16 +98,18 @@
                 <div class="well" id="mapBox"> <div id="thirdMap" class='img-responsive'></div> </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <div class="well mapbox">
+                <div class="well" id="chartBox">
                   <div class="col-md-12">
                   <div id="chartContainer"></div>
                   <hr>
                   <div id="chartContainer2"> </div>
                 </div>
+              </div>
 
             </div>
         </div>  
     </div>
+
 
 <!-- he 4 forms for origin and departure city, cost, deparrture date and title-->
 
