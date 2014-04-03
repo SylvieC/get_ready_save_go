@@ -1,5 +1,6 @@
 GetReadySaveGo
-============
+==============
+WDI Final Project
 
 
 Exciting app to organize, anticipate, save and track your next trip. 
