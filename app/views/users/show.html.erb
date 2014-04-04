@@ -111,66 +111,7 @@
     </div>
 
 
-<!-- he 4 forms for origin and departure city, cost, deparrture date and title-->
 
-
-
-<div class="container">
-        <div class="row">
-         <!--   -->
-            <div class="col-sm-6 col-md-3">
-              <div class="well">
-              
-      <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
-          <%= f.label :'Starting point' %>
-          <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
-          <%= f.label :'Final Destination' %>
-          <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
-       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %>
-        <%end%>
-      
-
-
-    <!--  button to trigger cities modal -->
-       <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
-
-       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
-
-
-
-       </div>
-      </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="well">
-    <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
-      <%= f.label :'Cost of the trip' %>
-      <%= f.text_field :cost, placeholder: "1200 " %></br></br>
-      <% if @trip.cost == nil %>
-      <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-xs trip_cost" %>
-      <% else %>
-        <%= f.submit "Edit trip cost", class: "btn btn-info btn-xs trip_cost"%>
-      <% end %>
-      <%end%></div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="well">
-    <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
- 
-    <%= f.label :"Planned time of departure or ticket purchase"%>
-    <%= f.date_select :start_date, :default => Date.today %></br></br>
-     <% if @trip.start_date == nil %>
-    <%= f.submit "Enter departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
-    <% else %>
-    <%= f.submit "Edit departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
-    <%end%>
-    <%end%></div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="well">  <%= render partial: "/users/trips_form" %> </div>
-            </div>
-        </div> 
-    </div>
-  </div>
 
  
  
@@ -267,6 +208,65 @@
     </div>
   </div>
 
+<!-- he 4 forms for origin and departure city, cost, deparrture date and title-->
+
+
+
+<div class="container">
+        <div class="row">
+         <!--   -->
+            <div class="col-sm-6 col-md-3">
+              <div class="well">
+              
+      <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
+          <%= f.label :'Starting point' %>
+          <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
+          <%= f.label :'Final Destination' %>
+          <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
+       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %>
+        <%end%>
+      
+
+
+    <!--  button to trigger cities modal -->
+       <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
+
+       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
+
+
+
+       </div>
+      </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="well">
+    <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+      <%= f.label :'Cost of the trip' %>
+      <%= f.text_field :cost, placeholder: "1200 " %></br></br>
+      <% if @trip.cost == nil %>
+      <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-xs trip_cost" %>
+      <% else %>
+        <%= f.submit "Edit trip cost", class: "btn btn-info btn-xs trip_cost"%>
+      <% end %>
+      <%end%></div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="well">
+    <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+ 
+    <%= f.label :"Planned time of departure or ticket purchase"%>
+    <%= f.date_select :start_date, :default => Date.today %></br></br>
+     <% if @trip.start_date == nil %>
+    <%= f.submit "Enter departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
+    <% else %>
+    <%= f.submit "Edit departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
+    <%end%>
+    <%end%></div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="well">  <%= render partial: "/users/trips_form" %> </div>
+            </div>
+        </div> 
+    </div>
 
 
 <!-- Modal links-->
