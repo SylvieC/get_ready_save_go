@@ -141,9 +141,11 @@ margin-top: 45px;
  font-family: 'Open Sans', sans-serif;
  font-weight: 300;
  font-size: 18px;
+ margin-bottom: 0px;
 }
 .four{
   padding-left: 40px;
+  margin-top: 0px;
 }
 .dash{
 font-size: 20;
@@ -253,4 +255,7 @@ outline-width:0px;
 }
 table{
   margin-left: 45px;
+}
+#update{
+  color:white;
 }

@@ -229,7 +229,7 @@
 
 
     <!--  button to trigger cities modal -->
-       <a href="#myModal" role="button"  class="btn" data-toggle="modal">Update this trip</a>
+       <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update this trip</a>
 
        <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
 
