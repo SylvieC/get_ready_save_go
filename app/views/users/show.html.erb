@@ -198,7 +198,7 @@
 
 <!-- display links -->
 <ul>
-  <% if !@main_activity.empty? %>
+  <% if !@main_activity.nil? %>
 <% @main_activity.links.each do |link| %>
 
  <li><%= link_to link.title, link.content, class: "links" %></li></br> 

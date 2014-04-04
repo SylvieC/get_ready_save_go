@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         @restauration_activities = []
         @shopping_activities = []
         @hotel_activities = []
-        @main_activity = []
+      
 
     else
         @trip = current_user.trips.last

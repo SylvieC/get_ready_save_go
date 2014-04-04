@@ -1,4 +1,4 @@
-<% if !@main_activity.empty? %>
+<% if !@main_activity.nil? %>
 
 <%= form_for @link,  url: activity_links_path(@main_activity.id), method: :post, required: :true  do |f| %>
  <%= f.label :"Title" %></br>
