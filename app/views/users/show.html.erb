@@ -198,9 +198,11 @@
 
 <!-- display links -->
 <ul>
+  <% if !@main_activity.empty? %>
 <% @main_activity.links.each do |link| %>
 
  <li><%= link_to link.title, link.content, class: "links" %></li></br> 
+<% end %>
 <% end %>
 </ul>
 
