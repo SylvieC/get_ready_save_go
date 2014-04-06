@@ -190,23 +190,23 @@ google.maps.event.addDomListener(window, 'load',initialize);
     
     // create the text to be shown in the infowindows
     var text1 = '<div id="content">'+
-        '<h4 id="firstHeading">Starting point</h4>'+
+        '<p id="firstHeading">Starting point</p>'+
         '<div id="bodyContent1">'+
-        '<p>'+ gon.beg +'</p>'+
+        '<p class="marker">'+ gon.beg +'</p>'+
         '</div>'+
         '</div>';
         
     var text2 = '<div id="content">'+
-      '<h4 id="firstHeading">Destination</h4>'+
+      '<p id="firstHeading">Destination</p>'+
       '<div id="bodyContent">'+
-      '<p>'+gon.finish+'</p>'+
+      '<p class="marker">'+gon.finish+'</p>'+
       '</div>'+
       '</div>';
 
     var textMid = '<div id="content">'+
-      '<h4 id="MidHeading"> Progressing...</h4>'+
+      '<p id="MidHeading"> Progressing...</p>'+
       '<div id="bodyContent">'+
-      '<p>'+gon.percentage_saved.toFixed(2)+'% saved so far</p>'+
+      '<p class="marker">'+gon.percentage_saved.toFixed(2)+'% saved so far</p>'+
       '</div>'+
       '</div>';  
     
@@ -215,7 +215,7 @@ google.maps.event.addDomListener(window, 'load',initialize);
       content: text1
     });
     var infowindow2 = new google.maps.InfoWindow({
-      content: text2
+      content: text2  
     });
 
     var infowindowMid = new google.maps.InfoWindow({
