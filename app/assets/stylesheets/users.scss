@@ -5,7 +5,10 @@ body {
 height:100%;
 margin:0;
 padding:0;
-background:url(image-path('lightSand.jpg'));
+// background:url(image-path('lightSand.jpg'));
+background-color:#E0E0E0;
+
+
 
 }
 
@@ -117,7 +120,8 @@ color:white;
 // background:url(image-path('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT3wYUuUZpUTudgrWwBfdPC6-PuzTKCgIZHOdxjkf_ut1pLOIym'));
 
 border-radius: 10px;
-background: rgba(7,32,102,.6);
+// background: rgba(7,32,102,.6);
+background:#647397;
 
 outline: #444444 groove 4px ;
 outline-offset: 0px ;
@@ -189,6 +193,9 @@ position: relative;
 top: -14px;
 right: -13px;
 }
+.links{
+  list-style-type: none;
+}
 
 
 nav{
@@ -196,11 +203,12 @@ nav{
 }
 
 #bs-example-navbar-collapse-1 {
-background: lightgrey;
-
+background: black;
 }
+
 .navbar-brand{
 font-size: 30px;
+color:white;
 }
 .navbar-nav{
 font-size: 25px;
@@ -260,8 +268,91 @@ table{
   margin-left: 45px;
 }
 #update{
-  color:white;
+  color:cream;
 }
 .marker{
   font-size:20px;
+}
+.wrapper{
+  background: #F0EFE1;
+  padding:13px;
+  position: relative;
+  
+border: #647397 5px solid;
+border-radius: 10px;
+}
+.landing{
+  height:600px;
+}
+.picture.img-responsive{
+  border:solid 20px;
+    border: 5px solid #292929;
+   outline: 5px solid #647397;
+   margin-left: 100px;
+   height:230px;
+}
+#titre{
+  opacity:.8;
+
+}
+#titre\20 center {
+text-align: center;
+margin-bottom: 44px;
+}
+
+#line{
+  background:#647397;
+  height: 40px;
+}
+.notice, .alert{
+  height:1em;
+}
+#beige{
+  background:#F0EFE1;
+  border: #647397;
+  color: #647397;
+}
+body > div.container > div > div.col-xs-6.col-md-8 > div > img {
+margin-left: 15px;
+}
+#cities{
+
+}
+#museums{
+  height:584px;
+}
+#colosseum{
+  margin-left: 60px;
+
+}
+.details{
+  background:white;
+  color:black;
+  font-size:20px;
+  border-radius:6px;
+}
+#second{
+  padding:3px;
+  background:#F0EFE1;
+  border: #647397 5px solid;
+border-radius: 10px;
+margin-left:50px;
+padding-left:3px;
+padding-right:3px;
+font-size:20px;
+}
+.first{
+  font-size: 20px;
+}
+#name{
+  float:right;
+}
+.last{
+ height: 389px;
+}
+#bs-example-navbar-collapse-1 > ul:nth-child(2) > li > a {
+color: white;
+}
+#links{
+    list-style-type: none;
 }

@@ -28,6 +28,9 @@ border: 1px solid  black;
 margin-left: 0;
 margin-right: 0;
 }
+#white{
+  background-color:white;
+}
 
 
 .img1 {
@@ -66,9 +69,6 @@ font-size: 28px;
 
 }
 
-body{
-  background-color: #3A5FCD;
-}
 .paragraph{
   opacity: 1;
 }
@@ -81,6 +81,13 @@ font-size:20px;
 #zoom3{
   height: 607px;
 }
-.margin{
-  
+#landingintro{
+  background:url(image-path('mapvalise.jpg'));
+  height: 600px;
+
+}
+.picture.img-responsive{
+  border:solid 20px;
+    border: 5px solid #292929;
+   outline: 5px solid #e3e3e3;
 }
