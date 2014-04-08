@@ -4,9 +4,9 @@
  <div class="container">
         <div class="row ">
             <div class="col-xs-12 acti">
-                <div class="well showModal"> <div class="row modalActivity"><div class="well actName"> <%=activity.name%></div></div>
+                <div class="well showModal"> <div class="row modalActivity"><div class="well actName" id="title"> <%=activity.name%></div></div>
                 <% if !activity.im_url.nil? %>
-                <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive') %></b></div></div>
+                <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive show') %></b></div></div>
                 <%end%>
                 <% if !activity.comments.empty?%>
                 <em>Comments</em>
@@ -23,12 +23,41 @@
                 
    
                <%end%>
+                       <!--  display links -->
+   <% if !activity.links.empty?%>
+                <em>Links</em>
+                <% activity.links.each do |link|%>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= link_to link.title, link.content %></div>
+                </div>
+             <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete link",{controller: :links, action: :destroy, id: link.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+
+                
+   
+      <%end%>
+  <%end%> 
+<!--   end display links --> 
                 <%= form_for :comment, url: activity_comments_path(activity.id), method: :post do |f| %>
       <span class='add'><%= f.label :"Add another comment"%></span></br>
       <%= f.hidden_field :activity_id, :value => activity.id %>
      <%= f.text_field :content,class: 'input' %>
      <%= f.submit "Enter new comment",class: 'enter btn-xs' %>
     <%end%>
+
+      <%= form_for :link, url: activity_links_path(activity.id), method: :post do |f| %>
+      <span class='add'>
+        <%= f.label :"Add a link title"%></span></br>
+      <%= f.text_field :title, class: 'input', placeholder: "Colosseum"%>
+      <%= f.hidden_field :activity_id, :value => activity.id %><br/>
+       <span class="add"><%= f.label :"paste the url here" %></span><br/>
+     <%= f.text_field :content,class: 'input',placeholder: "http://www.the-colosseum.net/" %>
+     <%= f.submit "Enter new link",class: 'enter btn-xs' %>
+    <%end%>
+
                  <div class="floatright"><%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete,class:'btn btn-warning btn-sm',id: 'delete' %></div>
  
                 <%end%>
