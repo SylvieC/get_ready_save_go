@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   def index
     @users = User.all
- respond_to do |format|
+    respond_to do |format|
         format.html
         format.json {render json: @users}
-      end
+    end
   end
 
   def show
@@ -14,14 +14,12 @@ class UsersController < ApplicationController
     @activity = Activity.new
     @link = Link.new
   
-     if  current_user.trips.empty?
+    if  current_user.trips.empty?
        #activities grouped by theyre category to be displayed at the right place
         @attract_activities = [] 
         @restauration_activities = []
         @shopping_activities = []
         @hotel_activities = []
-      
-
     else
         @trip = current_user.trips.last
         #activities grouped by theyre category to be displayed at the right place
@@ -42,12 +40,9 @@ class UsersController < ApplicationController
       @trip = Trip.create(from_city: "San Francisco", to_city: "Paris, France")
     end
       
-
-
     gon.beg = @trip.from_city 
     gon.finish = @trip.to_city 
 
-          
         if @trip.cost == 0
            gon.ratio == 0
         elsif @trip.cost.nil? 
@@ -78,21 +73,15 @@ class UsersController < ApplicationController
         # @activity1 = Activity.create(name: "link_holder", trip_id: @trip.id)
         # @activity1.links.create(title: "lonely planet", category: 'main', content: "http://www.lonelyplanet.com/")
 
-
-        
-    
         respond_to do |format|
           format.html
           format.json {render json: @user}
          end 
 
-    
     #the distance to the middle marker will be gon.ratio * line_length
   end
 
-
   private
-
 
   def total_saved_for_trip(trip)
     total = 0
@@ -155,9 +144,6 @@ class UsersController < ApplicationController
       return (answer.round(2))
     end
   end
-
-
-
 end
 
 

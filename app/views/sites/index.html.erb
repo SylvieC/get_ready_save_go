@@ -1,70 +1,62 @@
 <div class="background">
-   <div class="transbox col-sm-6">
-    <br/>
-     <h2>GetReadySaveGo</h2>
-
-   
+  <div class="transbox col-sm-6">
+    <h2>Get Ready Save Go</h2>
+    
+  </div>
+</div>
+<br/><br/>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <div><%= image_tag('mapvalise.jpg', class: 'img-responsive picture') %></div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-2">
+      <div class="center wrapper first">Getting ready, saving and dreaming of your trip will be part of the fun...<br/><br/>
+    <div id="quote" class="left">Travel is ninety per cent anticipation <br/> and ten per cent recollection.<br/> &raquo Edward Streeter</div>
+      </div>
     </div>
   </div>
-  <br/><br/>
- <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-4">
-                <div><%= image_tag('mapvalise.jpg', class: 'img-responsive picture') %></div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-sm-offset-2">
-                <div class="center wrapper first">Getting ready, saving and dreaming of your trip will be part of the fun...</div></br>
-                <div class="col-xs-10 col-xs-offset-2 col-sm-10 col-sm-offset-2">
-                  <div class="center wrapper">Travel is ninety per cent anticipation <br/>and ten per cent recollection.<br/> <span id='name'> &raquo Edward Streeter</span></br></div>
-                </div>
-            </div>
-        </div>  
-    </div>
-
-<br/><br/>
-<div id="line"></div>
-
-</br>
- 
-
-<!-- Start detailed explanation of how it works -->
-    <div class="container">
-        <h1 class="center"> How it works in four simple steps</h1></br>
-        <div class="row">
-            <div class="col-xs-6 col-md-3">
-                <div class="well"><div class="col-xs-12 details"> 1- Enter the starting point and the final destination</div><br/><%= image_tag('cities_longer.png', class: 'img-responsive', id: "cities") %></br><br/></div>
-               
-            </div>
-            <div class="col-xs-6 col-md-5">
-                <div class="well"> <div class="col-xs-12 details"> 2- Enter the cost of your trip and the deadline to reach the trip cost.<br/> You may also enter a special title for your trip</div> <%= image_tag('date.png', class: 'img-responsive', id: "cities") %></div>
-            </div>
-                 <div class="col-xs-6 col-md-4">
-                <div class="well"> <div class="col-xs-12 details"> 3- Add regularly to your savings and see the magic happen...</div><br/> <%= image_tag('addsavings.png', class: 'img-responsive', id: "cities") %></div><br/>
-                 <div class="well"><div class="col-xs-12 details"> 4- Little by little, as you plan for your trip, add pictures, links and comments to go back to later...</div><br/> <%= image_tag('modalmuseum_smaller.png', class: 'img-responsive', id: "cities") %></div>
-            </div>
-          </div>
-        
-        </div>  
-    </div>
-
-<div id="line"></div>
-  <div class="container">
-    <h1 class="center">Watch your progress, and have lots of fun preparing for your trip...</h1><br/>
-        <div class="row">
-            <div class="col-xs-6 col-md-4">
-                <div class="well last"><br/><%= image_tag('mapupdate.png', class: 'img-responsive tag') %><br/></div>
-            </div>
-            
-          <div class="col-xs-6 col-md-4">
-                <div class="well"> <%= image_tag('getreadysavego_small.png', class: 'img-responsive', id: "cities") %></div>
-            </div>
-              <div class="col-xs-6 col-md-4">
-                <div class="well last"> <%= image_tag('showmuseum.png', class: 'img-responsive', id: "cities") %></div>
-            </div>
-            
-           
-        </div>  
-    </div>
 </div>
-
+<br/><br/>
+</br>
+<!-- Start detailed explanation of how it works -->
+<div class=" dark">
+  <div class="container">
+    <br/>
+    <h1 class="center"> How it works in four simple steps</h1></br>
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <div class="well" id="prim"><div class="col-xs-12 steps"> 1. Enter the starting point and the final destination</div><hr><%= image_tag('cities_longer.png', class: 'img-responsive', id: "cities") %></br><br/></div>
+        
+      </div>
+      <div class="col-xs-6 col-md-5">
+        <div class="well"> <div class="col-xs-12 steps "> 2. Enter the cost of your trip and the deadline to reach the trip cost.You may also enter a special title for your trip<hr></div> <%= image_tag('date.png', class: 'img-responsive', id: "cities") %><br/></div>
+      </div>
+      <div class="col-xs-6 col-md-4">
+        <div class="well margin"> <div class="col-xs-12 steps"> 3. Add regularly to your savings and see the magic happen...</div><br/> <%= image_tag('addsavings.png', class: 'img-responsive', id: "cities") %></div>
+        <div class="well"><div class="col-xs-12 steps"> 4. Little by little, as you plan for your trip, add pictures, links and comments to go back to later...<hr></div> <%= image_tag('modalmuseum_smaller.png', class: 'img-responsive', id: "cities") %></div>
+      </div>
+    </div>
+    
+  </div>
+  <br/>
+</div>
+<div class="container">
+  <h1 class="center">Watch your progress, and have lots of fun preparing for your trip...</h1><br/>
+  <div class="row">
+    <div class="col-xs-6 col-md-4">
+      <div class="well last"><br/><%= image_tag('mapupdate.png', class: 'img-responsive tag') %><br/></div>
+    </div>
+    
+    <div class="col-xs-6 col-md-4">
+      <div class="well"> <%= image_tag('getreadysavego_small.png', class: 'img-responsive', id: "cities") %></div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <div class="well last"> <%= image_tag('showmuseum.png', class: 'img-responsive', id: "cities") %></div>
+    </div>
+    
+  </div>
+</div>
+</div>
+</div>
 <div id="line"></div>

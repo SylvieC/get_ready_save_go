@@ -53,7 +53,7 @@ function initialize() {
  $("#anotherMap").on("click", showAlert(
    window.alert('Div Clicked')));
 }
-google.maps.event.addDomListener(window, 'load',initialize);
+google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
@@ -261,7 +261,7 @@ function updateMarker(map, latlng, title){
 
  
   // var image = 'http://icons.iconarchive.com/icons/iconshock/super-vista-business/72/checkered-flag-icon.png';
- 
+
    
  updateMarker(map, line.GetPointAtDistance(line_length * gon.ratio), "progressing..." );
 
@@ -300,9 +300,6 @@ function updateMarker(map, latlng, title){
   }      
    
    // === A method which returns the length of a path in metres === 
-  
-
-     
 
 //js.chart
   window.onload = function () {

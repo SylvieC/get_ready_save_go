@@ -7,6 +7,7 @@ margin:0;
 padding:0;
 // background:url(image-path('lightSand.jpg'));
 background-color:#E0E0E0;
+font-family: 'Open Sans', sans-serif;
 
 
 
@@ -75,11 +76,12 @@ margin-bottom: 25px;
 }
 div.transbox{
 width:400px;
-height:200px;
+height:120px;
 margin:30px 40px;
 background-color:#ffffff;
 border:1px solid black;
-opacity:0.6;
+// opacity:0.6;
+background-color:rgba(255, 255, 255, 0.7);
 text-align:center;
 padding: 20px;
 border-radius: 6px;
@@ -98,9 +100,11 @@ padding-top: 35px;
 }
 
 div.transbox, p, div.transbox2{
-margin:30px 40px;
+margin:20px 40px;
 font-weight:bold;
 color:black;
+margin-top: 50px;
+padding-top:10px;
 }
 
 .activities{
@@ -119,7 +123,7 @@ width: 310px;
 color:white;
 // background:url(image-path('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT3wYUuUZpUTudgrWwBfdPC6-PuzTKCgIZHOdxjkf_ut1pLOIym'));
 
-border-radius: 10px;
+border-radius: 0px;
 // background: rgba(7,32,102,.6);
 background:#647397;
 
@@ -181,6 +185,7 @@ color: black;
 margin-bottom: 3px;
 padding-top: 8px;
 padding-bottom: 8px;
+border-radius:8px;
 }
 .modalActivity{
 background:orange;
@@ -228,6 +233,7 @@ font-size: 26px;
 }
 .com{
 background:white;
+border-radius:5px;
 }
 .grey{
 // background:url(image-path('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT3wYUuUZpUTudgrWwBfdPC6-PuzTKCgIZHOdxjkf_ut1pLOIym'));
@@ -274,12 +280,13 @@ table{
   font-size:20px;
 }
 .wrapper{
-  background: #F0EFE1;
+  background: #647397;
   padding:13px;
   position: relative;
   
-border: #647397 5px solid;
+border: #444444 5px solid;
 border-radius: 10px;
+color:white
 }
 .landing{
   height:600px;
@@ -301,11 +308,12 @@ margin-bottom: 44px;
 }
 
 #line{
-  background:#647397;
+  background:#99AACC;
   height: 40px;
 }
 .notice, .alert{
   height:1em;
+  margin:0px;
 }
 #beige{
   background:#F0EFE1;
@@ -355,4 +363,22 @@ color: white;
 }
 #links{
     list-style-type: none;
+}
+.dark{
+  background: #99AACC;
+}
+.steps{
+  font-size: 20px;
+}
+body > div.dark > div > div > div.col-xs-6.col-md-4 > div.well.margin {
+ margin-bottom: 5px; 
+}
+#quote{
+  font-size: 18px;
+}
+#left{
+  text-align: left;
+}
+#prim{
+  height:434px;
 }
