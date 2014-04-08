@@ -189,11 +189,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
     
     // create the text to be shown in the infowindows
-    var text1 = '<div id="content">'+
-        '<p id="firstHeading">Starting point</p>'+
+    var text1 ='<p id="firstHeading">Starting point</p>'+
         '<div id="bodyContent1">'+
         '<p class="marker">'+ gon.beg +'</p>'+
-        '</div>'+
         '</div>';
         
     var text2 = '<div id="content">'+
