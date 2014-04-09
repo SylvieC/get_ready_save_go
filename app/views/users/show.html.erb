@@ -26,14 +26,14 @@
  <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <div class="well one">
+            <div class="well one"><br/>
               
     <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
       <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
       <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
-    <%end%></br>
+    <%end%>
          </div>
          <div class="col-xs-12 well two">My progress on the map</div>
       </div>
@@ -219,22 +219,23 @@
         <div class="row">
          <!--   -->
             <div class="col-sm-6 col-md-3">
-              <div class="well" >
+              <div class="well" id="form" >
               
       <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
           <%= f.label :'Starting point' %>
-          <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
+          <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br>
           <%= f.label :'Final Destination' %>
-          <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
-       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %>
-        <%end%>
+          <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br>
+       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update this trip</a>
+        <%end%><!--  button to trigger cities modal -->
+      
+
+       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
       
 
 
-    <!--  button to trigger cities modal -->
-       <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update this trip</a>
+    
 
-       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
 
 
 
