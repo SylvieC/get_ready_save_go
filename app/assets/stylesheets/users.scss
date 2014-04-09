@@ -26,9 +26,10 @@ height:400px;
 width: 100%;
 }
 .mapBox{
-  background: #779DFD;
+  // background: #779DFD;
+
   width:620px;
-  heigth:400px;
+  height:500px;
 }
 #myfirstchart{
 height: 250px;
@@ -112,8 +113,10 @@ padding-top:10px;
 }
 
 .restaurant, .places{
-height: 190px;
+height: 205px;
 width: 310px;
+margin-left:auto;
+margin-right:auto;
 }
 .well {
 
@@ -124,8 +127,10 @@ color:white;
 // background:url(image-path('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT3wYUuUZpUTudgrWwBfdPC6-PuzTKCgIZHOdxjkf_ut1pLOIym'));
 
 border-radius: 0px;
-// background: rgba(7,32,102,.6);
-background:#647397;
+background: rgba(7,32,102,.65);
+// background:#647397;
+ // background:#00306B;
+
 
 outline: #444444 groove 4px ;
 outline-offset: 1px ;
@@ -134,7 +139,6 @@ outline-offset: 1px ;
 }
 .two, .four{
 font-weight: bold;
-font-style: italic;
 font-size: 25px ;
 text-align: center;
 // font-family: 'Amarante', cursive;
@@ -145,7 +149,7 @@ margin-top: 45px;
  
 }
 .two{
-  margin-top: 5px;
+  margin-top: 30px;
 }
 .three{
 
@@ -174,6 +178,7 @@ color: white;
 
 div.showModal{
 border: none;
+background:#6978A2;
 }
 
 #myModalShowModal{
@@ -266,6 +271,7 @@ outline-width:0px;
   margin : 6px;
   padding-left: 4px;
   padding-right: 4px;
+  background:#00306B;
 }
 .right{
   padding-left: 25px;
@@ -325,6 +331,7 @@ margin-left: 15px;
 }
 #cities{
 
+
 }
 #museums{
   height:584px;
@@ -369,8 +376,13 @@ color: white;
 }
 .steps{
   font-size: 20px;
+  padding-top:10px;
 }
-body > div.dark > div > div > div.col-xs-6.col-md-4 > div.well.margin {
+.step2{
+  font-size: 20px;
+  padding-top:10px;
+}
+body > div.dark > div > div > div.col-xs-6.col-md-4 > div.well1.margin {
  margin-bottom: 5px; 
 }
 #quote{
@@ -380,7 +392,7 @@ body > div.dark > div > div > div.col-xs-6.col-md-4 > div.well.margin {
   text-align: left;
 }
 #prim{
-  height:434px;
+  height:410px;
 }
 .show{
   margin-left:auto;
@@ -404,4 +416,36 @@ ul{
 }
 #end{
   margin-bottom: 7px;
+}
+
+#chartBox\20 {
+/* background: #0053BD; */
+height: 440px;
+}
+.well1{
+  color:white;
+// background:url(image-path('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT3wYUuUZpUTudgrWwBfdPC6-PuzTKCgIZHOdxjkf_ut1pLOIym'));
+
+border-radius: 0px;
+// background: rgba(7,32,102,.6);
+// background:#6473
+
+outline: #444444 groove 4px ;
+outline-offset: 1px ;
+background:#5E6D97;
+
+
+}
+#myModalShowAttract > div > div > div.modal-body.showModal {
+background: white;
+}
+#cities {
+margin-left: auto;
+margin-right: auto;
+padding-top:16px;
+padding-bottom:15px;
+
+}
+body > div.dark > div > div > div.col-xs-6.col-md-4 > div:nth-child(2) > div {
+margin-top: 19px;
 }
