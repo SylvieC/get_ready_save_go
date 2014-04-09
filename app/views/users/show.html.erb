@@ -191,7 +191,7 @@
   <!-- useful links box
  -->
  <div class="container">
-    <div class="well links center "> 
+    <div class="well links "> 
 <!-- Button trigger modal -->
 <button class="btn btn-warning btn-md" data-toggle="modal" data-target="#myModallinks">
   Add links
@@ -209,7 +209,7 @@
 
  
     </div>
-  </div>
+</div>
 
 <!-- he 4 forms for origin and departure city, cost, deparrture date and title-->
 
@@ -219,7 +219,7 @@
         <div class="row">
          <!--   -->
             <div class="col-sm-6 col-md-3">
-              <div class="well">
+              <div class="well" >
               
       <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
           <%= f.label :'Starting point' %>
@@ -241,22 +241,22 @@
        </div>
       </div>
             <div class="col-sm-6 col-md-3">
-                <div class="well">
+                <div class="well" id="form">
     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
-      <%= f.label :'Cost of the trip' %>
+      <%= f.label :'Cost of the trip' %><br/><br/>
       <%= f.text_field :cost, placeholder: "1200 " %></br></br>
       <% if @trip.cost == nil %>
       <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-xs trip_cost" %>
       <% else %>
         <%= f.submit "Edit trip cost", class: "btn btn-info btn-xs trip_cost"%>
       <% end %>
-      <%end%></div>
+      <%end%><br/></div>
             </div>
             <div class="col-sm-6 col-md-3">
-                <div class="well">
+                <div class="well" id="form">
     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
  
-    <%= f.label :"Planned time of departure or ticket purchase"%>
+    <%= f.label :"Planned time of departure or ticket purchase"%><br/><br/>
     <%= f.date_select :start_date, :default => Date.today %></br></br>
      <% if @trip.start_date == nil %>
     <%= f.submit "Enter departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
@@ -266,7 +266,7 @@
     <%end%></div>
             </div>
             <div class="col-sm-6 col-md-3">
-                <div class="well">  <%= render partial: "/users/trips_form" %> </div>
+                <div class="well" id="form">  <%= render partial: "/users/trips_form" %> </div>
             </div>
         </div> 
     </div>

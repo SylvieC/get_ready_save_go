@@ -3,14 +3,14 @@
    
      
      <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
-     <%=f.label  :"Give this trip a special Title (optional)" %>
+     <%=f.label  :"Give this trip a special Title (optional)" %><br/><br/>
       <%= f.text_field :title, placeholder: "Ireland, here I come!"%></br></br>
        <% if @trip.title == nil %>
        <%= f.submit "enter trip title", class: "btn btn-info btn btn-xs", id: "show_map" %>
        <% else %>
        <%= f.submit "Edit trip title", class: "btn btn-info btn btn-xs", id: "show_map" %>
        <% end %>
-     <% end %>
+     <% end %><br/>
 
        
  

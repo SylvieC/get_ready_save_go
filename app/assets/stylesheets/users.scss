@@ -130,6 +130,7 @@ background:#647397;
 outline: #444444 groove 4px ;
 outline-offset: 1px ;
 
+
 }
 .two, .four{
 font-weight: bold;
@@ -258,7 +259,6 @@ outline-width:0px;
 .links{
   color:white;
   font-size: 18px;
-  text-align: center;
 }
 #chartBox {
   width: 555px;
@@ -274,7 +274,7 @@ table{
   margin-left: 45px;
 }
 #update{
-  color:cream;
+  color:orange;
 }
 .marker{
   font-size:20px;
@@ -388,4 +388,10 @@ body > div.dark > div > div > div.col-xs-6.col-md-4 > div.well.margin {
 }
 #title{
   text-align: center;
+}
+ul{
+  margin-left:250px;
+}
+#form{
+  height: 207px;
 }
