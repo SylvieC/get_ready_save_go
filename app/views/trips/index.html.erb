@@ -1,15 +1,275 @@
-<h1>Trips#index</h1>
- 
-<div class="container">  
-<div class="row">  
-<div class="span4">  
-<div class="alert alert-block">  
-  <a class="close" data-dismiss="alert">×</a>  
-  <h4 class="alert-heading">Warning!</h4>  
- What are you doing?! this will delete all files!!  
-</div>  
-</div>  
-</div>  
-</div>  
-- See more at: http://www.w3resource.com/twitter-bootstrap/alerts-and-errors-tutorial.php#sthash.lTgDtP8x.dpuf  
+<div class="background">
+  <div class="transbox col-sm-6">
+    <h2>My Past trips</h2>
+  </div>
+</div>
 
+create_table "trips", force: true do |t|
+    t.string   "from_city"
+    t.string   "to_city"
+    t.float    "cost"
+    t.datetime "start_date"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  <% @trips.each do |trip| %>
+  <div id="line"></div>
+    <% if !trip.title.nil? %>
+      <h2><%= trip.title %> </h2>
+      <%= button_to "Delete trip", {controller: :trips, action: :destroy, id: trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
+    <% else %>
+      <h2>From <%= trip.from_city %> to <%= trip.to_city %></h2> 
+      <%= button_to "Delete trip", {controller: :trips, action: :destroy, id: trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
+    <% end %>
+
+    <%= @data[trip.id] %>
+    <%= trip.id %>
+
+     <% @attract_activities = Activity.where(trip_id: trip.id, category: "attractions") %>
+     <% @hotel_activities = Activity.where(trip_id: trip.id, category: "restauranthotel")  %>
+     <% @shopping_activities = Activity.where(trip_id: trip.id, category: "shopping")%>
+
+     <div class="container">
+        <div class="row ">
+            <div class="col-xs-12 col-sm-4 acti">
+              <% if !@attract_activities.empty? %>
+              <div class="well center "><h4>Museums and Attractions</h4></div>
+              <%end%>
+            </div>
+             <div class="col-xs-12 col-sm-4 acti">
+              <% if !@hotel_activities.empty? %>
+              <div class="well center "><h4>Hotels  and Restaurants</h4></div>
+              <% end %>
+            </div>
+             <div class="col-xs-12 col-sm-4 acti">
+              <% if !@shopping_activities.empty? %>
+              <div class="well center "><h4>Entertainment and Shopping</h4></div>
+              <% end %>
+            </div>
+        </div>
+    </div>
+ <!--    show attraction and museum -->
+   
+
+    <% @attract_activities.each do |activity| %> 
+ 
+  <div class="container">
+        <div class="row ">
+            <div class="col-xs-12 col-sm-4 acti">
+               <div class="well showModal"> <div class="row modalActivity"><div class="well actName" id="title"> <%=activity.name%></div></div>
+                <% if !activity.im_url.nil? %>
+                <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive show') %></b></div></div>
+                <%end%>
+                <% if !activity.comments.empty?%>
+                <em>Comments</em>
+                <% activity.comments.each do |comment|%>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= comment.content%></div>
+                </div>
+            
+            <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete comment",{controller: :comments, action: :destroy, id: comment.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+                
+   
+               <%end%>
+             <!--  display links -->
+   <% if !activity.links.empty?%>
+                <em>Links</em>
+                <% activity.links.each do |link|%>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= link_to link.title, link.content %></div>
+                </div>
+             <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete link",{controller: :links, action: :destroy, id: link.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+
+                
+   
+      <%end%>
+  <%end%> 
+<!--   end display links --> 
+                <%= form_for :comment, url: activity_comments_path(activity.id), method: :post do |f| %>
+      <span class='add'><%= f.label :"Add another comment"%></span></br>
+      <%= f.hidden_field :activity_id, :value => activity.id %>
+     <%= f.text_field :content,class: 'input' %>
+     <%= f.submit "Enter new comment",class: 'enter btn-xs' %>
+    <%end%>
+
+
+
+      <%= form_for :link, url: activity_links_path(activity.id), method: :post do |f| %>
+      <span class='add'>
+        <%= f.label :"Add a link title"%></span></br>
+      <%= f.text_field :title, class: 'input', placeholder: "Colosseum"%>
+      <%= f.hidden_field :activity_id, :value => activity.id %><br/>
+       <span class="add"><%= f.label :"paste the url here" %></span><br/>
+     <%= f.text_field :content,class: 'input',placeholder: "http://www.the-colosseum.net/" %>
+     <%= f.submit "Enter new link",class: 'enter btn-xs' %>
+    <%end%>
+              
+                 <div class="floatright"><%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete,class:'btn btn-warning btn-sm',id: 'delete' %></div>
+ 
+                <%end%>
+             
+
+            </div>
+        </div>
+        <!-- hotel activities -->
+<!-- display activities -->
+
+<% @hotel_activities.each do |activity| %> 
+ <div class="container">
+        <div class="row ">
+            <div class="col-xs-12 col-sm-4 acti">
+                <div class="well showModal"> <div class="row modalActivity"><div class="well actName" id="title"> <%=activity.name%></div></div>
+                <% if !activity.im_url.nil? %>
+                <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive show') %></b></div></div>
+                <%end%>
+                <% if !activity.comments.empty?%>
+                <em>Comments</em>
+                <% activity.comments.each do |comment|%>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= comment.content%></div>
+                </div>
+            
+            <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete comment",{controller: :comments, action: :destroy, id: comment.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+                
+   
+               <%end%>
+                       <!--  display links -->
+   <% if !activity.links.empty?%>
+                <em>Links</em>
+                <% activity.links.each do |link|%>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= link_to link.title, link.content %></div>
+                </div>
+             <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete link",{controller: :links, action: :destroy, id: link.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+
+                
+   
+      <%end%>
+  <%end%> 
+<!--   end display links --> 
+                <%= form_for :comment, url: activity_comments_path(activity.id), method: :post do |f| %>
+      <span class='add'><%= f.label :"Add another comment"%></span></br>
+      <%= f.hidden_field :activity_id, :value => activity.id %>
+     <%= f.text_field :content,class: 'input' %>
+     <%= f.submit "Enter new comment",class: 'enter btn-xs' %>
+    <%end%>
+
+      <%= form_for :link, url: activity_links_path(activity.id), method: :post do |f| %>
+      <span class='add'>
+        <%= f.label :"Add a link title"%></span></br>
+      <%= f.text_field :title, class: 'input', placeholder: "Colosseum"%>
+      <%= f.hidden_field :activity_id, :value => activity.id %><br/>
+       <span class="add"><%= f.label :"paste the url here" %></span><br/>
+     <%= f.text_field :content,class: 'input',placeholder: "http://www.the-colosseum.net/" %>
+     <%= f.submit "Enter new link",class: 'enter btn-xs' %>
+    <%end%>
+
+                 <div class="floatright"><%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete,class:'btn btn-warning btn-sm',id: 'delete' %></div>
+ 
+                <%end%>
+            </div>
+        </div>
+
+<%end%>
+<!-- display shopping activities -->
+ 
+<% @shopping_activities.each do |activity| %>  
+  
+            <div class="col-xs-12 col-sm-4 acti">
+                <div class="well showModal"> <div class="row modalActivity"><div class="well actName" id="title"> <%=activity.name%></div></div>
+                <% if !activity.im_url.nil? %>
+                <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive show') %></b></div></div>
+                <%end%>
+                <% if !activity.comments.empty?%>
+                <em>Comments</em>
+                <% activity.comments.each do |comment|%>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= comment.content%></div>
+                </div>
+            
+            <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete comment",{controller: :comments, action: :destroy, id: comment.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+                
+   
+               <%end%>
+
+                       <!--  display links -->
+   <% if !activity.links.empty?%>
+                <em>Links</em>
+                <% activity.links.each do |link|%>
+                <div class="row">
+                     <div class="col-sm-8">
+                <div class="well actName com"><%= link_to link.title, link.content %></div>
+                </div>
+             <div class="col-sm-3 grey">
+                <div class="well actName com grey"> <%= button_to "delete link",{controller: :links, action: :destroy, id: link.id }, :method => :delete,class: 'btn btn-sm right' %></div>
+            </div>
+        </div>
+
+                
+   
+      <%end%>
+  <%end%> 
+<!--   end display links --> 
+                <%= form_for :comment, url: activity_comments_path(activity.id), method: :post do |f| %>
+      <span class='add'><%= f.label :"Add another comment"%></span></br>
+      <%= f.hidden_field :activity_id, :value => activity.id %>
+     <%= f.text_field :content,class: 'input' %>
+     <%= f.submit "Enter new comment",class: 'enter btn-xs' %>
+    <%end%>
+
+      <%= form_for :link, url: activity_links_path(activity.id), method: :post do |f| %>
+      <span class='add'>
+        <%= f.label :"Add a link title"%></span></br>
+      <%= f.text_field :title, class: 'input', placeholder: "Colosseum"%>
+      <%= f.hidden_field :activity_id, :value => activity.id %><br/>
+       <span class="add"><%= f.label :"paste the url here" %></span><br/>
+     <%= f.text_field :content,class: 'input',placeholder: "http://www.the-colosseum.net/" %>
+     <%= f.submit "Enter new link",class: 'enter btn-xs' %>
+    <%end%>
+
+                 <div class="floatright"><%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete,class:'btn btn-warning btn-sm',id: 'delete' %></div>
+ 
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>
+<%end%>
+
+    </div>
+</div>
+                
+  <%end%>
+
+
+
+
+
+
+
+
+  <% end %>
+ 

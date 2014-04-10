@@ -1,9 +1,21 @@
 class TripsController < ApplicationController
   before_filter :authenticate_user!
+
   def index
-    @trip = Trip.new
-    @trips = Trip.all 
-    respond_to do |format|
+    @trips = Trip.where(user_id: current_user.id)
+    @trips.pop
+    @data = build_hash_tripid_savingdata(@trips)
+      if  @trips.empty?
+       #activities grouped by theyre category to be displayed at the right place
+        @attract_activities = [] 
+        @restauration_activities = []
+        @shopping_activities = []
+        @hotel_activities = []
+        @main_activity=[]
+
+     end
+
+      respond_to do |format|
       format.html
       format.json {render json: @trips}
     end
@@ -77,6 +89,80 @@ def modify(cost)
   end
   return answer.to_i + arr[1].to_i.round(2)* 0.01
 end
+ private
+
+  def total_saved_for_trip(trip)
+    total = 0
+    if  trip.savings != []
+      trip.savings.each {|saving| total += saving.amount }
+    end
+      return total.to_f
+  end
+
+  def reach_goal?(trip)
+    total_saved(trip)>= trip.cost
+  end
+
+  def date_amount_saved(trip)
+    
+    new_array = []
+    amount_saved = 0
+  
+    trip.savings.each do |saving|
+        hash = {}
+        amount_saved += saving.amount
+        hash[saving.created_at.strftime("%m-%d-%Y")] = amount_saved
+        new_array << hash
+     end
+    return new_array
+  end
+
+def date_amount_added(trip)
+    new_array = []
+    trip.savings.each do |saving|
+        hash = {}
+         hash['label'] =  saving.created_at.strftime("%m-%d-%Y")
+        hash['y'] = saving.amount
+        new_array << hash
+     end
+    return new_array
+  end
+
+  def saved_weekly_average(trip)
+   #  #604,800 seconds make a fd
+    time_between_first_and_last_savings_in_weeks = (trip.savings.last.created_at.to_i - trip.savings.first.created_at.to_i).to_f/604800
+    if time_between_first_and_last_savings_in_weeks <= 1
+      return total_saved_for_trip(trip)
+    else
+        answer =  total_saved_for_trip(trip).to_f / time_between_first_and_last_savings_in_weeks
+        return answer.round(2)
+    end
+  end
+
+  def weekly_saving_goal(trip)
+    time_between_now_and_departure_in_weeks = (DateTime.now.to_i- trip.start_date.to_i).to_f/ 604800
+    amount_left_to_pay = trip.cost - total_saved_for_trip(trip)
+    answer = 0
+   if time_between_now_and_departure_in_weeks <= 1  
+      return ((amount_left_to_pay/time_between_now_and_departure_in_weeks).round(2)).abs
+   else    
+      answer =  amount_left_to_pay.to_f/ time_between_now_and_departure_in_weeks
+      return (answer.round(2))
+    end
+  end
+
+  def build_hash_tripid_savingdata(trips)
+    # hash will have trip_id as a key and as a value an of hashes with value xvalue of graph and value y value of graph
+    result_hash = { }
+    trips.each do |trip|
+      data = [ ]
+      if !trip.savings.nil?
+       data << date_amount_saved(trip)
+       result_hash[trip.id] = data
+      end 
+    end
+    return result_hash
+  end
 
 
 end

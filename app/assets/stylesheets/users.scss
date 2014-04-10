@@ -316,6 +316,7 @@ margin-bottom: 44px;
 #line{
   background:#99AACC;
   height: 40px;
+  width: 100%;
 }
 .notice, .alert{
   height:1em;
@@ -376,11 +377,14 @@ color: white;
 }
 .steps{
   font-size: 20px;
-  padding-top:10px;
+  padding-top:15px;
+  padding-left:35px;
 }
 .step2{
   font-size: 20px;
-  padding-top:10px;
+  padding-top:15px;
+  padding-top: 15px;
+padding-left: 35px;
 }
 body > div.dark > div > div > div.col-xs-6.col-md-4 > div.well1.margin {
  margin-bottom: 5px; 
@@ -392,7 +396,7 @@ body > div.dark > div > div > div.col-xs-6.col-md-4 > div.well1.margin {
   text-align: left;
 }
 #prim{
-  height:410px;
+  height:418px;
 }
 .show{
   margin-left:auto;
@@ -449,4 +453,27 @@ padding-bottom:15px;
 }
 body > div.dark > div > div > div.col-xs-6.col-md-4 > div:nth-child(2) > div {
 margin-top: 19px;
+}
+#show_map{
+  margin-bottom: 8px;
+margin-top: 5px;
+}
+#steplast{
+  padding-bottom:15px;
+}
+#reachedgoal{
+  background: #7FFFFF;
+
+  font-size:50px;
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius:5px;
+  border:solid black 4px;
+}
+#congrats{
+  width: 100%;
+  margin-bottom: 30px;
+  border:solid black 4px;
+  border-radius:5px;
 }

@@ -12,11 +12,12 @@
   </div>
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <ul class="nav navbar-nav navbar-nav">
-    <li><a class="navbar-brand" href="/"><b>Get Ready Save Go</b></a></li>
+    <li><a class="navbar-brand" href="/"><b>GetReadySaveGo</b></a></li>
   </ul>
     <ul class="nav navbar-nav navbar-nav">
     <% if user_signed_in? %>
     <li><%= link_to "My Trip", user_path(current_user.id) %></li>
+    <li><%= link_to "My Past Trips", user_trips_path(current_user.id) %></li>
     <% end %>
   </ul>
   <ul class="nav navbar-nav navbar-right">

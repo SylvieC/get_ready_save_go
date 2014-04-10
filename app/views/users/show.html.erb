@@ -20,8 +20,20 @@
     </div>
   </div>
 </div>
+<!-- if saving goal reached, congratulate user -->
 
 
+
+<% if (@trip.cost != nil) && (@trip.cost - @total_saved <= 0) %>
+<div class="container">
+<div class="col-sm-12">
+  <img src="http://1.bp.blogspot.com/-XCEkcN6dT4s/T47KD85BV6I/AAAAAAAAACk/NPO2o3je3bc/s1600/Congratulations+Airplane.jpg" id="congrats" class="img-responsive">
+ <div id="reachedgoal"> You did it!<br/> You have reached your saving goal!! <br/>
+
+
+ </div>
+</div>
+<% end %>
 <!-- adding to savings and amount saved  -->
  <div class="container">
     <div class="row">
@@ -50,7 +62,11 @@
                  <tr>
                   <td>Amount left to reach trip cost &nbsp</td>
                   <td class="right"> <% if @trip.cost != nil %>
-                         $<%=@trip.cost - @total_saved  %>
+                         <% if @trip.cost - @total_saved > 0 %> $<%=@trip.cost - @total_saved  %> 
+                         <% else %>
+                           $0.0  Congratulations!
+                          <% end %>
+
                     <%else%>
                      <em> Not available (trip cost needed)</em>
                    <% end %> </td>
@@ -226,11 +242,11 @@
           <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br>
           <%= f.label :'Final Destination' %>
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br>
-       <%= f.submit "Enter cities", class: "btn btn-info btn btn-xs", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update this trip</a>
+       <%= f.submit "Enter cities", class: "btn btn-info btn btn-sm", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update this trip</a>
         <%end%><!--  button to trigger cities modal -->
       
 
-       <%= button_to "delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
+       <%= button_to "Delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
       
 
 
@@ -247,9 +263,9 @@
       <%= f.label :'Cost of the trip' %><br/><br/>
       <%= f.text_field :cost, placeholder: "1200 " %></br></br>
       <% if @trip.cost == nil %>
-      <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-xs trip_cost" %>
+      <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-sm trip_cost" %>
       <% else %>
-        <%= f.submit "Edit trip cost", class: "btn btn-info btn-xs trip_cost"%>
+        <%= f.submit "Edit trip cost", class: "btn btn-info btn-sm trip_cost"%>
       <% end %>
       <%end%><br/></div>
             </div>
