@@ -12,8 +12,8 @@ class TripsController < ApplicationController
         @shopping_activities = []
         @hotel_activities = []
         @main_activity=[]
-
      end
+     @total = hash_trip_id_total_saved(@trips)
 
       respond_to do |format|
       format.html
@@ -121,8 +121,7 @@ def date_amount_added(trip)
     new_array = []
     trip.savings.each do |saving|
         hash = {}
-         hash['label'] =  saving.created_at.strftime("%m-%d-%Y")
-        hash['y'] = saving.amount
+         hash[saving.created_at.strftime("%m-%d-%Y")] = saving.amount
         new_array << hash
      end
     return new_array
@@ -155,13 +154,21 @@ def date_amount_added(trip)
     # hash will have trip_id as a key and as a value an of hashes with value xvalue of graph and value y value of graph
     result_hash = { }
     trips.each do |trip|
-      data = [ ]
       if !trip.savings.nil?
-       data << date_amount_saved(trip)
-       result_hash[trip.id] = data
+       result_hash[trip.id] = date_amount_added(trip)
       end 
     end
     return result_hash
+  end
+
+  def hash_trip_id_total_saved(trips)
+    hash = {}
+    trips.each do |trip|
+      if trip.savings!= 0
+      hash[trip.id] = total_saved_for_trip(trip)
+      end
+    end
+    return hash
   end
 
 
