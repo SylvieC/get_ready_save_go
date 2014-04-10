@@ -161,6 +161,7 @@ def date_amount_added(trip)
     return result_hash
   end
 
+#a hash where the key is the trip id and the value is the amount of total saved. If nothing has been saved, the trip.id is not a key
   def hash_trip_id_total_saved(trips)
     hash = {}
     trips.each do |trip|
