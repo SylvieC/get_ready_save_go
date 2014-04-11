@@ -450,7 +450,7 @@ margin-left: auto;
 margin-right: auto;
 padding-top:16px;
 padding-bottom:15px;
-
+padding-left: 35px;
 }
 body > div.dark > div > div > div.col-xs-6.col-md-4 > div:nth-child(2) > div {
 margin-top: 19px;
@@ -490,5 +490,14 @@ margin-top: 5px;
   height: 50px;
   text-align: center;
 
+}
+.firstuser{
+  font-size: 30px;
+  height: 250px;
+  // background: #FD9D00;
+  background:#B3D1FF;
+  color:black;
+  padding-top:25px;
+  padding-left:25px;
 }
 

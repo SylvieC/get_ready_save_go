@@ -5,6 +5,12 @@ $(function() {
   });
 });
 
+$(document).ready(function(){
+  $('#start').val('');
+  $('#end').val('');
+
+});
+
 function flight() {
   var mapOptions = {
     zoom: 2,

@@ -20,10 +20,9 @@
     </div>
   </div>
 <br/>
+
+
 <!-- if saving goal reached, congratulate user -->
-
-
-
 <% if (@trip.cost != nil) && (@trip.cost - @total_saved <= 0) %>
 <div class="container">
 <div class="col-sm-12">
@@ -34,6 +33,32 @@
  </div>
 </div>
 <% end %>
+
+<!-- div for a user that hasn't entered any trip yet -->
+<% if current_user.trips.empty? %>
+  <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <div class="well firstuser">Please start by entering the starting point of your trip as well as the destination</div>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <div class="well firstuser" id="firstentry">
+                              
+      <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
+          <%= f.label :'Starting point' %>
+          &nbsp &nbsp &nbsp &nbsp<%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
+          <%= f.label :'Final Destination' %>
+          &nbsp<%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br>
+       &nbsp<%= f.submit "Enter cities", class: "btn btn-primary btn btn-lg",id: 'first'  %> 
+        <%end%>
+                </div>
+            </div>
+          
+        </div>  
+    </div>
+
+<%  end %>
+
 <!-- adding to savings and amount saved  -->
  <div class="container">
     <div class="row">
@@ -44,7 +69,7 @@
       <%= b.label :"adding to savings"%>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
-      <%= b.submit "Register saving", class: "btn btn-primary btn-xs" %>
+      <%= b.submit "Register saving", class: "btn btn-primary btn-md" %>
     <%end%>
          </div>
          <div class="col-xs-12 well two">My progress on the map</div>
@@ -61,7 +86,8 @@
                 </tr>
                  <tr>
                   <td>Amount left to reach trip cost &nbsp</td>
-                  <td class="right"> <% if @trip.cost != nil %>
+                  <td class="right">
+                   <% if @trip.cost != nil %>
                          <% if @trip.cost - @total_saved > 0 %> $<%=@trip.cost - @total_saved  %> 
                          <% else %>
                            $0.0  Congratulations!
@@ -82,13 +108,19 @@
                 </tr>
                 <tr>
                   <td>Average weekly savings </td>
-                  <td class="right"> $<%= @weekly_saving_average %> </td>
+                  <td class="right"> 
+                    <% if @weekly_saving_average == -1 %>
+                      <em>Not available </em>
+                      <% else %>
+
+                    $<%= @weekly_saving_average %>
+                    <% end %> </td>
                 </tr>
                 <tr>
                   <td> Weekly goal </td>
                   <td class="right">
-                     <% if @trip.cost.nil?%>
-                          <em>Not available (trip cost needed)</em>
+                     <% if @weekly_goal == -1 %>
+                          <em>Not available</em>
                     <%else%>
                         $<%= @weekly_goal%>
                     <%end%>
@@ -243,7 +275,7 @@
           <%= f.label :'Final Destination' %>
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br>
        <%= f.submit "Enter cities", class: "btn btn-info btn btn-sm", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update this trip</a>
-        <%end%><!--  button to trigger cities modal -->
+        <%end%>
       
 
        <%= button_to "Delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
