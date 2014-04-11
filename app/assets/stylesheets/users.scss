@@ -126,7 +126,7 @@ margin-right:auto;
 color:white;
 // background:url(image-path('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT3wYUuUZpUTudgrWwBfdPC6-PuzTKCgIZHOdxjkf_ut1pLOIym'));
 
-border-radius: 0px;
+border-radius: 5px;
 background: rgba(7,32,102,.65);
 // background:#647397;
  // background:#00306B;
@@ -499,6 +499,7 @@ margin-top: 5px;
   color:black;
   padding-top:25px;
   padding-left:25px;
+  border-radius:5px;
 }
 .firstuser2{
   font-size: 30px;
@@ -520,10 +521,12 @@ margin-bottom: 20px;
   font-size: 20px;
   height: 300px;
   // background: #FD9D00;
-  background:#B3D1FF;
+  // background:#B3D1FF;
+  background:yellow;
   color:black;
   padding-top:25px;
   padding-left:25px;
+  
 
 }
 #dateLabel{
