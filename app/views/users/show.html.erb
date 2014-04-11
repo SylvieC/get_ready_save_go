@@ -59,6 +59,42 @@
 
 <%  end %>
 
+<!-- div to enter the cost of you trip for first user, as well as the date --> 
+<% if !current_user.trips.empty? && ( @trip.cost.nil? || @trip.start_date.nil?) %>
+  <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-5">
+                <div class="well firstuser2">Please enter the estimated cost of your trip, as well as the estimated date for the total amount to be reached . You can change these at anytime</div>
+            </div>
+            <div class="col-xs-4 col-sm-3">
+                <div class="well firstuser2"> 
+      <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+      <%= f.label :'Trip cost' %><br/>
+      <%= f.text_field :cost, placeholder: "1200 ", id: "cost" %></br></br>
+      <% if @trip.cost == nil %>
+      <%= f.submit " Enter trip cost", class: "btn btn-primary btn-md trip_cost" %>
+      <% else %>
+        <%= f.submit "Edit trip cost", class: "btn btn-primary btn-md trip_cost"%>
+      <% end %>
+      <%end%></div>
+            </div>
+            <div class="col-xs-8 col-sm-4">
+                <div class="well" id="firstUserDate">
+       <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+ 
+    <%= f.label :"Planned time of departure or ticket purchase", id: 'dateLabel'%><br/>
+    <%= f.date_select :start_date, :default => Date.today %></br></br>
+     <% if @trip.start_date == nil %>
+    <%= f.submit "Enter departure date", class: "btn btn-primary btn btn-md", id: "departure_time" %>
+    <% else %>
+    <%= f.submit "Edit departure date", class: "btn btn-primary btn btn-md", id: "departure_time" %>
+    <%end%>
+    <%end%>
+                </div>
+            </div>
+        </div>  
+    </div>
+  <% end %>
 <!-- adding to savings and amount saved  -->
  <div class="container">
     <div class="row">

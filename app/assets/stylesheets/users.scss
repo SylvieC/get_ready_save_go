@@ -464,7 +464,7 @@ margin-top: 5px;
 }
 #reachedgoal{
   background: #7FFFFF;
-
+  background:'';
   font-size:50px;
   text-align: center;
   margin-bottom: 30px;
@@ -500,4 +500,34 @@ margin-top: 5px;
   padding-top:25px;
   padding-left:25px;
 }
+.firstuser2{
+  font-size: 30px;
+  height: 300px;
+  // background: #FD9D00;
+  background:#B3D1FF;
+  color:black;
+  padding-top:25px;
+  padding-left:25px;
+}
+#cost{
+  width:200px;
+}
 
+#edit_trip_90 > label {
+margin-bottom: 20px;
+}
+#firstUserDate{
+  font-size: 20px;
+  height: 300px;
+  // background: #FD9D00;
+  background:#B3D1FF;
+  color:black;
+  padding-top:25px;
+  padding-left:25px;
+
+}
+#dateLabel{
+  font-size:25px;
+  
+
+}
