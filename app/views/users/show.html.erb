@@ -36,20 +36,18 @@
 
 <!-- div for a user that hasn't entered any trip yet -->
 <% if current_user.trips.empty? %>
-  <div class="container">
+  <div class="container containera">
         <div class="row">
-            <div class="col-xs-12 col-sm-4">
-                <div class="well firstuser">Please start by entering the starting point of your trip as well as the destination</div>
-            </div>
-            <div class="col-xs-12 col-sm-8">
-                <div class="well firstuser" id="firstentry">
+            <div class="col-xs-12">
+                <div class="well firstuser">
                               
       <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
+      <div id="center">My Trip</div> <br/>
           <%= f.label :'Starting point' %>
-          &nbsp &nbsp &nbsp &nbsp<%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br></br>
+          &nbsp &nbsp &nbsp &nbsp<%= f.text_field :from_city, id:"start", placeholder: " San Francisco, USA" %></br></br>
           <%= f.label :'Final Destination' %>
-          &nbsp<%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br>
-       &nbsp<%= f.submit "Enter cities", class: "btn btn-primary btn btn-lg",id: 'first'  %> 
+          &nbsp<%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br></br>
+       &nbsp<%= f.submit "Enter cities", class: "btn btn-primary btn btn-lg",id: 'first'  %> <br/><br/></br>
         <%end%>
                 </div>
             </div>
@@ -61,15 +59,12 @@
 
 <!-- div to enter the cost of you trip for first user, as well as the date --> 
 <% if !current_user.trips.empty? && ( @trip.cost.nil? || @trip.start_date.nil?) %>
-  <div class="container">
+  <div class="container containera">
         <div class="row">
-            <div class="col-xs-12 col-sm-5">
-                <div class="well firstuser2">Please enter the estimated cost of your trip, as well as the estimated date for the total amount to be reached . <strong>You may change these at anytime</strong></div>
-            </div>
-            <div class="col-xs-4 col-sm-3">
+            <div class="col-xs-4 col-sm-4">
                 <div class="well firstuser2"> 
       <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
-      <%= f.label :'Trip cost' %><br/>
+      <%= f.label :'How much do you think your trip will cost?' %><br/>
       <%= f.text_field :cost, placeholder: "1200 ", id: "cost" %></br></br>
       <% if @trip.cost == nil %>
       <%= f.submit " Enter trip cost", class: "btn btn-primary btn-md trip_cost" %>
@@ -82,7 +77,7 @@
                 <div class="well" id="firstUserDate">
        <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
  
-    <%= f.label :"Planned time of departure or ticket purchase", id: 'dateLabel'%><br/>
+    <%= f.label :"What day are you saving for?", id: 'dateLabel'%><br/><br/>
     <%= f.date_select :start_date, :default => Date.today %></br></br>
      <% if @trip.start_date == nil %>
     <%= f.submit "Enter departure date", class: "btn btn-primary btn btn-md", id: "departure_time" %>
@@ -91,7 +86,21 @@
     <%end%>
     <%end%>
                 </div>
-            </div>
+         </div>
+         <div class="col-xs-8 col-sm-4">
+                <div class="well" id="firstUserDate">
+
+     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
+     <%=f.label  :"Give this trip a name" %><br/><br/>
+      <%= f.text_field :title, placeholder: "Ireland, here I come!"%></br></br>
+       <% if @trip.title == nil %>
+       <%= f.submit "Enter trip title", class: "btn btn-info btn btn-md", id: "show_map" %>
+       <% else %>
+       <%= f.submit "Edit trip title", class: "btn btn-info btn btn-md", id: "show_map" %>
+       <% end %>
+     <% end %><br/>
+                </div>
+              </div>
         </div>  
     </div>
   <% end %>
@@ -100,15 +109,17 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <div class="well one">
-              
+        <div>Get closer to your goal!</div> <br/>       
     <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
-      <%= b.label :"adding to savings"%>
+      <%= b.label :"Add to your trip savings"%><br/><br/>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
-      <%= b.submit "Register saving", class: "btn btn-primary btn-md" %>
+      <%= b.submit "Register saving", class: "btn btn-md" %>
     <%end%>
+    <br/>
          </div>
-         <div class="col-xs-12 well two">My progress on the map</div>
+
+       
       </div>
 
 <!--   displaying the amount saved and other related data -->
@@ -143,6 +154,9 @@
                     <%end%> </td>
                 </tr>
                 <tr>
+                </table>
+                <hr>
+                <table>
                   <td>Average weekly savings </td>
                   <td class="right"> 
                     <% if @weekly_saving_average == -1 %>
@@ -177,7 +191,9 @@
 
 <!--  -->
         <div class="clearfix hidden-md hidden-lg"></div>
-        <div class="container"> 
+
+        <div class="container" id="containera"> 
+          <div class="col-xs-12 well two">My progress at a glance</div>
          <div class="row"> 
             <div class="col-xs-12 col-md-6">
                 <div class="well" id="mapBox"> <div id="thirdMap" class='img-responsive'></div> </div>
@@ -218,15 +234,15 @@
          <!--   -->
             <div class="col-sm-4">
                 <div class="well" ><%= image_tag('travel3_cut.jpg', class: '
-                img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %><p class="act">Museums & </br>attractions</p>
+                img-responsive places border',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %><p class="act">Museums & </br>attractions</p>
            
             <!-- Button trigger modal for attraction-->
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal2">
-  Add attraction or mus. to trip
+<button class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal2">
+  Add 
 </button>
 <!-- button trigger modal to display attraction activities -->
-<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalShowAttract">
-  Show my selection
+<button class="btn btn-md r" data-toggle="modal" data-target="#myModalShowAttract">
+  Show
 </button>
 
           </div>
@@ -234,16 +250,16 @@
 
          <div class="col-sm-4">
      <!--  begin second image    -->     
-                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places',"data-toggle" => "modal", 'data-target' => '#myModalshowhotel') %><p class="act">Hotels & </br>Restaurants
+                <div class="well"><%= image_tag('restaurant.jpg', class: 'img-responsive places border',"data-toggle" => "modal", 'data-target' => '#myModalshowhotel') %><p class="act">Hotels & </br>Restaurants
                 </p>
 
             <!-- Button trigger modal for restaurant/hotels forms-->
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalhotelform">
-  Add restaurant of hotel to trip
+<button class="btn btn-info btn-md" data-toggle="modal" data-target="#myModalhotelform">
+  Add
 </button>
 <!-- <! button trigger modal to display attraction activities --> 
-<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalshowhotel">
-  Show my selection
+<button class="btn btn-md r" data-toggle="modal" data-target="#myModalshowhotel">
+  Show
 </button> 
           </div>
           </div>
@@ -252,12 +268,12 @@
                 <div class="well"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalshowshopping') %><p class="act">Entertainment & </br>Shopping</p> 
 
             <!-- Button trigger modal for shopping-->
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalshoppingform">
-  Add shopping or entert. places
+<button class="btn btn-info btn-md" data-toggle="modal" data-target="#myModalshoppingform">
+  Add 
 </button>
 <!-- button trigger modal to display shopping activities -->
-<button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModalshowshopping">
-  Show my selection
+<button class="btn btn-md r" data-toggle="modal" data-target="#myModalshowshopping">
+  Show 
 </button>
 </div>
 </div>
@@ -277,7 +293,7 @@
  <div class="container">
     <div class="well links "> 
 <!-- Button trigger modal -->
-<button class="btn btn-warning btn-md" data-toggle="modal" data-target="#myModallinks">
+<button class="btn btn-md" data-toggle="modal" data-target="#myModallinks">
   Add links
 </button></br></br>
 
@@ -307,14 +323,14 @@
               
       <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
           <%= f.label :'Starting point' %>
-          <%= f.text_field :from_city, id:"start", placeholder: " San Franciscon, US" %></br>
+          <%= f.text_field :from_city, id:"start", placeholder: " San Francisco, USA" %></br>
           <%= f.label :'Final Destination' %>
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br>
-       <%= f.submit "Enter cities", class: "btn btn-info btn btn-sm", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update this trip</a>
+       <%= f.submit "Enter cities", class: "btn btn-info btn btn-md", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update trip</a>
         <%end%>
       
 
-       <%= button_to "Delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
+       <%= button_to "Delete current trip", {controller: :trips, action: :destroy, id: @trip.id }, :method => :delete,  data: { conm: "Are you sure?" }, class: "btn brn-default btn-md" %>
       
 
 
@@ -331,9 +347,9 @@
       <%= f.label :'Cost of the trip' %><br/><br/>
       <%= f.text_field :cost, placeholder: "1200 " %></br></br>
       <% if @trip.cost == nil %>
-      <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-sm trip_cost" %>
+      <%= f.submit " Enter trip cost", class: "btn btn-info btn btn-md trip_cost" %>
       <% else %>
-        <%= f.submit "Edit trip cost", class: "btn btn-info btn-sm trip_cost"%>
+        <%= f.submit "Edit trip cost", class: "btn btn-info btn- md trip_cost"%>
       <% end %>
       <%end%><br/></div>
             </div>
@@ -341,12 +357,12 @@
                 <div class="well" id="form">
     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
  
-    <%= f.label :"Planned time of departure or ticket purchase"%><br/><br/>
+    <%= f.label :"Date when total needs to be saved"%><br/><br/>
     <%= f.date_select :start_date, :default => Date.today %></br></br>
      <% if @trip.start_date == nil %>
-    <%= f.submit "Enter departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
+    <%= f.submit "Enter departure date", class: "btn btn-info btn btn-md", id: "departure_time" %>
     <% else %>
-    <%= f.submit "Edit departure date", class: "btn btn-info btn btn-sm", id: "departure_time" %>
+    <%= f.submit "Edit departure date", class: "btn btn-info btn btn-md", id: "departure_time" %>
     <%end%>
     <%end%></div>
             </div>

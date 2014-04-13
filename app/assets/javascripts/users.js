@@ -310,7 +310,7 @@ function updateMarker(map, latlng, title){
     var chart = new CanvasJS.Chart("chartContainer", {
 
       title:{
-        text: "My Progress at a Glance "              
+        text: "Total amount saved "              
       },
       axisX:{
         title:"Date",
