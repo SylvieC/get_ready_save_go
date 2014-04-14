@@ -450,10 +450,6 @@ height: 539px;
 
 border-radius: 0px;
 // background: rgba(7,32,102,.6);
-// background:#6473
-
-// outline: #444444 groove 4px ;
-// outline-offset: 1px ;
 background:#647397;
 
 
@@ -578,4 +574,7 @@ margin-bottom: 20px;
 }
 #trip_start_date_1i,#trip_start_date_2i,#trip_start_date_3i {
 font-size: 15px;
+}
+body > div:nth-child(10) > div > div.col-xs-12.col-sm-4 > div > img {
+border: none;
 }
