@@ -109,7 +109,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <div class="well one">
-        <div>Get closer to your goal!</div> <br/>       
+        <div id="closer">Get closer to your goal!</div> <br/> <br/>      
     <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
       <%= b.label :"Add to your trip savings"%><br/><br/>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
