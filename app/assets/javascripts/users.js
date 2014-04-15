@@ -11,7 +11,6 @@ $(document).ready(function(){
 
 });
 
-
 function flight() {
   var mapOptions = {
     zoom: 2,
@@ -311,7 +310,7 @@ function updateMarker(map, latlng, title){
     var chart = new CanvasJS.Chart("chartContainer", {
 
       title:{
-        text: "Total Saved "              
+        text: "My Progress at a Glance "              
       },
       axisX:{
         title:"Date",
@@ -319,7 +318,7 @@ function updateMarker(map, latlng, title){
         labelAngle: -50
       },
        axisY:{
-        title: "Total Amount",
+        title: "Total Saved",
         valueFormatString: "$ #,###",
        },
        data: [//array of dataSeries              
@@ -378,4 +377,3 @@ function updateMarker(map, latlng, title){
   var m = (metres-olddist)/(dist-olddist);
   return new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*m, p1.lng() + (p2.lng()-p1.lng())*m);
 };
-
