@@ -70,6 +70,7 @@ class UsersController < ApplicationController
            dummytrip.savings.build(amount: 0)
            @weekly_goal = weekly_saving_goal(dummytrip)
             @weekly_saving_average = 0
+            dummytrip.delete
         else
            @weekly_saving_goal = -1 
            @weekly_goal = -1  
@@ -145,16 +146,19 @@ class UsersController < ApplicationController
 
   def weekly_saving_goal(trip)
     time_between_now_and_departure_in_weeks = (DateTime.now.to_i- trip.start_date.to_i).to_f/ 604800
+    time_between_now_and_departure_in_days = (trip.start_date.to_i - DateTime.now.to_i).to_f / 86800
     amount_left_to_pay = trip.cost - total_saved_for_trip(trip)
     answer = 0
    if amount_left_to_pay <= 0
       return 0
-   elsif time_between_now_and_departure_in_weeks <= 1  
+   elsif time_between_now_and_departure_in_weeks <= 1  && time_between_now_and_departure_in_days >=0
       return ((amount_left_to_pay/time_between_now_and_departure_in_weeks).round(2)).abs
+   elsif time_between_now_and_departure_in_days < 0 
+     return -2
    else    
       answer =  amount_left_to_pay.to_f/ time_between_now_and_departure_in_weeks
       return (answer.round(2))
-    end
+  end
   end
 end
 

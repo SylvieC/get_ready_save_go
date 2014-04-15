@@ -11,34 +11,7 @@ $(document).ready(function(){
 
 });
 
-function flight() {
-  var mapOptions = {
-    zoom: 2,
-    center: new google.maps.LatLng(0, -180),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
 
-  var map = new google.maps.Map(document.getElementById('googleMap'),
-      mapOptions);
-
-  var flightPlanCoordinates = [
-    new google.maps.LatLng(37.772323, -122.214897),
-    new google.maps.LatLng(21.291982, -157.821856),
-    new google.maps.LatLng(-18.142599, 178.431),
-    new google.maps.LatLng(-27.46758, 153.027892)
-  ];
-  var flightPath = new google.maps.Polyline({
-    path: flightPlanCoordinates,
-    geodesic: true,
-    strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
-    strokeWeight: 2
-  });
-
-  flightPath.setMap(map);
-}
-
-google.maps.event.addDomListener(window, 'load', flight); 
 
 
 //start
@@ -310,7 +283,7 @@ function updateMarker(map, latlng, title){
     var chart = new CanvasJS.Chart("chartContainer", {
 
       title:{
-        text: "Total amount saved "              
+        text: "Total Saved "              
       },
       axisX:{
         title:"Date",
@@ -318,7 +291,7 @@ function updateMarker(map, latlng, title){
         labelAngle: -50
       },
        axisY:{
-        title: "Total Saved",
+        title: "Total Amount",
         valueFormatString: "$ #,###",
        },
        data: [//array of dataSeries              
@@ -377,4 +350,35 @@ function updateMarker(map, latlng, title){
   var m = (metres-olddist)/(dist-olddist);
   return new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*m, p1.lng() + (p2.lng()-p1.lng())*m);
 };
+
+
+
+function flight() {
+  var mapOptions = {
+    zoom: 2,
+    center: new google.maps.LatLng(0, -180),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById('googleMap'),
+      mapOptions);
+
+  var flightPlanCoordinates = [
+    new google.maps.LatLng(37.772323, -122.214897),
+    new google.maps.LatLng(21.291982, -157.821856),
+    new google.maps.LatLng(-18.142599, 178.431),
+    new google.maps.LatLng(-27.46758, 153.027892)
+  ];
+  var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  flightPath.setMap(map);
+}
+
+google.maps.event.addDomListener(window, 'load', flight); 
 

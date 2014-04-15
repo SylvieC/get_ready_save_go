@@ -11,7 +11,7 @@
      <% if @trip == nil %>
          <h2> My Trip </h2>
     <% elsif @trip.title == nil %> 
-         <h2>From <%= @trip.from_city%> to <%= @trip.to_city %></h2>
+         <h2>From <%= @trip.from_city%> to <%= @trip.to_city %></h2
     <% else %>
          <h2><%= @trip.title %></h2>
     <% end %>
@@ -84,9 +84,9 @@
     <%= f.label :"What day are you saving for?", id: 'dateLabel'%><br/><br/>
     <%= f.date_select :start_date, :default => Date.today %></br></br>
      <% if @trip.start_date == nil %>
-    <%= f.submit "Enter departure date", class: "btn btn-primary btn btn-md", id: "departure_time" %>
+    <%= f.submit "Enter date", class: "btn btn-primary btn btn-md", id: "departure_time" %>
     <% else %>
-    <%= f.submit "Edit departure date", class: "btn btn-primary btn btn-md", id: "departure_time" %>
+    <%= f.submit "Edit date", class: "btn btn-primary btn btn-md", id: "departure_time" %>
     <%end%>
     <%end%>
     <% end %>
@@ -170,7 +170,7 @@
                 </table>
                 <hr>
                 <table>
-                  <td>Average weekly savings </td>
+                  <td>Saved weekly in average </td>
                   <td class="right"> 
                     <% if @weekly_saving_average == -1 %>
                       <em>Not available </em>
@@ -184,6 +184,8 @@
                   <td class="right">
                      <% if @weekly_goal == -1 %>
                           <em>Not available</em>
+                     <% elsif @weekly_goal == -2 %>
+                         <em> Past deadline? </em>     
                     <%else%>
                         $<%= @weekly_goal%>
                     <%end%>
