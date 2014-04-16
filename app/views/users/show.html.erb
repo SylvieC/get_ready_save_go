@@ -250,16 +250,11 @@
             <div class="col-sm-4">
                 <div class="well" >
             
-                  <figure> 
+                  <span style="cursor:pointer"> 
                   <%= image_tag('travel3_cut.jpg', class: '
-                img-responsive places border',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %>
-                 <figcaption>
-                <h4>Show museums and attactions</h4>
-             <!--    <button class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal2">
-  Add 
-</button> -->
-                 </figcaption>
-             </figure>
+                img-responsive places border',"data-toggle" => "modal", 'data-target' => '#myModalShowAttract') %></span>
+                
+               
 
                 <p class="act">Museums & </br>attractions</p>
            
@@ -277,10 +272,9 @@
 
          <div class="col-sm-4">
      <!--  begin second image    -->     
-                <div class="well"><figure><%= image_tag('restaurant.jpg', class: 'img-responsive places border',"data-toggle" => "modal", 'data-target' => '#myModalshowhotel') %><figcaption>
-                <h5>Click me</h5>
-                 </figcaption>
-             </figure><p class="act">Hotels & </br>Restaurants
+                <div class="well"><span style="cursor:pointer"><%= image_tag('restaurant.jpg', class: 'img-responsive places border',"data-toggle" => "modal", 'data-target' => '#myModalshowhotel') %></span>
+               
+             <p class="act">Hotels & </br>Restaurants
                 </p>
 
             <!-- Button trigger modal for restaurant/hotels forms-->
@@ -293,12 +287,10 @@
 </button> 
           </div>
           </div>
-                <div class="col-sm-4"&
+                <div class="col-sm-4">
 <!--   start third image    -->         
-                <div class="well"><figure><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalshowshopping') %><figcaption>
-                <h5>Click me</h5>
-                 </figcaption>
-             </figure><p class="act">Entertainment & </br>Shopping</p> 
+                <div class="well"><span style="cursor:pointer"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalshowshopping') %></span>
+              <p class="act">Entertainment & </br>Shopping</p> 
 
             <!-- Button trigger modal for shopping-->
 <button class="btn btn-info btn-md" data-toggle="modal" data-target="#myModalshoppingform">
