@@ -600,3 +600,16 @@ font-size: 20px;
 h4{
   font-size:22px;
 }
+figcaption {
+   display: none;
+}
+figure:hover figcaption {
+   display: block;
+}
+#link{
+  display: inline;
+}
+#left{
+  float:left;
+  width:auto;
+}

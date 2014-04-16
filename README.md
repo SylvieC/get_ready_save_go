@@ -1,6 +1,6 @@
 GetReadySaveGo
 ==============
-WDI Final Project
+Web Development Intensive Final Project
 
 Exciting app to organize, anticipate, save and track your next trip.
 This apps gives the user visual representation of their progress in preparing for their trip. A middle marker on the map moves according to the percentage of the trip saved.
