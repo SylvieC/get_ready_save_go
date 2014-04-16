@@ -1,7 +1,7 @@
 <!-- display activities -->
 
 <% @hotel_activities.each do |activity| %> 
- <div class="container">
+<div class="container">
         <div class="row ">
             <div class="col-xs-12 acti">
                 <div class="well showModal"> <div class="row modalActivity"><div class="well actName" id="title"> <%=activity.name%></div></div>
@@ -9,7 +9,7 @@
                 <div class="row"><div class="well showModal"> <%= image_tag(activity.im_url, class: 'img-responsive show') %></b></div></div>
                 <%end%>
                 <% if !activity.comments.empty?%>
-                <em>Comments</em>
+                <div id="add3">Comments</div>
                 <% activity.comments.each do |comment|%>
                 <div class="row">
                      <div class="col-sm-8">
@@ -23,9 +23,9 @@
                 
    
                <%end%>
-                       <!--  display links -->
+             <!--  display links -->
    <% if !activity.links.empty?%>
-                <em>Links</em>
+                 <div id="add3">Links</div>
                 <% activity.links.each do |link|%>
                 <div class="row">
                      <div class="col-sm-8">
@@ -40,29 +40,38 @@
    
       <%end%>
   <%end%> 
+  <hr/>
 <!--   end display links --> 
                 <%= form_for :comment, url: activity_comments_path(activity.id), method: :post do |f| %>
-      <span class='add'><%= f.label :"Add another comment"%></span></br>
+      <span class='add3'><%= f.label :"Add comment"%></span></br>
       <%= f.hidden_field :activity_id, :value => activity.id %>
      <%= f.text_field :content,class: 'input' %>
-     <%= f.submit "Enter new comment",class: 'enter btn-xs' %>
+     <%= f.submit "enter new comment",class: 'enter btn-xs' %><br/>
     <%end%>
+
+
 
       <%= form_for :link, url: activity_links_path(activity.id), method: :post do |f| %>
-      <span class='add'>
-        <%= f.label :"Add a link title"%></span></br>
-      <%= f.text_field :title, class: 'input', placeholder: "Colosseum"%>
-      <%= f.hidden_field :activity_id, :value => activity.id %><br/>
-       <span class="add"><%= f.label :"paste the url here" %></span><br/>
-     <%= f.text_field :content,class: 'input',placeholder: "http://www.the-colosseum.net/" %>
-     <%= f.submit "Enter new link",class: 'enter btn-xs' %>
-    <%end%>
+        <br/>
+        <span id='add3'><%= f.label :"Add a link"%></span></br>
+         <span class='add'><%= f.label :"Title:" %></span>
 
+      <%= f.text_field :title, class: 'input', placeholder: "Colosseum"%>
+      <%= f.hidden_field :activity_id, :value => activity.id %><br/><br/>
+       <span class="add"><%= f.label :"URL:" %></span>
+     &nbsp <%= f.text_field :content,class: 'input',placeholder: "http://www.the-colosseum.net/" %>
+     <%= f.submit "enter new link",class: 'enter btn-xs' %>
+    <%end%>
+              
                  <div class="floatright"><%= button_to "delete this selection", {controller: :activities, action: :destroy, id: activity.id }, :method => :delete,class:'btn btn-warning btn-sm',id: 'delete' %></div>
  
                 <%end%>
+             
+
             </div>
         </div>
     </div>
 </div>
 <%end%>
+
+  
