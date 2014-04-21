@@ -1,6 +1,6 @@
 .div-login {
   background-color: #3498db;
-  max-width: 300px;
+  max-width: 400px;
   text-align: center;
   border-radius: 10px;
   margin: auto;
@@ -21,4 +21,8 @@
 }
 .links{
   color:white;
+}
+
+body > div.div-login > div > a {
+color: white;
 }
