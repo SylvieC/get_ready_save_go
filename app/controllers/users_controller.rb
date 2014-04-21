@@ -50,8 +50,8 @@ class UsersController < ApplicationController
         else
           gon.ratio = total_saved_for_trip(@trip).to_f/@trip.cost 
         end 
-
-        gon.percentage_saved = gon.ratio.round(2) * 100
+        
+        gon.percentage_saved = gon.ratio.round(2) * 100 
         gon.total_saved = total_saved_for_trip(@trip)
         @total_saved = total_saved_for_trip(@trip)
 

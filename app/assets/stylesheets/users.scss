@@ -294,7 +294,7 @@ table{
   color:orange;
 }
 .marker{
-  font-size:20px;
+  font-size:19px;
 }
 .wrapper{
   background: #647397;
@@ -466,6 +466,7 @@ background:#647397;
 }
 #myModalShowAttract > div > div > div.modal-body.showModal {
 background: white;
+width:100%
 }
 #cities {
 margin-left: auto;
@@ -505,6 +506,7 @@ margin-top: 5px;
   width: 100%;
   text-align: center;
  border-radius: 5px;
+ padding-left: 250px;
 }
 #linestop{
     background:#99AACC;
@@ -572,7 +574,7 @@ margin-bottom: 20px;
 }
 .dark{
   background: #99AACC;
-  height:450px;
+  height:480px;
 }
 .r{
   float:right;
@@ -593,6 +595,7 @@ border: none;
 #closer{
   font-size: 25px;
   text-align: center;
+  padding-top: 25px;
 }
 #trip_start_date_1i, #trip_start_date_2i, #trip_start_date_3i {
 font-size: 20px;
@@ -613,4 +616,96 @@ figure:hover figcaption {
   float:left;
   width:auto;
 }
+#floatright{
+  display:inline;
+  font-size: 10px;
+}
+#left2{
+  float:left;
+  margin-left:40px;
+}
+
+#saving_amount{
+  margin-left:25px;
+}
+#labelsavings{
+  padding-left:25px;
+}
+
+#firstHeading {
+margin: 0px;
+padding-left: 30px;
+font-size: 20px;
+color: darkblue;
+}
+
+#bodyContent > p,#bodyContent1 > p {
+margin-top: 3px;
+margin-right: auto;
+padding-top:3px;
+}
+@media(max-width: 531px){
+  .picture.img-responsive {
+margin-left: 4px;
+}
+}
+
+@media(max-width:800px){
+  body > div.col-xs-12 > nav > div.navbar-header > button {
+background: darkgrey;
+}
+}
+
+@media(max-width:1200px){
+ .dark{
+  height:650px;
+ }
+ .fa-3x {
+font-size: 3em;
+position: relative;
+top: -19px;
+}
+.eta{
+  font-size: 17px;
+height: 225px;
+}
+#carte{
+  padding-left:20px;
+  padding-right:20px;
+}
+#\20 ville\20 cities {
+margin-top: 38px;
+padding-top: 20px;
+}
+#linelast {
+padding-left: 0px;
+}
+}
+
+@media(max-width:750px){
+  .eta{
+    font-size:15px;
+    height:auto;
+  }
+ .dark{
+  height:1000px;
+ }
+ #carte {
+height: 500px;
+padding-left:5px;
+}
+.last {
+height: 389px;
+height: 430px;
+padding-left: 10px;
+}
+#cities{
+  width:87%;
+}
+#\20 ville\20 cities {
+margin-top: 0px;
+padding-top: 20px;
+}
+}
+
 

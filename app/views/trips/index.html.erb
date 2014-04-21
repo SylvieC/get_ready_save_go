@@ -11,8 +11,8 @@
   <h2><%= trip.title %> </h2>
   <%= button_to "Delete trip", {controller: :trips, action: :destroy, id: trip.id }, :method => :delete,  data: { confirm: "Are you sure?" }, id: 'inline' %>
   <% else %>
-  <h2>From <%= trip.from_city %> to <%= trip.to_city %></h2>
-  <%= button_to "Delete trip", {controller: :trips, action: :destroy, id: trip.id }, :method => :delete,  data: { confirm: "Are you sure?" } %>
+  <h2><span id="left2">From <%= trip.from_city %> to <%= trip.to_city %></span>
+  <%= button_to "Delete trip", {controller: :trips, action: :destroy, id: trip.id }, :method => :delete,  data: { confirm: "Are you sure?" }, id: "floatright", class: 'btn btn-default' %><br/></h2>
   <% end %>
   
 </div>

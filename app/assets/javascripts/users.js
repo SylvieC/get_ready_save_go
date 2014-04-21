@@ -155,7 +155,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
   
-    // show route between the points
+    // show route between the points but make the route transparent
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer(
     {
@@ -185,17 +185,30 @@ google.maps.event.addDomListener(window, 'load', initialize);
     var marker1 = new google.maps.Marker({
       map: map, 
       position: location1,
-      title: "First location"
+      title: "Starting Point"
     });
     var marker2 = new google.maps.Marker({
       map: map, 
       position: location2,
-      title: "Second location"
+      title: "Destination"
     });
+
+ var markerMid;
+
+function updateMarker(map, latlng, title){
+      markerMid = new google.maps.Marker({
+          position:latlng,
+          map:map,
+          title: "Progress in Savings"
+          });
+  
+}
+
 
     
     // create the text to be shown in the infowindows
-    var text1 ='<p id="firstHeading">Starting point</p>'+
+    var text1 ='<div id="content">'+
+      '<p id="firstHeading">Starting Point </p>'+
         '<div id="bodyContent1">'+
         '<p class="marker">'+ gon.beg +'</p>'+
         '</div>';
@@ -208,7 +221,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       '</div>';
 
     var textMid = '<div id="content">'+
-      '<p id="MidHeading"> Progressing...</p>'+
+      '<p id="firstHeading"> Progressing...</p>'+
       '<div id="bodyContent">'+
       '<p class="marker">'+gon.percentage_saved.toFixed(2)+'% saved so far</p>'+
       '</div>'+
@@ -231,40 +244,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 var line_length = google.maps.geometry.spherical.computeLength(line.getPath());
 var remainingDist = length;
-// console.log(line_length);
-// console.log(gon.beg);
-// console.log(gon.finish);
-// console.log(gon.data);
-// console.log(gon.data2);
 
-
-// console.log(gon.total_saved);
-// // console.log(gon.trip_cost);
-// console.log(gon.percentage_saved.toFixed(2));
-// console.log(gon.ratio);
- 
- 
- var markerMid;
-
-function updateMarker(map, latlng, title){
-      markerMid = new google.maps.Marker({
-          position:latlng,
-          map:map,
-          title: textMid,
-          // icon: image
-          });
-  
-}
-
- // var image = {
- //   url :'/flag2.png',
- //    size: new google.maps.Size(20,32),
- //    origin : 
-
- //  };
-
- 
-  // var image = 'http://icons.iconarchive.com/icons/iconshock/super-vista-business/72/checkered-flag-icon.png';
 
    
  updateMarker(map, line.GetPointAtDistance(line_length * gon.ratio), "progressing..." );

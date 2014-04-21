@@ -10,27 +10,27 @@
    <div class="transbox col-sm-6 img-responsive">
      <% if @trip == nil %>
          <h2> My Trip </h2>
-    <% elsif @trip.title == nil %> 
+     <% elsif @trip.title == nil %> 
          <h2>From <%= @trip.from_city%> to <%= @trip.to_city %></h2
-    <% else %>
+     <% else %>
          <h2><%= @trip.title %></h2>
-    <% end %>
-
-    <br/>
-    </div>
+     <% end %>
+      <br/>
   </div>
+</div>
 <br/>
 
 
 <!-- if saving goal reached, congratulate user -->
-<% if (@trip.cost != nil) && (@trip.cost - @total_saved <= 0) %>
+<% if (!@trip.cost.nil?) && (@trip.cost - @total_saved <= 0) %>
 <div class="container">
-<div class="col-sm-12">
-  <img src="http://1.bp.blogspot.com/-XCEkcN6dT4s/T47KD85BV6I/AAAAAAAAACk/NPO2o3je3bc/s1600/Congratulations+Airplane.jpg" id="congrats" class="img-responsive">
+  <div class="col-sm-12">
+     <img src="http://1.bp.blogspot.com/-XCEkcN6dT4s/T47KD85BV6I/AAAAAAAAACk/NPO2o3je3bc/s1600/Congratulations+Airplane.jpg" id="congrats" class="img-responsive">
  <div id="reachedgoal"> You did it!<br/> You have reached your saving goal!! <br/>
 
 
  </div>
+</div>
 </div>
 <% end %>
 
@@ -123,7 +123,7 @@
             <div class="well one">
         <div id="closer">Get closer to your goal!</div> <br/> <br/>      
     <%= form_for :saving, url: trip_savings_path(@trip.id), method: :post do |b| %>
-      <%= b.label :"Add to your trip savings"%><br/><br/>
+      <%= b.label :"Add to your trip savings", id: "labelsavings"%><br/><br/>
       <%= b.hidden_field :trip_id, :value => @trip.id %>
       <%= b.text_field :amount, placeholder: "50" %>
       <%= b.submit "Register saving", class: "btn btn-md" %>
@@ -247,7 +247,7 @@
   <div class="container">
         <div class="row">
          <!--   -->
-            <div class="col-sm-4">
+            <div class="col-md-4">
                 <div class="well" >
             
                   <span style="cursor:pointer"> 
@@ -270,7 +270,7 @@
           </div>
        </div>
 
-         <div class="col-sm-4">
+         <div class="col-md-4">
      <!--  begin second image    -->     
                 <div class="well"><span style="cursor:pointer"><%= image_tag('restaurant.jpg', class: 'img-responsive places border',"data-toggle" => "modal", 'data-target' => '#myModalshowhotel') %></span>
                
@@ -287,7 +287,7 @@
 </button> 
           </div>
           </div>
-                <div class="col-sm-4">
+                <div class="col-md-4">
 <!--   start third image    -->         
                 <div class="well"><span style="cursor:pointer"><%= image_tag('shopping.jpg', class: 'img-responsive restaurant',"data-toggle" => "modal", 'data-target' => '#myModalshowshopping') %></span>
               <p class="act">Entertainment & </br>Shopping</p> 
@@ -343,7 +343,7 @@
 <div class="container">
         <div class="row">
          <!--   -->
-            <div class="col-sm-6 col-md-3">
+            <div class="col-xs-12 col-sm-6 col-md-3">
               <div class="well" id="form" >
               
       <%= form_for :trip, url: user_trips_path(current_user.id), method: :post  do |f| %>
@@ -351,7 +351,7 @@
           <%= f.text_field :from_city, id:"start", placeholder: " San Francisco, USA" %></br>
           <%= f.label :'Final Destination' %>
           <%= f.text_field :to_city, id: "end", placeholder: " Paris, France" %></br>
-       <%= f.submit "Start Trip", class: "btn btn-info btn btn-md", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update trip</a>
+       <%= f.submit "Enter Cities", class: "btn btn-info btn btn-md", id: "show_map", data: { confirm: "Are you sure you want to start a totally new trip? By clicking on this button, the data about your savings for this trip will be lost.  If you want to transfer the savings to a new trip, just update your current trip by clicking the button 'update' and filling the form that will pop up" } %> <a href="#myModal" role="button"  class="btn" id="update" data-toggle="modal">Update trip</a>
         <%end%>
       
 
@@ -366,7 +366,7 @@
 
        </div>
       </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="well" id="form">
     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
       <%= f.label :'Cost of the trip' %><br/><br/>
@@ -378,7 +378,7 @@
       <% end %>
       <%end%><br/></div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="well" id="form">
     <%= form_for @trip, url: user_trip_path(current_user.id,@trip.id), method: :patch  do |f| %>
  
@@ -391,7 +391,7 @@
     <%end%>
     <%end%></div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class=" col-xs-12 col-sm-6 col-md-3">
                 <div class="well" id="form">  <%= render partial: "/users/trips_form" %> </div>
             </div>
         </div> 
