@@ -222,19 +222,20 @@ nav{
 }
 
 #bs-example-navbar-collapse-1 {
-background: #545454;
+// background: #545454;
+background:#99AACC;
 }
 
 .navbar-brand{
-font-size: 30px;
+font-size: 20px;
 color:white;
 }
 .navbar-nav{
-font-size: 25px;
+font-size: 20px;
 font-style:italic;
 }
 .navbar-right{
-font-size: 18px;
+font-size: 20px;
 }
 
 .intro{
@@ -516,7 +517,7 @@ margin-top: 5px;
 
 }
 .firstuser{
-  font-size: 30px;
+  font-size: 29px;
   height: 450px;
   // background: #FD9D00;
   background:#B3D1FF;
@@ -689,6 +690,15 @@ padding-top: 20px;
 #linelast {
 padding-left: 0px;
 }
+#firstUserDate, .firstuser2{
+  font-size:20px;
+}
+#dateLabel {
+font-size: 22px;
+}
+.firstuser{
+  font-size:25px;
+}
 }
 
 @media(max-width:750px){
@@ -714,16 +724,20 @@ padding-left: 10px;
 margin-top: 0px;
 padding-top: 20px;
 }
+#cost{
+  width: 90px;
+}
+
 }
 
 #\20 ville\20 cities {
 padding-top: 10px;
 }
 #logout > a {
-color: lightgrey;
+color: white;
 }
 #session > a {
-color: lightgrey;
+color: white;
 }
 #colwhite{
   color:white;
@@ -737,6 +751,17 @@ color: lightgrey;
 }
 #p2{
   height: 237px;
+}
+#lonelyplanet{
+  height:44px;
+  float:right;
+}
+#tripadvisor{
+  float:right;
+  margin-left:10px;
+}
+#floatleftlink{
+  float:left;
 }
 
 

@@ -86,7 +86,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     // getting the two address values
     // address1 = document.getElementById("address1").value;
     // address2 = document.getElementById("address2").value;
-    var 
+    
     address1 = gon.beg;
     address2 = gon.finish;
     
@@ -263,7 +263,7 @@ var remainingDist = length;
     
     // compute distance between the two points
     var R = 6371; 
-    var dLat = toRad(location2.lat()-location1.lat());
+    var dLat = toRad(location1.lat()-location1.lat());
     var dLon = toRad(location2.lng()-location1.lng()); 
     
     var dLat1 = toRad(location1.lat());
