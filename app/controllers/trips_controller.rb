@@ -2,9 +2,13 @@ class TripsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+
     @trips = Trip.where(user_id: current_user.id)
-    last_trip = current_user.trips.last
-    @trips.delete(last_trip)
+    @trips.pop
+
+
+   
+
     @data = build_hash_tripid_savingdata(@trips)
       if  @trips.empty?
        #activities grouped by theyre category to be displayed at the right place
