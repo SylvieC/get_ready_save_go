@@ -3,7 +3,8 @@ class TripsController < ApplicationController
 
   def index
     @trips = Trip.where(user_id: current_user.id)
-    @trips.pop
+    last_trip = current_user.trips.last
+    @trips.delete(last_trip)
     @data = build_hash_tripid_savingdata(@trips)
       if  @trips.empty?
        #activities grouped by theyre category to be displayed at the right place
