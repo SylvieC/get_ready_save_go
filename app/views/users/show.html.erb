@@ -20,17 +20,22 @@
 </div>
 <br/>
  
-<button onclick="doQuery()">getData</button>
-<div><% if !@trip.nil?%>
-         <%= @trip.to_city %>
-        
-       </div>
-<div id="info"></div> 
-<a id='hotellink'>Lodging suggestions</a> <span id='hotelnum'></span></br>
-<a id='restaurantlink'>Restaurant suggestions</a> <span id="restaurantnum"></span><br/>
-<a id='sightlink'>Interesting things to do</a><span id="sightnum"></span>
-<img id="destimage">
 
+<div class="container"><% if !@trip.nil?%>
+      
+<div id="info"></div> 
+<div class='row'>
+ 
+  <div class='col-xs-12 col-md-3 suggestions well'>
+    <h3>Some suggestions for your trip</h3>
+    <a id='hotellink'>Lodging suggestions</a> <span id='hotelnum'></span></br>
+    <a id='restaurantlink'>Restaurant suggestions</a> <span id="restaurantnum"></span><br/>
+    <a id='sightlink'>Sights</a><span id="sightnum"></span><br/>
+  </div>
+   <div class='col-xs-12 col-md-8 col-md-offset-1 imdiv offset-1'><img id="destimage"></div>
+  
+
+</div>
 
  <% end %>
 </div>
@@ -218,7 +223,10 @@
          </div>
        </div>
 
-<!--  -->
+
+
+<!-- map and charts -->
+
         <div class="clearfix hidden-md hidden-lg"></div>
 
         <div class="container" id="containera"> 
@@ -594,6 +602,7 @@ var graburl = function(str){
 
        //this is an array of the images;
       var theurl = d.data['image'];
+
     
      
      
@@ -603,6 +612,9 @@ var graburl = function(str){
      $('#restaurantnum').append(' (' + d.data['restaurantnum'] + ')');
      $('#sightlink').attr('href', d.data['sights']);
      $('#sightnum').append(' (' + d.data['sightnum'] + ')');
+     //  $('#entertlink').attr('href', d.data['sights']);
+     // $('#entertnum').append(' (' + d.data['entertainmentnum'] + ')');
+     // console.log(d.data['entertainment']);
   
     
      
@@ -617,7 +629,7 @@ var graburl = function(str){
 
      // $('#info').append("<a href=d.data['hotels']>" + "hotels in " + gon.finish + "</a>")
      
-    // for (var k in theurl) {
+    // for (var k in d.data) {
       
     //   $('#info').append("<i>" + k + "</i>: " + d.data[k] + "<br />");
 
