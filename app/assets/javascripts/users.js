@@ -15,6 +15,7 @@ function flight() {
   var mapOptions = {
     zoom: 2,
     center: new google.maps.LatLng(0, -180),
+
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
@@ -357,3 +358,4 @@ var remainingDist = length;
   var m = (metres-olddist)/(dist-olddist);
   return new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*m, p1.lng() + (p2.lng()-p1.lng())*m);
 };
+

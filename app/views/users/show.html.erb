@@ -19,7 +19,21 @@
   </div>
 </div>
 <br/>
+ 
+<button onclick="doQuery()">getData</button>
+<div><% if !@trip.nil?%>
+         <%= @trip.to_city %>
+        
+       </div>
+<div id="info"></div> 
+<a id='hotellink'>Lodging suggestions</a> <span id='hotelnum'></span></br>
+<a id='restaurantlink'>Restaurant suggestions</a> <span id="restaurantnum"></span><br/>
+<a id='sightlink'>Interesting things to do</a><span id="sightnum"></span>
+<img id="destimage">
 
+
+ <% end %>
+</div>
 
 <!-- if saving goal reached, congratulate user -->
 <% if (!@trip.cost.nil?) && (@trip.cost - @total_saved <= 0) %>
@@ -552,8 +566,68 @@
     </div>
   </div>
 </div>
+<script>
+ //function to get first url in image data
+
+function getlasturl(str){
+ var arr = str.split(',');
+ return 'http:'+ arr[arr.length-1];
+ } 
+   
+
+ // Data and done callbacks
+
+    var dataCallback = function(data) {
+      console.log("Data received", data);
+
+     
+      var d = data[0];
+
+   
+     $('#hotellink').attr('href', d.data['hotels']);
+     $('#hotelnum').append(' (' + d.data['hotelnum'] + ')');
+     $('#restaurantlink').attr('href', d.data['restaurants']);
+     $('#restaurantnum').append(' (' + d.data['restaurantnum'] + ')');
+     $('#sightlink').attr('href', d.data['sights']);
+     $('#sightnum').append(' (' + d.data['sightnum'] + ')');
+
+     
+     // $('#destimage').attr('src', picUrl);
 
 
+     
+     
+   
+ 
+  
+  
 
+     // $('#info').append("<a href=d.data['hotels']>" + "hotels in " + gon.finish + "</a>")
+     
+    for (var k in d.data) {
+      
+      $('#info').append("<i>" + k + "</i>: " + d.data[k] + "<br />");
 
-           
+    
+    }
+    }
+    var doneCallback = function(data) {
+      console.log("Done, all data:", data);
+    }
+
+// 3. Do the query (when the function is called)
+    var doQuery = function() {
+      // Query for tile lonelyplanet
+      importio.query({
+        "connectorGuids": [
+          "05e35c2b-9ec4-4437-bab5-daec9c76f788"
+        ],
+        "input": {
+          "city": gon.finish
+        }
+      }, { "data": dataCallback, "done": doneCallback });
+   }
+   this.doQuery();
+  </script>
+
+      
