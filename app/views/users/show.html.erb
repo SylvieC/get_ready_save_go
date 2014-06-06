@@ -569,10 +569,11 @@
 <script>
  //function to get first url in image data
 
-function getlasturl(str){
- var arr = str.split(',');
- return 'http:'+ arr[arr.length-1];
- } 
+var graburl = function(str){
+  var prefix = ',//images-resrc.staticlp.com/C';
+  var arr = str.split(prefix);
+  return arr[0];
+}
    
 
  // Data and done callbacks
@@ -580,22 +581,34 @@ function getlasturl(str){
     var dataCallback = function(data) {
       console.log("Data received", data);
 
+   var graburl = function(str){
+      var prefix = ',//images-resrc.staticlp.com/C';
+      var arr = str.split(prefix);
+      return arr[0];
+   };
+
+  
+
      
       var d = data[0];
 
-   
+       //this is an array of the images;
+      var theurl = d.data['image'];
+    
+     
+     
      $('#hotellink').attr('href', d.data['hotels']);
      $('#hotelnum').append(' (' + d.data['hotelnum'] + ')');
      $('#restaurantlink').attr('href', d.data['restaurants']);
      $('#restaurantnum').append(' (' + d.data['restaurantnum'] + ')');
      $('#sightlink').attr('href', d.data['sights']);
      $('#sightnum').append(' (' + d.data['sightnum'] + ')');
-
+  
+    
      
-     // $('#destimage').attr('src', picUrl);
+     $('#destimage').attr('src', theurl[0]);
 
 
-     
      
    
  
@@ -604,12 +617,12 @@ function getlasturl(str){
 
      // $('#info').append("<a href=d.data['hotels']>" + "hotels in " + gon.finish + "</a>")
      
-    for (var k in d.data) {
+    // for (var k in theurl) {
       
-      $('#info').append("<i>" + k + "</i>: " + d.data[k] + "<br />");
+    //   $('#info').append("<i>" + k + "</i>: " + d.data[k] + "<br />");
 
     
-    }
+    // }
     }
     var doneCallback = function(data) {
       console.log("Done, all data:", data);
