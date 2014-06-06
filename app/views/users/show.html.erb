@@ -608,7 +608,7 @@ var graburl = function(str){
      
      
      $('#hotellink').attr('href', d.data['hotels']);
-     $('#hotelnum').append(' (' + d.data['hotelnum'] + ')');
+     $('#hotelnum').append(' (' + d.dasta['hotelnum'] + ')');
      $('#restaurantlink').attr('href', d.data['restaurants']);
      $('#restaurantnum').append(' (' + d.data['restaurantnum'] + ')');
      $('#sightlink').attr('href', d.data['sights']);
@@ -620,6 +620,13 @@ var graburl = function(str){
     
      
      $('#destimage').attr('src', theurl[0]);
+     for ( var i = 1; i < therurl.length){
+
+      $('#info').append('<img src='+ theurl[i] +'>');
+
+
+     }
+     
 
 
      
