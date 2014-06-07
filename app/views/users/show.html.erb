@@ -21,8 +21,7 @@
 <br/>
  
 
-<div class="container"><% if !@trip.nil?%>
-      
+<div class="container"><% if !@trip.nil?%> 
 <div id="info"></div> 
 <div class='row'>
  
@@ -577,12 +576,7 @@
 </div>
 <script>
  //function to get first url in image data
-
-var graburl = function(str){
-  var prefix = ',//images-resrc.staticlp.com/C';
-  var arr = str.split(prefix);
-  return arr[0];
-}
+ 
    
 
  // Data and done callbacks
@@ -600,15 +594,18 @@ var graburl = function(str){
 
      
       var d = data[0];
-
-       //this is an array of the images;
+      //this is an array of the images;
       var theurl = d.data['image'];
+      console.log(d.data['image']);
+      // console.log(d.data['hotels']);
+      console.log(d.data['hotelnum'])
 
     
-     
+    $('#destimage').attr('src', theurl[0]);
+    
      
      $('#hotellink').attr('href', d.data['hotels']);
-     $('#hotelnum').append(' (' + d.dasta['hotelnum'] + ')');
+     $('#hotelnum').append(' (' + d.data['hotelnum'] + ')');
      $('#restaurantlink').attr('href', d.data['restaurants']);
      $('#restaurantnum').append(' (' + d.data['restaurantnum'] + ')');
      $('#sightlink').attr('href', d.data['sights']);
@@ -618,31 +615,12 @@ var graburl = function(str){
      // console.log(d.data['entertainment']);
   
     
-     
-     $('#destimage').attr('src', theurl[0]);
-     for ( var i = 1; i < therurl.length){
-
-      $('#info').append('<img src='+ theurl[i] +'>');
-
-
-     }
-     
-
-
-     
    
- 
-  
-  
-
-     // $('#info').append("<a href=d.data['hotels']>" + "hotels in " + gon.finish + "</a>")
      
-    // for (var k in d.data) {
-      
-    //   $('#info').append("<i>" + k + "</i>: " + d.data[k] + "<br />");
 
     
-    // }
+     // $('#info').append("<a href=d.data['hotels']>" + "hotels in " + gon.finish + "</a>")
+   
     }
     var doneCallback = function(data) {
       console.log("Done, all data:", data);
