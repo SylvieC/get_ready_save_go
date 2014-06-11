@@ -20,7 +20,7 @@
 </div>
 <br/>
  
-
+<!-- 
 <div class="container"><% if !@trip.nil?%> 
 <div id="info"></div> 
 <div class='row'>
@@ -38,7 +38,7 @@
 </div>
 
  <% end %>
-</div>
+</div> -->
 
 <!-- if saving goal reached, congratulate user -->
 <% if (!@trip.cost.nil?) && (@trip.cost - @total_saved <= 0) %>
@@ -590,15 +590,21 @@
       return arr[0];
    };
 
+
   
 
      
       var d = data[0];
+
+
       //this is an array of the images;
       var theurl = d.data['image'];
+      console.log('ha');
       console.log(d.data['image']);
       // console.log(d.data['hotels']);
-      console.log(d.data['hotelnum'])
+
+  
+
 
     
     $('#destimage').attr('src', theurl[0]);
@@ -613,6 +619,7 @@
      //  $('#entertlink').attr('href', d.data['sights']);
      // $('#entertnum').append(' (' + d.data['entertainmentnum'] + ')');
      // console.log(d.data['entertainment']);
+
   
     
    
