@@ -4,5 +4,6 @@ class Trip < ActiveRecord::Base
   has_many :savings
   accepts_nested_attributes_for :activities
   accepts_nested_attributes_for :savings
+  validates_presence_of :from_city, :to_city
 
 end
