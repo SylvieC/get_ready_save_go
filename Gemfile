@@ -67,6 +67,8 @@ end
 
 group :test, :darwin do
     gem 'rb-fsevent'
+    gem "faker", "~> 1.1.2"
+    gem "selenium-webdriver", "~> 2.39.0"
   end
 
 group :production do

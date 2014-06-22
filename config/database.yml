@@ -17,7 +17,7 @@
 #
 development:
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: ready_save_go_development
   pool: 5
 
