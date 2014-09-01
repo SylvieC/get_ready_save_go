@@ -12,15 +12,7 @@ describe UsersController do
     sign_in(user)
     get :show, id: user
     expect(response).to be_success
-
-end
-
-    # it "returns http success with a signed in user" do
-    #   user = FactoryGirl.create(:user)
-    #   sign_in(user)
-    #   get "users\/#{user.id}"
-    #   expect(response).to be_success
-    # end
+    end
   end
 
   describe "GET 'index" do
@@ -31,6 +23,10 @@ end
       expect(response).to be_success
     end
   end
+
+  describe
+
+
 
 end
 
