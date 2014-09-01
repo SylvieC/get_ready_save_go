@@ -60,7 +60,7 @@ group :development, :test do
   gem 'meta_request'
   gem 'pry'
   gem 'pry-rails'
-  gem 'pry-byebug'
+  # gem 'pry-byebug'
   gem 'capybara'
   gem "factory_girl_rails", "~> 4.4.0"
 end
@@ -73,6 +73,11 @@ group :test, :darwin do
 
 group :production do
   gem 'rails_12factor'
+end
+
+ group :test do
+  gem "faker", "~> 1.1.2"
+  gem "selenium-webdriver", "~> 2.39.0"
 end
 
 
