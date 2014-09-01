@@ -14,5 +14,11 @@ describe User do
     FactoryGirl.build(:user, password_confirmation: 'foobarbar').should be_valid
   end
 
+  it "duplicate emails are invalid" do
+  FactoryGirl.create(:user, email: 'bob@gmail.com')
+  user = User.new(email: 'bob@gmail.com')
+  expect(user).to have(1).errors_on(:email)
+end
+
 end
 
